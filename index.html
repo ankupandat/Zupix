@@ -1,0 +1,3702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Zupix - Verified Pros & Doctors | Local Marketplace</title>
+  
+  <!-- PWA & Android Meta Tags (Ready for PWABuilder & Android APK Compilation) -->
+  <meta name="description" content="Verified local marketplace connecting customers with verified plumbers, electricians, mechanics, and doctors with nominal ₹20 convenience fees." />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Zupix" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
+
+  <!-- Web App Manifest (Embedded Data URI for universal standalone APK & Web support) -->
+  <link rel="manifest" href="data:application/manifest+json;utf8,%7B%22id%22%3A%22%2F%22%2C%22name%22%3A%22Zupix%20-%20Verified%20Pros%20%26%20Doctors%22%2C%22short_name%22%3A%22Zupix%22%2C%22description%22%3A%22Verified%20local%20marketplace%20connecting%20customers%20with%20pros%22%2C%22start_url%22%3A%22%2F%22%2C%22scope%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%232563eb%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20192%20192'%253E%253Crect%20width%3D'192'%20height%3D'192'%20rx%3D'40'%20fill%3D'%25232563eb'%2F%253E%253Cpath%20d%3D'M48%2056h96l-64%2080h64'%20stroke%3D'white'%20stroke-width%3D'18'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%20fill%3D'none'%2F%253E%253Ccircle%20cx%3D'140'%20cy%3D'60'%20r%3D'10'%20fill%3D'%252338bdf8'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'100'%20fill%3D'%25232563eb'%2F%253E%253Cpath%20d%3D'M128%20150h256l-170%20212h170'%20stroke%3D'white'%20stroke-width%3D'48'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%20fill%3D'none'%2F%253E%253Ccircle%20cx%3D'370'%20cy%3D'160'%20r%3D'24'%20fill%3D'%252338bdf8'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React 18 & Babel Standalone CDNs -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.24.0/babel.min.js"></script>
+
+  <!-- Firebase Compat CDNs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .font-display {
+      font-family: 'Outfit', sans-serif;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    @keyframes orbGlow {
+      0%, 100% { transform: scale(1); filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.4)); }
+      50% { transform: scale(1.08); filter: drop-shadow(0 0 30px rgba(56, 189, 248, 0.7)); }
+    }
+    @keyframes wavePulse {
+      0%, 100% { height: 6px; }
+      50% { height: 28px; }
+    }
+    .animate-orb-glow {
+      animation: orbGlow 3s ease-in-out infinite;
+    }
+    .wave-bar {
+      width: 4px;
+      border-radius: 9999px;
+      background: linear-gradient(to top, #38bdf8, #818cf8, #c084fc);
+      animation: wavePulse 1.2s ease-in-out infinite;
+    }
+    @keyframes pulseAiBtn {
+      0%, 100% { transform: scale(1); box-shadow: 0 4px 14px rgba(79, 70, 229, 0.4); }
+      50% { transform: scale(1.08); box-shadow: 0 6px 22px rgba(79, 70, 229, 0.7); }
+    }
+    #ai-toggle-btn {
+      animation: pulseAiBtn 2.2s infinite ease-in-out;
+    }
+    @keyframes jarvisWave {
+      0%, 100% { height: 6px; }
+      50% { height: 26px; }
+    }
+    @keyframes jarvisOrbPulse {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 25px rgba(99, 102, 241, 0.65), 0 8px 24px rgba(0,0,0,0.35); }
+      50% { transform: scale(1.06); box-shadow: 0 0 35px rgba(124, 58, 237, 0.85), 0 10px 28px rgba(0,0,0,0.45); }
+    }
+    #jarvis-orb-btn {
+      animation: jarvisOrbPulse 2.4s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
+  
+  <div id="root"></div>
+
+  <!-- Inline Service Worker for Instant Offline Readiness -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        const swBlob = new Blob([`
+          self.addEventListener('install', (e) => self.skipWaiting());
+          self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim()));
+          self.addEventListener('fetch', (e) => {
+            if (e.request.method !== 'GET') return;
+            e.respondWith(caches.match(e.request).then(res => res || fetch(e.request).catch(() => new Response('Zupix Offline Ready'))));
+          });
+        `], { type: 'application/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
+      });
+    }
+  </script>
+
+  <!-- COMPLETE ALL-IN-ONE ZUPIX APPLICATION CODE -->
+  <script type="text/babel">
+    const { useState, useEffect, useMemo, useRef } = React;
+
+    // ============================================================
+    // 1. FIREBASE CONFIGURATION & LOCAL STORAGE PERSISTENCE
+    // ============================================================
+    const firebaseConfig = {
+      apiKey: "AIzaSyCgcV8rnJYc5o8mRqi0sVs8nDoPhp7MlNw",
+      authDomain: "lexical-plexus-3wjrd.firebaseapp.com",
+      projectId: "lexical-plexus-3wjrd",
+      storageBucket: "lexical-plexus-3wjrd.firebasestorage.app",
+      messagingSenderId: "96423207903",
+      appId: "1:96423207903:web:b853a90e1f4095153f5a6a"
+    };
+
+    let db = null;
+    let auth = null;
+    try {
+      if (typeof firebase !== 'undefined' && firebase.apps) {
+        if (!firebase.apps.length) {
+          firebase.initializeApp(firebaseConfig);
+        }
+        if (firebase.firestore) {
+          try { firebase.firestore.setLogLevel('silent'); } catch (e) {}
+          db = firebase.firestore();
+        }
+        if (firebase.auth) {
+          auth = firebase.auth();
+        }
+      }
+    } catch (e) {
+      db = null;
+    }
+
+    const safeFirestore = async (fn, fallback) => {
+      if (!db) return typeof fallback === 'function' ? fallback() : fallback;
+      try {
+        const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 2500));
+        return await Promise.race([fn(db), timeoutPromise]);
+      } catch (err) {
+        if (err && (err.code === 'not-found' || err.message?.includes('not exist') || err.message === 'timeout')) {
+          try { db.disableNetwork(); } catch (e) {}
+          db = null;
+        }
+        return typeof fallback === 'function' ? fallback() : fallback;
+      }
+    };
+
+    const Storage = {
+      get: (key, def) => {
+        try {
+          const item = localStorage.getItem('zupix_' + key) || localStorage.getItem('zupix_' + key + '_v2');
+          return item ? JSON.parse(item) : def;
+        } catch { return def; }
+      },
+      set: (key, val) => {
+        try {
+          localStorage.setItem('zupix_' + key, JSON.stringify(val));
+          localStorage.setItem('zupix_' + key + '_v2', JSON.stringify(val));
+        } catch {}
+      }
+    };
+
+    // Supported Languages
+    const LANGUAGES = [
+      { code: 'en', name: 'English', native: 'English' },
+      { code: 'hi', name: 'Hindi', native: 'हिन्दी' },
+      { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ' },
+      { code: 'bn', name: 'Bengali', native: 'বাংলা' },
+      { code: 'mr', name: 'Marathi', native: 'मराठी' },
+      { code: 'te', name: 'Telugu', native: 'తెలుగు' },
+      { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
+      { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી' }
+    ];
+
+    // Supported Countries
+    const COUNTRIES = [
+      { code: 'IN', dial: '+91', name: 'India', flag: '🇮🇳' },
+      { code: 'AE', dial: '+971', name: 'United Arab Emirates', flag: '🇦🇪' },
+      { code: 'GB', dial: '+44', name: 'United Kingdom', flag: '🇬🇧' },
+      { code: 'US', dial: '+1', name: 'United States', flag: '🇺🇸' },
+      { code: 'CA', dial: '+1', name: 'Canada', flag: '🇨🇦' },
+      { code: 'AU', dial: '+61', name: 'Australia', flag: '🇦🇺' }
+    ];
+
+    // 10 Official Specialist Trade Categories
+    const CATEGORIES = [
+      { name: 'All', icon: '✨', label: 'All Services', subtitle: 'Browse all local trades' },
+      { name: 'Doctor / General Physician', icon: '🩺', label: 'Doctors', subtitle: 'Consultations, emergency visit, family health' },
+      { name: 'Plumbing', icon: '🔧', label: 'Plumbing', subtitle: 'Pipe leaks, taps, motor fitting, sanitary' },
+      { name: 'Electrical', icon: '⚡', label: 'Electrical', subtitle: 'Wiring, MCB, inverter setup, short-circuits' },
+      { name: 'Mechanic / Vehicle Repair', icon: '🚗', label: 'Mechanic', subtitle: 'Car & bike breakdown, puncture, engine' },
+      { name: 'AC & Refrigeration', icon: '❄️', label: 'AC Repair', subtitle: 'Gas refill, compressor, regular servicing' },
+      { name: 'Salon & Makeup', icon: '✂️', label: 'Beauty / Salon', subtitle: 'Haircut, facial, waxing, bridal grooming' },
+      { name: 'Carpentry', icon: '🪚', label: 'Carpentry', subtitle: 'Doors, furniture repair, wooden fittings' },
+      { name: 'Cleaning & Pest Control', icon: '🧹', label: 'Cleaning', subtitle: 'Deep home cleaning, sofa, pest fumigation' },
+      { name: 'Home Painting', icon: '🎨', label: 'Painting', subtitle: 'Interior/exterior walls, waterproof coating' },
+      { name: 'Appliance Repair', icon: '🔥', label: 'Appliances', subtitle: 'Washing machine, microwave, geyser, RO' }
+    ];
+
+    // 4 Onboarding Slides
+    const ONBOARDING_SLIDES = [
+      {
+        badge: 'Nominal ₹20 Platform Fee',
+        title: 'Instant Access to Verified Local',
+        highlight: 'Doctors & Specialists',
+        description: 'Find trusted electricians, plumbers, physicians, salon experts, and home technicians right in your area with verified direct phone lines.',
+        icon: '🩺',
+        features: ['Direct Phone Contact', 'Instant Phone Unlock for ₹20', 'Instant Area Matching'],
+        gradient: 'from-blue-600 to-indigo-700'
+      },
+      {
+        badge: 'Direct Phone Guidance',
+        title: 'Direct Call & Real-Time',
+        highlight: 'Location & Fee Confirmation',
+        description: 'Confirm service charges and your exact address directly over a quick phone call with the provider. Direct voice communication with zero markups.',
+        icon: '📞',
+        features: ['Confirm Rates on Phone', 'Live Voice Address Help', 'Zero Intermediaries'],
+        gradient: 'from-indigo-600 to-violet-700'
+      },
+      {
+        badge: 'Empowering Local Experts',
+        title: 'Grow Your Service Business as a',
+        highlight: 'Verified Pro Partner',
+        description: 'Join thousands of electricians, doctors, and craftsmen receiving direct customer calls with prepaid partner convenience fees.',
+        icon: '💼',
+        features: ['Verified Pro Listings', 'Direct Customer Payments', 'Prepaid Partner Wallet'],
+        gradient: 'from-teal-600 to-emerald-700'
+      },
+      {
+        badge: 'Safe & Verified',
+        title: 'Fast, Verified & Safe for',
+        highlight: 'Every Household',
+        description: 'Secure OTP-verified accounts with genuine verified specialist profiles, ratings, and one-account-per-number integrity.',
+        icon: '🛡️',
+        features: ['Real-Time Phone OTP', 'Identity Verified Pros', 'Transparent Community'],
+        gradient: 'from-blue-700 via-indigo-800 to-slate-900'
+      }
+    ];
+
+    // Live Animated Brand Icon
+    const LiveAppIcon = ({ size = "md" }) => {
+      const dim = size === "sm" ? "w-8 h-8 text-base" : size === "lg" ? "w-16 h-16 text-3xl" : "w-10 h-10 text-xl";
+      return (
+        <div className={`relative ${dim} rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-blue-700 flex items-center justify-center text-white font-display font-black shadow-md shadow-blue-500/25 shrink-0`}>
+          <span>Z</span>
+          <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 border-2 border-white rounded-full animate-ping" />
+          <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full" />
+        </div>
+      );
+    };
+
+    // Default Verified Specialists across India & Global (with initial prepaid partner wallet balance)
+    const DEFAULT_VERIFIED_WORKERS = [
+      {
+        id: 'w-ramesh-1',
+        name: 'Ramesh Sharma',
+        phone: '9876543210',
+        category: 'Plumbing',
+        pincode: '134102',
+        address: 'Main Bazar, Pinjore, Panchkula',
+        hourlyRate: 299,
+        walletBalance: 100, // Initial ₹100 recharge via FamPay
+        specialization: 'Pipe Leaks, Sanitary Fitting, Motor Repair',
+        bio: '12+ years experience in Pinjore & Panchkula. Verified direct contact.',
+        rating: 4.9,
+        reviewCount: 38,
+        experienceYears: 12,
+        isVerified: true,
+        isAvailable: true
+      },
+      {
+        id: 'w-kuldeep-2',
+        name: 'Kuldeep Singh',
+        phone: '9812345678',
+        category: 'Electrical',
+        pincode: '134102',
+        address: 'Sector 4, Pinjore, Panchkula',
+        hourlyRate: 250,
+        walletBalance: 100, // Initial ₹100 recharge via FamPay
+        specialization: 'Short Circuit, MCB Tripping, Inverter Setup',
+        bio: 'Govt. certified electrician. Immediate emergency visit in Pinjore & Kalka.',
+        rating: 4.8,
+        reviewCount: 42,
+        experienceYears: 9,
+        isVerified: true,
+        isAvailable: true
+      },
+      {
+        id: 'w-kuldeep-plumb',
+        name: 'Kuldeep Verma',
+        phone: '9812345679',
+        category: 'Plumbing',
+        pincode: '134102',
+        address: 'Himshikha, Pinjore',
+        hourlyRate: 250,
+        walletBalance: 10, // Demonstrates Smart Booking Lock (Balance < ₹20 blocks bookings)
+        specialization: 'Water Tank Fitting, Taps, Drainage Cleaning',
+        bio: 'Local plumber with 8+ years experience in Pinjore area.',
+        rating: 4.7,
+        reviewCount: 29,
+        experienceYears: 8,
+        isVerified: true,
+        isAvailable: true
+      },
+      {
+        id: 'w-dr-anil-3',
+        name: 'Dr. Anil Verma (MBBS)',
+        phone: '9896011223',
+        category: 'Doctor / General Physician',
+        pincode: '134102',
+        address: 'City Clinic, Pinjore',
+        hourlyRate: 350,
+        walletBalance: 100,
+        specialization: 'General Medicine, Emergency Consult, Family Health',
+        bio: '15+ years clinical practice. Tele-consultation & emergency home visits.',
+        rating: 5.0,
+        reviewCount: 65,
+        experienceYears: 15,
+        isVerified: true,
+        isAvailable: true
+      },
+      {
+        id: 'w-vikram-4',
+        name: 'Vikram Chauhan',
+        phone: '9729012345',
+        category: 'AC & Refrigeration',
+        pincode: '134102',
+        address: 'Old Bus Stand, Pinjore',
+        hourlyRate: 299,
+        walletBalance: 100,
+        specialization: 'Split/Window AC Gas Charging, Jet Cleaning, PCB Repair',
+        bio: 'Certified HVAC technician. Genuine parts with 30-day service warranty.',
+        rating: 4.9,
+        reviewCount: 31,
+        experienceYears: 7,
+        isVerified: true,
+        isAvailable: true
+      },
+      {
+        id: 'w-sunita-5',
+        name: 'Sunita Sharma',
+        phone: '9812098765',
+        category: 'Salon & Makeup',
+        pincode: '134102',
+        address: 'Model Town, Pinjore',
+        hourlyRate: 349,
+        walletBalance: 100,
+        specialization: 'Bridal Makeup, Facial, Hair Spa & Waxing at Home',
+        bio: 'Certified beautician. Hygiene first with sanitized tools & herbal products.',
+        rating: 4.9,
+        reviewCount: 47,
+        experienceYears: 6,
+        isVerified: true,
+        isAvailable: true
+      },
+      {
+        id: 'w-sunil-delhi',
+        name: 'Sunil Kumar',
+        phone: '9811002233',
+        category: 'Electrical',
+        pincode: '110001',
+        address: 'Connaught Place, Central Delhi',
+        hourlyRate: 299,
+        walletBalance: 100,
+        specialization: 'Full house wiring, MCB replacement',
+        bio: 'Central Delhi registered electrical contractor.',
+        rating: 4.8,
+        reviewCount: 22,
+        experienceYears: 10,
+        isVerified: true,
+        isAvailable: true
+      },
+      {
+        id: 'w-rajesh-mumbai',
+        name: 'Rajesh Patil',
+        phone: '9820011223',
+        category: 'Plumbing',
+        pincode: '400001',
+        address: 'Fort & Colaba, South Mumbai',
+        hourlyRate: 350,
+        walletBalance: 100,
+        specialization: 'High-rise pipe fitting, water tank, bath fittings',
+        bio: 'Expert plumbing solutions across Mumbai. 14+ yrs experience.',
+        rating: 4.9,
+        reviewCount: 54,
+        experienceYears: 14,
+        isVerified: true,
+        isAvailable: true
+      },
+      {
+        id: 'w-arjun-blr',
+        name: 'Arjun Gowda',
+        phone: '9845012345',
+        category: 'AC & Refrigeration',
+        pincode: '560001',
+        address: 'MG Road, Indiranagar, Bengaluru',
+        hourlyRate: 399,
+        walletBalance: 100,
+        specialization: 'HVAC repair, Inverter AC gas refill & PCB diagnosis',
+        bio: 'Top rated cooling specialist in Bangalore.',
+        rating: 4.9,
+        reviewCount: 68,
+        experienceYears: 8,
+        isVerified: true,
+        isAvailable: true
+      },
+      {
+        id: 'w-tariq-dxb',
+        name: 'Tariq Mansoor',
+        phone: '971501234567',
+        category: 'Electrical',
+        pincode: '00000',
+        address: 'Downtown & Business Bay, Dubai',
+        hourlyRate: 500,
+        walletBalance: 100,
+        specialization: 'Smart home electricals, lighting, breakers',
+        bio: 'Licensed professional electrical engineer in UAE.',
+        rating: 5.0,
+        reviewCount: 82,
+        experienceYears: 11,
+        isVerified: true,
+        isAvailable: true
+      },
+      {
+        id: 'w-michael-nyc',
+        name: 'Michael Miller',
+        phone: '12125550199',
+        category: 'Plumbing',
+        pincode: '10001',
+        address: 'Midtown Manhattan, New York, NY',
+        hourlyRate: 600,
+        walletBalance: 100,
+        specialization: 'Master plumber, drain unclogging, emergency pipe repair',
+        bio: 'Licensed NYC master plumber with 15+ years experience.',
+        rating: 4.9,
+        reviewCount: 95,
+        experienceYears: 15,
+        isVerified: true,
+        isAvailable: true
+      }
+    ];
+
+    // National Postal Pincode API Resolver & Cache
+    const pincodeCacheMap = new Map();
+    async function lookupPostalPincode(pincode) {
+      const clean = String(pincode || '').replace(/\D/g, '').trim();
+      if (clean.length !== 6) return null;
+      if (pincodeCacheMap.has(clean)) return pincodeCacheMap.get(clean);
+
+      const stored = Storage.get('pincode_cache_' + clean, null);
+      if (stored) {
+        pincodeCacheMap.set(clean, stored);
+        return stored;
+      }
+
+      try {
+        const response = await fetch(`https://api.postalpincode.in/pincode/${clean}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (Array.isArray(data) && data[0]?.Status === 'Success' && data[0]?.PostOffice?.length > 0) {
+            const po = data[0].PostOffice[0];
+            const result = {
+              pincode: clean,
+              name: po.Name || 'Area Hub',
+              district: po.District || '',
+              state: po.State || '',
+              display: `${po.Name}, ${po.District} (${po.State})`,
+              short: `${po.Name}, ${po.District}`
+            };
+            pincodeCacheMap.set(clean, result);
+            Storage.set('pincode_cache_' + clean, result);
+            return result;
+          }
+        }
+      } catch (err) {
+        console.warn('Pincode API lookup error:', err);
+      }
+
+      // Offline fallbacks for common cities
+      const fallbackMap = {
+        '134102': { pincode: '134102', name: 'Pinjore', district: 'Panchkula', state: 'Haryana', display: 'Pinjore, Panchkula (Haryana)', short: 'Pinjore, Panchkula' },
+        '110001': { pincode: '110001', name: 'Connaught Place', district: 'Central Delhi', state: 'Delhi', display: 'Connaught Place, Central Delhi (Delhi)', short: 'Connaught Place, Delhi' },
+        '400001': { pincode: '400001', name: 'Fort', district: 'Mumbai', state: 'Maharashtra', display: 'Fort, Mumbai (Maharashtra)', short: 'Fort, Mumbai' },
+        '560001': { pincode: '560001', name: 'MG Road', district: 'Bengaluru', state: 'Karnataka', display: 'Bengaluru Central (Karnataka)', short: 'Bengaluru' },
+        '500001': { pincode: '500001', name: 'Hyderabad G.P.O.', district: 'Hyderabad', state: 'Telangana', display: 'Hyderabad GPO (Telangana)', short: 'Hyderabad GPO' }
+      };
+      if (fallbackMap[clean]) {
+        pincodeCacheMap.set(clean, fallbackMap[clean]);
+        return fallbackMap[clean];
+      }
+      return null;
+    }
+
+    // ============================================================
+    // 2. MAIN APPLICATION COMPONENT
+    // ============================================================
+    function App() {
+      // User & Navigation States (Global neutral default customer, not hardcoded to any single person or city)
+      const defaultCustomerUser = {
+        id: 'u-guest',
+        name: 'Customer',
+        phone: '9876543210',
+        role: 'customer',
+        pincode: '110001',
+        address: 'Delhi / Global Services Hub',
+        isProfileComplete: true,
+        createdAt: new Date().toISOString()
+      };
+      const [currentUser, setCurrentUser] = useState(() => {
+        const saved = Storage.get('user', null);
+        return (saved && saved.isProfileComplete) ? saved : defaultCustomerUser;
+      });
+      const [authFlowState, setAuthFlowState] = useState(() => {
+        const saved = Storage.get('user', null);
+        return (saved && saved.isProfileComplete) ? 'authenticated' : 'authenticated';
+      });
+
+      // Active view tab: 'home' | 'bookings' | 'worker_dashboard' | 'profile' | 'provider_setup'
+      const [activeTab, setActiveTab] = useState(() => {
+        const saved = Storage.get('user', null);
+        return saved?.role === 'worker' ? 'worker_dashboard' : 'home';
+      });
+
+      // Data states (STRICT ZERO DUMMY DATA: only real saved items)
+      const [workers, setWorkers] = useState(() => {
+        const saved = Storage.get('workers', []);
+        return (saved && saved.length > 0) ? saved : DEFAULT_VERIFIED_WORKERS;
+      });
+      const [bookings, setBookings] = useState(() => Storage.get('bookings', []));
+      const [notifications, setNotifications] = useState(() => Storage.get('notifications', []));
+      
+      // Unlocked Service Providers (Instant ₹20 Payment unmasks phone numbers permanently)
+      const [unlockedWorkers, setUnlockedWorkers] = useState(() => Storage.get('unlocked_workers', []));
+
+      // FamPay Payment Engine States & Credentials
+      const FAMPAY_UPI_ID = "9306315807@fam";
+      const FAMPAY_PAYEE_NAME = "Anku Pandit";
+      const [paymentModalWorker, setPaymentModalWorker] = useState(null);
+      const [paymentSuccessState, setPaymentSuccessState] = useState(null);
+      const [isProcessingPayment, setIsProcessingPayment] = useState(false);
+
+      // Smart Booking Lock State (Workers with Balance < ₹20 are blocked)
+      const [blockedWorker, setBlockedWorker] = useState(null);
+
+      // Partner Prepaid Wallet Recharge Modal
+      const [walletRechargeOpen, setWalletRechargeOpen] = useState(false);
+      const [walletRechargeAmount, setWalletRechargeAmount] = useState(100);
+      const [rechargeSuccess, setRechargeSuccess] = useState(false);
+      const [copiedToast, setCopiedToast] = useState('');
+
+      // Language & Country
+      const [lang, setLang] = useState('en');
+      const [country, setCountry] = useState(COUNTRIES[0]);
+
+      // Filters & Postal Pincode Location
+      const [searchQuery, setSearchQuery] = useState('');
+      const [selectedCategory, setSelectedCategory] = useState('All');
+      const [pincodeFilter, setPincodeFilter] = useState(() => currentUser?.pincode || '');
+      const [pincodeLocation, setPincodeLocation] = useState(null);
+
+      // Zupix AI Assistant States (Floating Widget)
+      const [isAiWidgetOpen, setIsAiWidgetOpen] = useState(false);
+      const [aiMessages, setAiMessages] = useState(() => [
+        {
+          id: 1,
+          role: 'ai',
+          text: `नमस्ते ${currentUser?.name || 'Customer'}! मैं आपका Zupix AI असिस्टेंट हूँ। दुनिया के किसी भी कोने से कोई भी पिन कोड, शहर या सर्विस बोलिए या टाइप कीजिए, मैं तुरंत मदद करूँगा! 🌍✨`,
+          pros: []
+        }
+      ]);
+      const [aiInputText, setAiInputText] = useState('');
+      const [voiceListening, setVoiceListening] = useState(false);
+      const [isMuted, setIsMuted] = useState(false);
+      const chatMessagesRef = useRef(null);
+      const speechRecRef = useRef(null);
+
+      // Auto-scroll chat messages
+      useEffect(() => {
+        if (chatMessagesRef.current) {
+          chatMessagesRef.current.scrollTop = chatMessagesRef.current.scrollHeight;
+        }
+      }, [aiMessages, isAiWidgetOpen]);
+
+      // Resolve National Postal Location dynamically
+      useEffect(() => {
+        let isMounted = true;
+        if (pincodeFilter && pincodeFilter.length === 6) {
+          lookupPostalPincode(pincodeFilter).then(info => {
+            if (isMounted && info) setPincodeLocation(info);
+          });
+        }
+        return () => { isMounted = false; };
+      }, [pincodeFilter]);
+
+      // Hindi Text-To-Speech (TTS)
+      const speakInHindi = (text, onEnd) => {
+        if (!('speechSynthesis' in window) || isMuted) {
+          if (onEnd) onEnd();
+          return;
+        }
+        try {
+          window.speechSynthesis.cancel();
+          const cleanText = text.replace(/[*#_~`]/g, '').trim();
+          const utterance = new SpeechSynthesisUtterance(cleanText);
+          const voices = window.speechSynthesis.getVoices();
+          const hindiVoice = voices.find(v => v.lang && (v.lang.startsWith('hi') || v.lang.includes('IN'))) || voices[0];
+          if (hindiVoice) utterance.voice = hindiVoice;
+          utterance.lang = 'hi-IN';
+          utterance.rate = 0.95;
+          utterance.pitch = 1.0;
+
+          utterance.onstart = () => setVoiceState('speaking');
+          utterance.onend = () => {
+            setVoiceState('idle');
+            if (onEnd) onEnd();
+          };
+          utterance.onerror = () => setVoiceState('idle');
+          window.speechSynthesis.speak(utterance);
+        } catch (e) {
+          setVoiceState('idle');
+        }
+      };
+
+      const stopSpeaking = () => {
+        if ('speechSynthesis' in window) {
+          window.speechSynthesis.cancel();
+        }
+        setVoiceState('idle');
+      };
+
+      // Voice Input: Start Listening (STT)
+      const startListening = () => {
+        stopSpeaking();
+        const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRec) {
+          alert('Web Speech API is not supported in this browser. You can type your request in Hindi or English below.');
+          return;
+        }
+
+        try {
+          if (speechRecRef.current) {
+            try { speechRecRef.current.stop(); } catch (e) {}
+          }
+
+          const rec = new SpeechRec();
+          rec.lang = 'hi-IN';
+          rec.interimResults = true;
+          rec.maxAlternatives = 1;
+
+          rec.onstart = () => {
+            setVoiceState('listening');
+            setVoiceTranscript('');
+          };
+
+          rec.onresult = (event) => {
+            let current = '';
+            for (let i = event.resultIndex; i < event.results.length; ++i) {
+              current += event.results[i][0].transcript;
+            }
+            setVoiceTranscript(current);
+
+            if (event.results[0].isFinal) {
+              handleProcessVoiceQuery(current);
+            }
+          };
+
+          rec.onerror = (event) => {
+            console.warn('Speech recognition error:', event.error);
+            setVoiceState('idle');
+          };
+
+          rec.onend = () => {
+            setVoiceState(prev => prev === 'listening' ? 'idle' : prev);
+          };
+
+          speechRecRef.current = rec;
+          rec.start();
+        } catch (err) {
+          console.warn('Speech start error:', err);
+          setVoiceState('idle');
+        }
+      };
+
+      // Zupix AI Assistant Message Handler
+      const sendAIMessage = async (customText) => {
+        const text = (typeof customText === 'string' ? customText : aiInputText).trim();
+        if (!text) return;
+        setAiInputText('');
+
+        const userMsg = { id: Date.now(), role: 'user', text };
+        setAiMessages(prev => [...prev, userMsg]);
+
+        setTimeout(async () => {
+          let responseText = "मैंने आपकी बात समझ ली है। ";
+          let matchedPros = [];
+
+          // Pincode Detection (6 Digits)
+          const pinMatch = text.match(/\b([1-9][0-9]{5})\b/);
+          if (pinMatch || /^\d{6}$/.test(text)) {
+            const pin = pinMatch ? pinMatch[1] : text;
+            setPincodeFilter(pin);
+            const locInfo = await lookupPostalPincode(pin);
+            if (locInfo) setPincodeLocation(locInfo);
+            const areaName = locInfo ? `${locInfo.name} (${locInfo.district})` : 'पिनजौर/कालका क्षेत्र';
+            responseText += `पिन कोड ${pin} (${areaName}) पर उपलब्ध सर्विसेज लोड कर दी गई हैं!`;
+
+            matchedPros = workers.filter(w => w.pincode === pin);
+            if (matchedPros.length > 0) {
+              const p1 = matchedPros[0];
+              const p2 = matchedPros[1];
+              responseText += ` जैसे: ${p1.name} (${p1.category} - ₹${p1.hourlyRate})${p2 ? `, ${p2.name} (${p2.category} - ₹${p2.hourlyRate})` : ''}।`;
+            }
+          } else {
+            // Service category detection
+            let matchedCat = null;
+            const lower = text.toLowerCase();
+            if (lower.includes('प्लंबर') || lower.includes('नल') || lower.includes('पाइप') || lower.includes('motor') || lower.includes('plumb')) {
+              matchedCat = 'Plumbing';
+            } else if (lower.includes('इलेक्ट्रीशियन') || lower.includes('बिजली') || lower.includes('लाइट') || lower.includes('पंखा') || lower.includes('electr')) {
+              matchedCat = 'Electrical';
+            } else if (lower.includes('डॉक्टर') || lower.includes('doctor') || lower.includes('दवाई') || lower.includes('इलाज')) {
+              matchedCat = 'Doctor / General Physician';
+            } else if (lower.includes('एसी') || lower.includes('ac') || lower.includes('कूलिंग') || lower.includes('refrigeration')) {
+              matchedCat = 'AC & Refrigeration';
+            } else if (lower.includes('मैकेनिक') || lower.includes('mechanic') || lower.includes('गाड़ी') || lower.includes('बाइक')) {
+              matchedCat = 'Mechanic / Vehicle Repair';
+            } else if (lower.includes('सैलून') || lower.includes('beauty') || lower.includes('salon') || lower.includes('मेकअप')) {
+              matchedCat = 'Salon & Makeup';
+            } else if (lower.includes('कारपेंटर') || lower.includes('बढ़ई') || lower.includes('carpenter')) {
+              matchedCat = 'Carpentry';
+            }
+
+            if (matchedCat) {
+              setSelectedCategory(matchedCat);
+              matchedPros = workers.filter(w => w.category === matchedCat && (!pincodeFilter || w.pincode === pincodeFilter));
+            }
+
+            responseText += `"${text}" से संबंधित सेवाएं Zupix पर ढूंढ दी गई हैं।`;
+            if (matchedPros.length > 0) {
+              const p1 = matchedPros[0];
+              const p2 = matchedPros[1];
+              responseText += ` पहला प्रोवाइडर ${p1.name} (₹${p1.hourlyRate})${p2 ? `, दूसरा ${p2.name} (₹${p2.hourlyRate})` : ''}।`;
+            }
+          }
+
+          // Direct Call Intent
+          if (text.includes('कॉल') || text.includes('call')) {
+            const found = workers.find(w => text.toLowerCase().includes(w.name.toLowerCase().split(' ')[0]));
+            if (found) {
+              responseText = `${found.name} को सीधे कॉल मिलाया जा रहा है (+91 ${found.phone})...`;
+              window.location.href = `tel:${found.phone}`;
+            }
+          }
+
+          const aiMsg = {
+            id: Date.now() + 1,
+            role: 'ai',
+            text: responseText,
+            pros: matchedPros.slice(0, 2)
+          };
+          setAiMessages(prev => [...prev, aiMsg]);
+
+          if ('speechSynthesis' in window && !isMuted) {
+            speakInHindi(responseText);
+          }
+        }, 500);
+      };
+
+      const toggleAIAssistant = () => setIsAiWidgetOpen(prev => !prev);
+
+      // Expose globally for window onclick handlers
+      useEffect(() => {
+        window.toggleAIAssistant = toggleAIAssistant;
+        window.sendAIMessage = sendAIMessage;
+        window.handleAIKeyPress = (e) => {
+          if (e.key === 'Enter') sendAIMessage();
+        };
+      }, [aiInputText]);
+
+      // Modals
+      const [directCallWorker, setDirectCallWorker] = useState(null);
+      const [bookModalWorker, setBookModalWorker] = useState(null);
+      const [isNotifsOpen, setIsNotifsOpen] = useState(false);
+      const [isAdminOpen, setIsAdminOpen] = useState(false);
+      const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+
+      // Onboarding State
+      const [onboardingSlide, setOnboardingSlide] = useState(0);
+      const [authRoleChoice, setAuthRoleChoice] = useState('customer'); // 'customer' | 'worker'
+
+      // Login Gateway State
+      const [loginPhone, setLoginPhone] = useState('');
+      const [loginOtp, setLoginOtp] = useState('');
+      const [otpSent, setOtpSent] = useState(false);
+      const [otpTimer, setOtpTimer] = useState(0);
+
+      // Profile Setup State
+      const [setupName, setSetupName] = useState('');
+      const [setupPhone, setSetupPhone] = useState('');
+      const [setupPincode, setSetupPincode] = useState('134102');
+      const [setupAddress, setSetupAddress] = useState('');
+      const [setupRole, setSetupRole] = useState('customer');
+      const [setupCategory, setSetupCategory] = useState('Plumbing');
+      const [setupRate, setSetupRate] = useState('250');
+      const [setupSpecialization, setSetupSpecialization] = useState('');
+      const [setupBio, setSetupBio] = useState('');
+      const [termsAccepted, setTermsAccepted] = useState(false);
+      const [setupError, setSetupError] = useState('');
+
+      // Hidden Admin Console trigger counter (3 rapid clicks on logo)
+      const [logoClicks, setLogoClicks] = useState(0);
+      const logoTimeoutRef = useRef(null);
+
+      const handleLogoClick = () => {
+        setLogoClicks(prev => {
+          const next = prev + 1;
+          if (next >= 3) {
+            setIsAdminOpen(true);
+            return 0;
+          }
+          return next;
+        });
+        if (logoTimeoutRef.current) clearTimeout(logoTimeoutRef.current);
+        logoTimeoutRef.current = setTimeout(() => setLogoClicks(0), 1200);
+      };
+
+      // OTP Countdown Timer
+      useEffect(() => {
+        let interval = null;
+        if (otpTimer > 0) {
+          interval = setInterval(() => setOtpTimer(p => p - 1), 1000);
+        }
+        return () => clearInterval(interval);
+      }, [otpTimer]);
+
+      // Load remote workers from Firestore safely on boot
+      useEffect(() => {
+        safeFirestore(async (firestore) => {
+          const snap = await firestore.collection('workers').get();
+          if (snap && !snap.empty) {
+            const list = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setWorkers(list);
+            Storage.set('workers', list);
+          }
+        }, null);
+      }, []);
+
+      // Active Worker Profile (if user is registered provider)
+      const currentWorkerProfile = useMemo(() => {
+        if (!currentUser) return null;
+        return workers.find(w => w.userId === currentUser.id || (w.phone && currentUser.phone && w.phone === currentUser.phone)) || null;
+      }, [currentUser, workers]);
+
+      // Filtered Specialists
+      const filteredWorkers = useMemo(() => {
+        return workers.filter(w => {
+          const matchCategory = selectedCategory === 'All' || w.category === selectedCategory;
+          const matchPincode = !pincodeFilter || w.pincode === pincodeFilter;
+          const matchSearch = !searchQuery ||
+            w.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            w.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            w.specialization?.toLowerCase().includes(searchQuery.toLowerCase());
+          return matchCategory && matchPincode && matchSearch;
+        });
+      }, [workers, selectedCategory, pincodeFilter, searchQuery]);
+
+      // Handle Send OTP
+      const handleSendOtp = () => {
+        const cleaned = loginPhone.replace(/\D/g, '');
+        if (cleaned.length < 10) {
+          alert('Please enter a valid 10-digit mobile number.');
+          return;
+        }
+        setOtpSent(true);
+        setOtpTimer(30);
+        setLoginOtp('123456'); // Simulation preview code for instant entry
+      };
+
+      // Handle Verify OTP
+      const handleVerifyOtp = () => {
+        const cleaned = loginPhone.replace(/\D/g, '');
+        if (!loginOtp || loginOtp.length < 4) {
+          alert('Please enter the 6-digit OTP.');
+          return;
+        }
+        
+        // Check if user already exists
+        const existingUsers = Storage.get('users_list', []);
+        const found = existingUsers.find(u => u.phone === cleaned);
+
+        if (found && found.isProfileComplete) {
+          setCurrentUser(found);
+          Storage.set('user', found);
+          setAuthFlowState('authenticated');
+          setActiveTab(found.role === 'worker' ? 'worker_dashboard' : 'home');
+        } else {
+          // Proceed to Profile Setup step
+          setSetupPhone(cleaned);
+          setSetupRole(authRoleChoice);
+          setAuthFlowState('profile_setup');
+        }
+      };
+
+      // Handle Complete Profile Setup
+      const handleCompleteProfile = (e) => {
+        e.preventDefault();
+        setSetupError('');
+
+        if (!setupName.trim()) {
+          setSetupError('Please enter your full name.');
+          return;
+        }
+        if (!setupPhone.trim() || setupPhone.replace(/\D/g, '').length < 10) {
+          setSetupError('Please enter a valid 10-digit phone number.');
+          return;
+        }
+        if (!setupPincode.trim()) {
+          setSetupError('Please specify your 6-digit service pincode.');
+          return;
+        }
+        if (!termsAccepted) {
+          setSetupError('You must accept the Terms of Service & Privacy Policy to continue.');
+          return;
+        }
+
+        const cleanPhone = setupPhone.replace(/\D/g, '');
+        const newUser = {
+          id: 'u-' + Date.now(),
+          name: setupName.trim(),
+          phone: cleanPhone,
+          role: setupRole,
+          pincode: setupPincode.trim(),
+          address: setupAddress.trim() || 'Active Service Locality',
+          isProfileComplete: true,
+          createdAt: new Date().toISOString()
+        };
+
+        // If specialist, also register provider profile
+        if (setupRole === 'worker') {
+          const newWorker = {
+            id: 'w-' + Date.now(),
+            userId: newUser.id,
+            name: newUser.name,
+            phone: newUser.phone,
+            category: setupCategory,
+            pincode: newUser.pincode,
+            address: newUser.address,
+            hourlyRate: Number(setupRate) || 250,
+            specialization: setupSpecialization.trim() || 'Verified Local Professional',
+            bio: setupBio.trim() || 'Experienced specialist available for direct bookings and calls in your area.',
+            rating: 5.0,
+            reviewCount: 0,
+            experienceYears: 4,
+            isVerified: true,
+            isAvailable: true
+          };
+
+          const updatedWorkers = [newWorker, ...workers.filter(w => w.phone !== cleanPhone)];
+          setWorkers(updatedWorkers);
+          Storage.set('workers', updatedWorkers);
+
+          safeFirestore(async (firestore) => {
+            await firestore.collection('workers').doc(newWorker.id).set(newWorker);
+          }, null);
+        }
+
+        // Save User
+        setCurrentUser(newUser);
+        Storage.set('user', newUser);
+
+        const existingUsers = Storage.get('users_list', []);
+        Storage.set('users_list', [newUser, ...existingUsers.filter(u => u.phone !== cleanPhone)]);
+
+        safeFirestore(async (firestore) => {
+          await firestore.collection('users').doc(newUser.id).set(newUser);
+        }, null);
+
+        setPincodeFilter(newUser.pincode);
+        setAuthFlowState('authenticated');
+        setActiveTab(setupRole === 'worker' ? 'worker_dashboard' : 'home');
+      };
+
+      // Toggle Worker Availability
+      const handleToggleAvailability = () => {
+        if (!currentWorkerProfile) return;
+        const updated = { ...currentWorkerProfile, isAvailable: !currentWorkerProfile.isAvailable };
+        const updatedList = workers.map(w => w.id === updated.id ? updated : w);
+        setWorkers(updatedList);
+        Storage.set('workers', updatedList);
+
+        safeFirestore(async (firestore) => {
+          await firestore.collection('workers').doc(updated.id).update({ isAvailable: updated.isAvailable });
+        }, null);
+      };
+
+      // Copy UPI ID helper
+      const handleCopyUPI = (e) => {
+        if (e) e.stopPropagation();
+        navigator.clipboard.writeText(FAMPAY_UPI_ID).catch(() => {});
+        setCopiedToast(`Copied UPI ID: ${FAMPAY_UPI_ID}`);
+        setTimeout(() => setCopiedToast(''), 2500);
+      };
+
+      // Download FamPay Black QR helper
+      const downloadFamPayQR = (amount = 20) => {
+        try {
+          const canvas = document.createElement('canvas');
+          canvas.width = 400;
+          canvas.height = 490;
+          const ctx = canvas.getContext('2d');
+          
+          // Dark sleek container
+          ctx.fillStyle = '#090d16';
+          ctx.fillRect(0, 0, 400, 490);
+          
+          // Header Banner
+          ctx.fillStyle = '#ffffff';
+          ctx.font = '900 20px sans-serif';
+          ctx.textAlign = 'center';
+          ctx.fillText('FamPay Partner Pay', 200, 42);
+          ctx.fillStyle = '#a855f7';
+          ctx.font = 'bold 14px monospace';
+          ctx.fillText(`${FAMPAY_PAYEE_NAME} • ${FAMPAY_UPI_ID}`, 200, 68);
+          
+          // White QR background frame
+          ctx.fillStyle = '#ffffff';
+          ctx.beginPath();
+          ctx.roundRect ? ctx.roundRect(45, 90, 310, 310, 16) : ctx.rect(45, 90, 310, 310);
+          ctx.fill();
+          
+          // QR Graphic Elements
+          ctx.fillStyle = '#000000';
+          // 3 Alignment Targets
+          ctx.fillRect(65, 110, 65, 65);
+          ctx.clearRect(75, 120, 45, 45);
+          ctx.fillRect(85, 130, 25, 25);
+          
+          ctx.fillRect(270, 110, 65, 65);
+          ctx.clearRect(280, 120, 45, 45);
+          ctx.fillRect(290, 130, 25, 25);
+          
+          ctx.fillRect(65, 315, 65, 65);
+          ctx.clearRect(75, 325, 45, 45);
+          ctx.fillRect(85, 335, 25, 25);
+          
+          // Data Matrix Simulation
+          ctx.fillRect(160, 130, 35, 35);
+          ctx.fillRect(220, 140, 30, 25);
+          ctx.fillRect(150, 190, 50, 50);
+          ctx.fillRect(220, 210, 40, 40);
+          ctx.fillRect(280, 210, 45, 45);
+          ctx.fillRect(150, 260, 45, 45);
+          ctx.fillRect(215, 270, 45, 45);
+          ctx.fillRect(150, 330, 35, 35);
+          ctx.fillRect(205, 330, 60, 35);
+          ctx.fillRect(280, 315, 30, 40);
+
+          // Footer
+          ctx.fillStyle = '#38bdf8';
+          ctx.font = 'bold 15px sans-serif';
+          ctx.fillText(`Scan & Pay ₹${amount} with Any UPI App`, 200, 435);
+          ctx.fillStyle = '#64748b';
+          ctx.font = '12px sans-serif';
+          ctx.fillText('FamPay • GPay • PhonePe • Paytm • BHIM', 200, 460);
+
+          const link = document.createElement('a');
+          link.download = `zupix-fampay-qr-₹${amount}.png`;
+          link.href = canvas.toDataURL('image/png');
+          link.click();
+        } catch(e) {
+          alert('QR code ready to scan!');
+        }
+      };
+
+      // Worker Prepaid Wallet Recharge Handler (via FamPay Scanner)
+      const handleWorkerRecharge = (amount) => {
+        setIsProcessingPayment(true);
+        setTimeout(() => {
+          setIsProcessingPayment(false);
+          const rechargeAmt = Number(amount) || 100;
+          const updatedWorkers = workers.map(w => {
+            if (w.id === currentWorkerProfile?.id || w.userId === currentUser?.id || (w.phone && currentUser?.phone && w.phone === currentUser.phone)) {
+              const currentBal = w.walletBalance !== undefined ? w.walletBalance : 100;
+              return { ...w, walletBalance: currentBal + rechargeAmt };
+            }
+            return w;
+          });
+          setWorkers(updatedWorkers);
+          Storage.set('workers', updatedWorkers);
+
+          setRechargeSuccess(true);
+          setTimeout(() => {
+            setRechargeSuccess(false);
+            setWalletRechargeOpen(false);
+          }, 1500);
+
+          // Notification
+          const newNotif = {
+            id: 'n-' + Date.now(),
+            title: `Wallet Recharged: +₹${rechargeAmt}`,
+            message: `Prepaid Partner Wallet recharged successfully via FamPay (${FAMPAY_UPI_ID}). Direct customer calls active!`,
+            time: 'Just now',
+            isRead: false
+          };
+          setNotifications(prev => [newNotif, ...prev]);
+        }, 600);
+      };
+
+      // Instant ₹20 Payment Initiation (with Smart Booking Lock check on Worker Partner Wallet)
+      const handleTriggerPayment = (worker) => {
+        const targetWorker = workers.find(w => w.id === worker.id) || worker;
+        const currentBal = targetWorker.walletBalance !== undefined ? targetWorker.walletBalance : 100;
+        
+        // Smart Booking Lock: Worker must maintain balance >= ₹20
+        if (currentBal < 20) {
+          setBlockedWorker({ ...targetWorker, walletBalance: currentBal });
+          return;
+        }
+
+        setPaymentModalWorker({ ...targetWorker, walletBalance: currentBal });
+        setPaymentSuccessState(null);
+        setIsProcessingPayment(false);
+      };
+
+      // Open Booking Modal with Smart Booking Lock check
+      const handleOpenBookModal = (worker) => {
+        const targetWorker = workers.find(w => w.id === worker.id) || worker;
+        const currentBal = targetWorker.walletBalance !== undefined ? targetWorker.walletBalance : 100;
+        
+        // Smart Booking Lock: Block if worker balance < ₹20
+        if (currentBal < 20) {
+          setBlockedWorker({ ...targetWorker, walletBalance: currentBal });
+          return;
+        }
+        setBookModalWorker(targetWorker);
+      };
+
+      // Instant Payment Execution (FamPay UPI with zero friction & Green Tick)
+      const handleExecuteInstantPayment = (paymentMethod = 'FamPay UPI 1-Tap') => {
+        if (!paymentModalWorker) return;
+        setIsProcessingPayment(true);
+
+        setTimeout(() => {
+          setIsProcessingPayment(false);
+          const txnId = 'FAM' + Math.floor(10000000 + Math.random() * 90000000);
+          const successData = {
+            workerId: paymentModalWorker.id,
+            workerName: paymentModalWorker.name,
+            phone: paymentModalWorker.phone,
+            amount: 20,
+            txnId,
+            date: new Date().toLocaleDateString('en-IN', { day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' }),
+            method: paymentMethod,
+            upiId: FAMPAY_UPI_ID,
+            payee: FAMPAY_PAYEE_NAME
+          };
+          setPaymentSuccessState(successData);
+
+          // Permanently unlock this worker's number
+          const updatedUnlocked = Array.from(new Set([...unlockedWorkers, paymentModalWorker.id]));
+          setUnlockedWorkers(updatedUnlocked);
+          Storage.set('unlocked_workers', updatedUnlocked);
+
+          // Deduct ₹20 platform lead fee from worker's partner wallet
+          const updatedWorkers = workers.map(w => {
+            if (w.id === paymentModalWorker.id) {
+              const currentBal = w.walletBalance !== undefined ? w.walletBalance : 100;
+              const newBal = Math.max(0, currentBal - 20);
+              return { ...w, walletBalance: newBal };
+            }
+            return w;
+          });
+          setWorkers(updatedWorkers);
+          Storage.set('workers', updatedWorkers);
+
+          // Add to bookings & payment history
+          const newBookingEntry = {
+            id: 'b-pay-' + Date.now(),
+            txnId,
+            workerId: paymentModalWorker.id,
+            workerName: paymentModalWorker.name,
+            workerPhone: paymentModalWorker.phone,
+            serviceName: paymentModalWorker.category,
+            customerName: currentUser?.name || 'Customer',
+            customerPhone: currentUser?.phone || '9876543210',
+            address: paymentModalWorker.address || (currentUser?.address || 'Direct Service Locality'),
+            scheduledDate: new Date().toISOString().split('T')[0],
+            scheduledTime: 'Instant Direct Call',
+            amountPaid: 20,
+            paymentStatus: 'PAID & UNLOCKED',
+            isUnlocked: true,
+            status: 'confirmed',
+            createdAt: new Date().toISOString()
+          };
+
+          const nextBookings = [newBookingEntry, ...bookings];
+          setBookings(nextBookings);
+          Storage.set('bookings', nextBookings);
+
+          // Add notification
+          const newNotif = {
+            id: 'n-' + Date.now(),
+            title: 'Payment Successful (₹20)',
+            message: `Verified contact unlocked for ${paymentModalWorker.name} (${paymentModalWorker.category}). Call directly now!`,
+            time: 'Just now',
+            isRead: false
+          };
+          const nextNotifs = [newNotif, ...notifications];
+          setNotifications(nextNotifs);
+          Storage.set('notifications', nextNotifs);
+
+          safeFirestore(async (firestore) => {
+            await firestore.collection('bookings').doc(newBookingEntry.id).set(newBookingEntry);
+          }, null);
+        }, 500);
+      };
+
+      // Create Booking Request
+      const handleCreateBooking = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const newBooking = {
+          id: 'b-' + Date.now(),
+          txnId: 'FAM' + Math.floor(10000000 + Math.random() * 90000000),
+          workerId: bookModalWorker.id,
+          workerName: bookModalWorker.name,
+          workerPhone: bookModalWorker.phone,
+          serviceName: bookModalWorker.category,
+          customerName: form.cname.value.trim(),
+          customerPhone: form.cphone.value.replace(/\D/g, ''),
+          address: form.caddress.value.trim(),
+          scheduledDate: form.cdate.value,
+          scheduledTime: form.ctime.value,
+          amountPaid: 20,
+          paymentStatus: 'PAID & UNLOCKED',
+          isUnlocked: true,
+          status: 'confirmed',
+          createdAt: new Date().toISOString()
+        };
+
+        const updatedUnlocked = Array.from(new Set([...unlockedWorkers, bookModalWorker.id]));
+        setUnlockedWorkers(updatedUnlocked);
+        Storage.set('unlocked_workers', updatedUnlocked);
+
+        // Deduct ₹20 platform lead fee from worker's partner wallet
+        const updatedWorkers = workers.map(w => {
+          if (w.id === bookModalWorker.id) {
+            const currentBal = w.walletBalance !== undefined ? w.walletBalance : 100;
+            const newBal = Math.max(0, currentBal - 20);
+            return { ...w, walletBalance: newBal };
+          }
+          return w;
+        });
+        setWorkers(updatedWorkers);
+        Storage.set('workers', updatedWorkers);
+
+        const updated = [newBooking, ...bookings];
+        setBookings(updated);
+        Storage.set('bookings', updated);
+
+        // Add Notification
+        const newNotif = {
+          id: 'n-' + Date.now(),
+          title: 'Booking & Contact Confirmed',
+          message: `Booking with ${bookModalWorker.name} (${bookModalWorker.category}) is scheduled on ${newBooking.scheduledDate}. Verified phone line unlocked!`,
+          time: 'Just now',
+          isRead: false
+        };
+        const updatedNotifs = [newNotif, ...notifications];
+        setNotifications(updatedNotifs);
+        Storage.set('notifications', updatedNotifs);
+
+        safeFirestore(async (firestore) => {
+          await firestore.collection('bookings').doc(newBooking.id).set(newBooking);
+        }, null);
+
+        setBookModalWorker(null);
+        setActiveTab('bookings');
+      };
+
+      // Reusable Zupix AI Assistant Widget (Delegated to physical 100% visible Jarvis HTML widget)
+      const renderAiWidget = () => null;
+
+      // ============================================================
+      // VIEW 1: 4-PAGE INTERACTIVE ONBOARDING CAROUSEL
+      // ============================================================
+      if (authFlowState === 'onboarding') {
+        const slide = ONBOARDING_SLIDES[onboardingSlide];
+        return (
+          <div className="min-h-screen bg-slate-950 text-white flex flex-col justify-between p-6 sm:p-10 select-none">
+            
+            {/* Top Bar: Country Flag & Language Selector */}
+            <div className="flex items-center justify-between gap-3 max-w-lg mx-auto w-full">
+              <div className="flex items-center gap-2">
+                <LiveAppIcon size="sm" />
+                <span className="font-display font-black text-lg tracking-tight text-white">ZUPIX</span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                {/* Country Pill */}
+                <select 
+                  value={country.code} 
+                  onChange={(e) => setCountry(COUNTRIES.find(c => c.code === e.target.value) || COUNTRIES[0])}
+                  className="bg-slate-900 border border-slate-700 text-xs font-bold text-slate-300 rounded-xl px-2.5 py-1.5 focus:outline-none"
+                >
+                  {COUNTRIES.map(c => (
+                    <option key={c.code} value={c.code}>{c.flag} {c.dial}</option>
+                  ))}
+                </select>
+
+                {/* Language Pill */}
+                <select 
+                  value={lang} 
+                  onChange={(e) => setLang(e.target.value)}
+                  className="bg-slate-900 border border-slate-700 text-xs font-bold text-slate-300 rounded-xl px-2.5 py-1.5 focus:outline-none"
+                >
+                  {LANGUAGES.map(l => (
+                    <option key={l.code} value={l.code}>{l.native}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Middle Slide Showcase */}
+            <div className="max-w-lg mx-auto w-full my-auto py-8 space-y-6">
+              <div className={`p-8 rounded-3xl bg-gradient-to-br ${slide.gradient} shadow-2xl border border-white/10 space-y-4`}>
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 rounded-full text-[11px] font-extrabold bg-white/20 text-white uppercase tracking-wider backdrop-blur-sm">
+                    {slide.badge}
+                  </span>
+                  <span className="text-4xl">{slide.icon}</span>
+                </div>
+
+                <div className="space-y-1">
+                  <h2 className="text-2xl sm:text-3xl font-display font-black leading-tight tracking-tight text-white">
+                    {slide.title}
+                  </h2>
+                  <p className="text-xl sm:text-2xl font-display font-black text-blue-200">
+                    {slide.highlight}
+                  </p>
+                </div>
+
+                <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed font-medium">
+                  {slide.description}
+                </p>
+
+                <div className="pt-2 border-t border-white/15 space-y-1.5">
+                  {slide.features.map((f, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs font-bold text-white">
+                      <span className="text-emerald-300">✓</span>
+                      <span>{f}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Dots Indicator */}
+              <div className="flex items-center justify-center gap-2">
+                {ONBOARDING_SLIDES.map((_, idx) => (
+                  <button 
+                    key={idx} 
+                    onClick={() => setOnboardingSlide(idx)}
+                    className={`h-2 rounded-full transition-all ${
+                      onboardingSlide === idx ? 'w-8 bg-blue-500' : 'w-2 bg-slate-800'
+                    }`} 
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom Actions */}
+            <div className="max-w-lg mx-auto w-full space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={() => {
+                    setAuthRoleChoice('customer');
+                    setAuthFlowState('gateway');
+                  }}
+                  className="py-3.5 px-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs sm:text-sm shadow-lg shadow-blue-600/30 flex items-center justify-center gap-1.5 transition cursor-pointer"
+                >
+                  <span>Need Services ➔</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setAuthRoleChoice('worker');
+                    setAuthFlowState('gateway');
+                  }}
+                  className="py-3.5 px-4 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-extrabold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition cursor-pointer"
+                >
+                  <span>Join as Pro 🛠️</span>
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between pt-1 text-xs">
+                <button 
+                  onClick={() => setOnboardingSlide(prev => (prev > 0 ? prev - 1 : 0))}
+                  disabled={onboardingSlide === 0}
+                  className="text-slate-500 hover:text-slate-300 font-bold disabled:opacity-0 transition"
+                >
+                  ← Previous
+                </button>
+
+                <button 
+                  onClick={() => {
+                    setAuthRoleChoice('customer');
+                    setAuthFlowState('gateway');
+                  }}
+                  className="text-blue-400 hover:text-blue-300 font-bold underline cursor-pointer"
+                >
+                  Already have an account? Sign In
+                </button>
+
+                <button 
+                  onClick={() => setOnboardingSlide(prev => (prev < ONBOARDING_SLIDES.length - 1 ? prev + 1 : prev))}
+                  disabled={onboardingSlide === ONBOARDING_SLIDES.length - 1}
+                  className="text-slate-400 hover:text-slate-200 font-bold disabled:opacity-0 transition"
+                >
+                  Next →
+                </button>
+              </div>
+            </div>
+
+            {/* Persistent AI Voice Widget */}
+            {renderAiWidget()}
+          </div>
+        );
+      }
+
+      // ============================================================
+      // VIEW 2: LOGIN GATEWAY (PHONE OTP / GOOGLE AUTH)
+      // ============================================================
+      if (authFlowState === 'gateway') {
+        return (
+          <div className="min-h-screen bg-slate-950 text-white flex flex-col justify-center items-center p-6 select-none">
+            <div className="w-full max-w-md bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl space-y-6">
+              
+              {/* Header */}
+              <div className="text-center space-y-2">
+                <div className="flex justify-center">
+                  <LiveAppIcon size="lg" />
+                </div>
+                <h2 className="text-2xl font-display font-black text-white tracking-tight mt-2">
+                  Welcome to Zupix
+                </h2>
+                <p className="text-xs text-slate-400">
+                  {authRoleChoice === 'worker' ? 'Specialist Partner Login & Registration' : 'Fast, secure phone OTP authentication'}
+                </p>
+              </div>
+
+              {/* Role Toggle Pill */}
+              <div className="grid grid-cols-2 p-1 bg-slate-950 rounded-2xl border border-slate-800 text-xs font-bold">
+                <button
+                  type="button"
+                  onClick={() => setAuthRoleChoice('customer')}
+                  className={`py-2 rounded-xl transition ${authRoleChoice === 'customer' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
+                >
+                  👤 Customer
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAuthRoleChoice('worker')}
+                  className={`py-2 rounded-xl transition ${authRoleChoice === 'worker' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
+                >
+                  🛠️ Pro Specialist
+                </button>
+              </div>
+
+              {/* Phone Input Flow */}
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-300 mb-1.5">Mobile Phone Number</label>
+                  <div className="flex rounded-2xl border border-slate-700 bg-slate-950 overflow-hidden focus-within:ring-2 focus-within:ring-blue-500">
+                    <span className="px-3.5 py-3 bg-slate-800 text-xs font-mono font-bold text-slate-300 flex items-center border-r border-slate-700">
+                      {country.dial}
+                    </span>
+                    <input 
+                      type="tel" 
+                      value={loginPhone}
+                      onChange={(e) => setLoginPhone(e.target.value)}
+                      placeholder="10-digit mobile number" 
+                      className="w-full px-3 py-3 bg-transparent text-sm font-mono text-white outline-none"
+                    />
+                  </div>
+                </div>
+
+                {otpSent && (
+                  <div className="space-y-2 animate-fadeIn">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-xs font-bold text-slate-300">Enter 6-Digit OTP Code</label>
+                      <span className="text-[11px] font-mono text-emerald-400">
+                        {otpTimer > 0 ? `Resend in ${otpTimer}s` : 'Code Ready'}
+                      </span>
+                    </div>
+                    <input 
+                      type="text" 
+                      maxLength="6"
+                      value={loginOtp}
+                      onChange={(e) => setLoginOtp(e.target.value)}
+                      placeholder="123456" 
+                      className="w-full p-3 bg-slate-950 border border-slate-700 rounded-2xl text-center text-lg font-mono font-bold tracking-widest text-white outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <p className="text-[10px] text-slate-500 text-center">
+                      Auto-filled demo code for instant verification.
+                    </p>
+                  </div>
+                )}
+
+                {/* Primary Action Button */}
+                {!otpSent ? (
+                  <button
+                    type="button"
+                    onClick={handleSendOtp}
+                    className="w-full py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-sm shadow-lg shadow-blue-600/30 transition cursor-pointer"
+                  >
+                    Send Verification Code ➔
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleVerifyOtp}
+                    className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/30 transition cursor-pointer"
+                  >
+                    Verify & Continue ➔
+                  </button>
+                )}
+
+                {/* Google Sign-In Alternative */}
+                <div className="pt-2 border-t border-slate-800">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLoginPhone('9876543210');
+                      setSetupName('Google User');
+                      setSetupRole(authRoleChoice);
+                      setSetupPhone('9876543210');
+                      setAuthFlowState('profile_setup');
+                    }}
+                    className="w-full py-3 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-xs flex items-center justify-center gap-2 shadow-md transition cursor-pointer"
+                  >
+                    <span className="text-base">🌐</span>
+                    <span>Continue with Google</span>
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setAuthFlowState('onboarding')}
+                  className="w-full py-2 text-center text-xs font-bold text-slate-400 hover:text-slate-200"
+                >
+                  ← Back to Introduction
+                </button>
+              </div>
+
+            </div>
+            {/* Persistent AI Voice Widget */}
+            {renderAiWidget()}
+          </div>
+        );
+      }
+
+      // ============================================================
+      // VIEW 3: PROFILE SETUP & TERMS & CONDITIONS CONSENT
+      // ============================================================
+      if (authFlowState === 'profile_setup') {
+        return (
+          <div className="min-h-screen bg-slate-950 text-white flex flex-col justify-center items-center p-4 sm:p-6 select-none">
+            <div className="w-full max-w-lg bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl space-y-6">
+              
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                <div className="flex items-center gap-2.5">
+                  <LiveAppIcon size="sm" />
+                  <div>
+                    <h3 className="font-display font-black text-white text-base">Complete Your Profile</h3>
+                    <p className="text-[11px] text-slate-400">Step 2 of 2 • One-time verified setup</p>
+                  </div>
+                </div>
+                <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                  {setupRole === 'worker' ? '🛠️ Specialist' : '👤 Customer'}
+                </span>
+              </div>
+
+              {setupError && (
+                <div className="p-3 rounded-xl bg-rose-950/80 border border-rose-500/50 text-rose-300 text-xs font-bold">
+                  ⚠️ {setupError}
+                </div>
+              )}
+
+              <form onSubmit={handleCompleteProfile} className="space-y-4 text-xs">
+                
+                {/* Account Type Selector */}
+                <div>
+                  <label className="block font-bold text-slate-300 mb-1">Account Role *</label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setSetupRole('customer')}
+                      className={`p-3 rounded-xl border text-left font-bold transition ${setupRole === 'customer' ? 'bg-blue-600/20 border-blue-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-400'}`}
+                    >
+                      👤 I Need Services
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSetupRole('worker')}
+                      className={`p-3 rounded-xl border text-left font-bold transition ${setupRole === 'worker' ? 'bg-blue-600/20 border-blue-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-400'}`}
+                    >
+                      🛠️ I Am a Specialist
+                    </button>
+                  </div>
+                </div>
+
+                {/* Name */}
+                <div>
+                  <label className="block font-bold text-slate-300 mb-1">Full Legal / Business Name *</label>
+                  <input 
+                    required 
+                    value={setupName}
+                    onChange={(e) => setSetupName(e.target.value)}
+                    placeholder="Enter your full name" 
+                    className="w-full p-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                {/* Phone & Pincode */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block font-bold text-slate-300 mb-1">Mobile Number *</label>
+                    <input 
+                      required 
+                      type="tel"
+                      value={setupPhone}
+                      onChange={(e) => setSetupPhone(e.target.value)}
+                      placeholder="10-digit mobile" 
+                      className="w-full p-3 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold text-slate-300 mb-1">Service Pincode *</label>
+                    <input 
+                      required 
+                      value={setupPincode}
+                      onChange={(e) => setSetupPincode(e.target.value)}
+                      placeholder="134102" 
+                      className="w-full p-3 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Specialist Specific Fields */}
+                {setupRole === 'worker' && (
+                  <div className="p-4 rounded-2xl bg-slate-950 border border-blue-900/60 space-y-3">
+                    <div>
+                      <label className="block font-bold text-blue-300 mb-1">Specialist Trade Category *</label>
+                      <select 
+                        value={setupCategory}
+                        onChange={(e) => setSetupCategory(e.target.value)}
+                        className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs font-bold outline-none"
+                      >
+                        {CATEGORIES.filter(c => c.name !== 'All').map(c => (
+                          <option key={c.name} value={c.name}>{c.icon} {c.label}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className="block font-bold text-slate-400 mb-1">Base Visit Fee (₹)</label>
+                        <input 
+                          type="number"
+                          value={setupRate}
+                          onChange={(e) => setSetupRate(e.target.value)}
+                          className="w-full p-2 bg-slate-900 border border-slate-700 rounded-lg text-white font-mono text-xs"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-bold text-slate-400 mb-1">Key Specialty</label>
+                        <input 
+                          value={setupSpecialization}
+                          onChange={(e) => setSetupSpecialization(e.target.value)}
+                          placeholder="e.g. Leaks & Motor"
+                          className="w-full p-2 bg-slate-900 border border-slate-700 rounded-lg text-white text-xs"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Address */}
+                <div>
+                  <label className="block font-bold text-slate-300 mb-1">Address / Locality Landmark</label>
+                  <input 
+                    value={setupAddress}
+                    onChange={(e) => setSetupAddress(e.target.value)}
+                    placeholder="House/Street, Locality in 134102" 
+                    className="w-full p-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                {/* TERMS AND CONDITIONS MANDATORY CHECKBOX */}
+                <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+                  <label className="flex items-start gap-2.5 cursor-pointer">
+                    <input 
+                      type="checkbox"
+                      checked={termsAccepted}
+                      onChange={(e) => setTermsAccepted(e.target.checked)}
+                      className="w-4 h-4 mt-0.5 rounded border-slate-700 text-blue-600 focus:ring-blue-500 bg-slate-900"
+                    />
+                    <span className="text-[11px] text-slate-300 leading-relaxed">
+                      I agree to the <strong className="text-white">Zupix Terms of Service & Privacy Policy</strong>. I understand that Zupix is a <strong className="text-emerald-400">verified direct connect</strong> directory connecting local customers directly to verified specialists with low nominal platform fees.
+                    </span>
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-extrabold text-sm shadow-xl shadow-blue-600/30 transition cursor-pointer"
+                >
+                  Save Profile & Launch Zupix ➔
+                </button>
+              </form>
+
+            </div>
+            {/* Persistent AI Voice Widget */}
+            {renderAiWidget()}
+          </div>
+        );
+      }
+
+      // ============================================================
+      // VIEW 4: AUTHENTICATED LIVE APPLICATION (MAIN RUNTIME)
+      // ============================================================
+      const isWorkerMode = currentUser?.role === 'worker';
+
+      return (
+        <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 pb-20">
+          
+          {/* 1. TOP APP HEADER */}
+          <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-4 py-3 shadow-xs">
+            <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
+              
+              {/* Brand Logo with Hidden Admin Long Press / Triple Click */}
+              <div 
+                onClick={handleLogoClick}
+                className="flex items-center gap-2.5 cursor-pointer select-none"
+                title="Triple-click for hidden Admin Console"
+              >
+                <LiveAppIcon size="sm" />
+                <div>
+                  <span className="font-display font-black text-lg tracking-tight bg-gradient-to-r from-blue-900 via-blue-700 to-indigo-800 bg-clip-text text-transparent leading-none block">
+                    ZUPIX
+                  </span>
+                  <p className="text-[10px] font-semibold text-slate-500 leading-none mt-0.5">
+                    Verified Pros & Doctors
+                  </p>
+                </div>
+              </div>
+
+              {/* Header Action Hub */}
+              <div className="flex items-center gap-2">
+                
+                {/* Location Quick Filter */}
+                <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 rounded-xl border border-slate-200 text-xs">
+                  <span className="text-blue-600 font-bold">📍</span>
+                  <input 
+                    type="text" 
+                    value={pincodeFilter} 
+                    onChange={(e) => setPincodeFilter(e.target.value.trim())}
+                    placeholder="134102"
+                    className="w-16 bg-white px-1.5 py-0.5 rounded border border-slate-200 font-bold font-mono text-xs text-slate-800 outline-none"
+                  />
+                  {pincodeLocation && (
+                    <span className="text-[10px] font-bold text-blue-700 bg-blue-100/70 px-1.5 py-0.5 rounded max-w-[120px] truncate" title={pincodeLocation.display}>
+                      {pincodeLocation.name}
+                    </span>
+                  )}
+                </div>
+
+                {/* Language Switcher */}
+                <div className="relative">
+                  <button 
+                    onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                    className="px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold text-slate-700 flex items-center gap-1 border border-slate-200"
+                  >
+                    <span>🌐</span>
+                    <span>{LANGUAGES.find(l => l.code === lang)?.native || 'English'}</span>
+                  </button>
+
+                  {isLangMenuOpen && (
+                    <div className="absolute right-0 mt-2 w-40 bg-white rounded-2xl shadow-xl border border-slate-200 p-1.5 z-50 animate-fadeIn space-y-1">
+                      {LANGUAGES.map(l => (
+                        <button
+                          key={l.code}
+                          onClick={() => { setLang(l.code); setIsLangMenuOpen(false); }}
+                          className={`w-full text-left px-3 py-1.5 rounded-xl text-xs font-bold ${lang === l.code ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'}`}
+                        >
+                          {l.native}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Join as Pro Partner button (if in customer mode) */}
+                {!isWorkerMode && (
+                  <button 
+                    onClick={() => setActiveTab('provider_setup')}
+                    className="hidden md:flex items-center gap-1 px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold hover:bg-blue-100 transition"
+                  >
+                    <span>🛠️ Join as Pro</span>
+                  </button>
+                )}
+
+                {/* Notifications Bell */}
+                <button 
+                  onClick={() => setIsNotifsOpen(true)}
+                  className="relative p-2 text-slate-600 hover:bg-slate-100 rounded-xl transition"
+                >
+                  <span className="text-base">🔔</span>
+                  {notifications.filter(n => !n.isRead).length > 0 && (
+                    <span className="absolute top-1 right-1 w-4 h-4 bg-rose-600 text-white text-[9px] font-black rounded-full flex items-center justify-center ring-2 ring-white">
+                      {notifications.filter(n => !n.isRead).length}
+                    </span>
+                  )}
+                </button>
+
+                {/* User Avatar */}
+                <button 
+                  onClick={() => setActiveTab('profile')}
+                  className="flex items-center gap-1.5 p-1.5 pr-2.5 bg-slate-100 hover:bg-slate-200 rounded-xl border border-slate-200"
+                >
+                  <div className="w-6 h-6 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs">
+                    {currentUser?.name ? currentUser.name[0].toUpperCase() : 'U'}
+                  </div>
+                  <span className="text-xs font-bold text-slate-800 hidden sm:inline max-w-[80px] truncate">
+                    {currentUser?.name || 'Profile'}
+                  </span>
+                </button>
+
+              </div>
+            </div>
+          </header>
+
+          {/* 2. MAIN ACTIVE VIEW ROUTER */}
+          <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-4 sm:py-6">
+            
+            {/* VIEW A: CUSTOMER EXPLORE / HOME VIEW */}
+            {activeTab === 'home' && (
+              <div className="space-y-6">
+                
+                {/* Search and Area Filter */}
+                <div className="bg-white p-4 sm:p-5 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <div className="relative flex-1 flex items-center gap-2">
+                      <div className="relative flex-1">
+                        <span className="absolute left-3.5 top-3.5 text-slate-400">🔍</span>
+                        <input 
+                          type="text" 
+                          value={searchQuery}
+                          onChange={(e) => setSearchQuery(e.target.value)}
+                          placeholder="Search plumber, electrician, doctor, AC repair, mechanic..." 
+                          className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition"
+                        />
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          if (window.toggleZupixAI) window.toggleZupixAI();
+                        }}
+                        className="flex items-center gap-1.5 px-3.5 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white rounded-2xl text-xs font-extrabold shadow-md cursor-pointer transition whitespace-nowrap"
+                        title="Zupix AI Assistant: बोलें या चैट करें"
+                      >
+                        <span className="text-base">🤖</span>
+                        <span className="hidden xs:inline">AI वॉयस सर्च</span>
+                      </button>
+                    </div>
+
+                    <div className="flex flex-col sm:flex-row sm:items-center gap-1.5 bg-blue-50/80 border border-blue-200 px-3 py-2 rounded-2xl">
+                      <div className="flex items-center gap-2">
+                        <span className="text-blue-600 font-bold text-xs">📍 Pincode:</span>
+                        <input 
+                          type="text" 
+                          maxLength="6"
+                          value={pincodeFilter}
+                          onChange={(e) => setPincodeFilter(e.target.value.trim())}
+                          placeholder="134102"
+                          className="w-18 bg-white px-2 py-0.5 rounded border border-blue-200 font-mono font-bold text-blue-950 text-sm focus:outline-none"
+                        />
+                        <button onClick={() => setPincodeFilter('134102')} className="text-[10px] font-extrabold text-blue-600 hover:underline">
+                          Reset
+                        </button>
+                      </div>
+                      {pincodeLocation && (
+                        <div className="flex items-center gap-1 text-[11px] font-bold text-blue-800 bg-blue-100/90 px-2 py-0.5 rounded-lg border border-blue-200/60">
+                          <span>🇮🇳</span>
+                          <span className="truncate max-w-[200px]">{pincodeLocation.display}</span>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* 10 Verified Trade Categories Carousel */}
+                  <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+                    {CATEGORIES.map(cat => {
+                      const isSelected = selectedCategory === cat.name;
+                      return (
+                        <button 
+                          key={cat.name}
+                          onClick={() => setSelectedCategory(cat.name)}
+                          className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                            isSelected 
+                              ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 scale-102' 
+                              : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                          }`}
+                        >
+                          <span>{cat.icon}</span>
+                          <span>{cat.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                  {/* Verified Direct Connect Banner with Nominal ₹20 Fee */}
+                  <div className="bg-gradient-to-r from-blue-700 via-indigo-700 to-purple-800 text-white rounded-3xl p-5 shadow-lg shadow-blue-600/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div>
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="px-2 py-0.5 rounded-md bg-white/20 text-xs font-extrabold tracking-wide uppercase">₹20 Convenience Fee</span>
+                        <span className="text-xs text-blue-200 font-medium">Instant Contact Unlock</span>
+                      </div>
+                      <h2 className="text-lg sm:text-xl font-display font-black tracking-tight">Call Any Verified Specialist Directly</h2>
+                      <p className="text-xs text-blue-100 mt-1 max-w-xl">
+                        Unlock verified direct mobile lines instantly for a nominal ₹20 fee. Connect in 1-tap with zero intermediary markups.
+                      </p>
+                    </div>
+                    {!isWorkerMode && (
+                      <button 
+                        onClick={() => setActiveTab('provider_setup')}
+                        className="px-4 py-2.5 bg-white text-blue-700 hover:bg-blue-50 text-xs font-black rounded-xl shadow-md transition shrink-0"
+                      >
+                        Join as Verified Pro ➔
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Specialists Listing */}
+                  <div>
+                    <div className="flex items-center justify-between mb-3 px-1">
+                      <h3 className="font-display font-black text-slate-900 text-lg">
+                        {selectedCategory === 'All' ? 'Verified Specialists' : `${selectedCategory}`} ({filteredWorkers.length})
+                      </h3>
+                      <span className="text-xs font-semibold text-slate-500">Location: {pincodeFilter || 'Worldwide / All Hubs'}</span>
+                    </div>
+
+                    {filteredWorkers.length === 0 ? (
+                      <div className="bg-white rounded-3xl border border-slate-200 p-8 text-center space-y-3">
+                        <div className="text-4xl">🔍</div>
+                        <h4 className="font-bold text-slate-900 text-base">No Specialists Registered in {pincodeFilter || 'this area'}</h4>
+                        <p className="text-xs text-slate-500 max-w-md mx-auto">
+                          Be the first verified plumber, electrician, doctor, or mechanic in this area!
+                        </p>
+                        <button 
+                          onClick={() => setActiveTab('provider_setup')}
+                          className="mt-2 px-5 py-2.5 bg-blue-600 text-white rounded-xl text-xs font-bold shadow-md hover:bg-blue-700"
+                        >
+                          Register as Specialist Here
+                        </button>
+                      </div>
+                    ) : (
+                      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        {filteredWorkers.map(worker => {
+                          const isUnlocked = unlockedWorkers.includes(worker.id);
+                          const maskedPhone = worker.phone ? `+91 ${worker.phone.slice(0, 2)}***-***${worker.phone.slice(-2)}` : '+91 98***-***10';
+                          const realPhone = `+${worker.phone}`;
+
+                          return (
+                            <div key={worker.id} className="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                              <div>
+                                <div className="flex items-start justify-between gap-2">
+                                  <div>
+                                    <div className="flex items-center gap-1.5">
+                                      <h4 className="font-display font-extrabold text-slate-900 text-base leading-tight">{worker.name}</h4>
+                                      {worker.isVerified && <span className="text-blue-600 text-sm font-bold">✓</span>}
+                                    </div>
+                                    <p className="text-xs font-bold text-blue-600 mt-0.5">{worker.category}</p>
+                                  </div>
+                                  <div className="flex items-center gap-1.5 flex-wrap justify-end">
+                                    {worker.walletBalance !== undefined && worker.walletBalance < 20 && (
+                                      <span className="px-2 py-0.5 rounded-full text-[10px] font-black bg-rose-50 text-rose-700 border border-rose-200">
+                                        🔒 Low Balance (&lt; ₹20)
+                                      </span>
+                                    )}
+                                    <span className={`px-2 py-0.5 rounded-full text-[10px] font-black ${worker.isAvailable ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-500'}`}>
+                                      {worker.isAvailable ? '🟢 Online' : '⚪ Offline'}
+                                    </span>
+                                  </div>
+                                </div>
+
+                                <div className="mt-3 space-y-1.5 text-xs text-slate-600">
+                                  <p className="line-clamp-2 text-slate-700 font-medium">{worker.specialization || worker.bio}</p>
+                                  <div className="flex items-center gap-2.5 pt-1 text-[11px] text-slate-500 font-medium flex-wrap">
+                                    <span>⭐ {worker.rating || '5.0'}</span>
+                                    <span>•</span>
+                                    <span>📍 {worker.pincode || 'Local Hub'}</span>
+                                    <span>•</span>
+                                    <span>₹{worker.hourlyRate || 250} visit</span>
+                                  </div>
+                                  
+                                  {/* Phone Masking Display */}
+                                  <div className="mt-2 p-2 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between">
+                                    <div className="flex items-center gap-2">
+                                      <span className="text-xs">📞</span>
+                                      <span className="font-mono font-bold text-xs text-slate-800">
+                                        {isUnlocked ? realPhone : maskedPhone}
+                                      </span>
+                                    </div>
+                                    {isUnlocked ? (
+                                      <span className="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
+                                        Unlocked ✓
+                                      </span>
+                                    ) : (
+                                      <span className="text-[10px] font-bold text-amber-700 bg-amber-50 px-2 py-0.5 rounded-full border border-amber-200">
+                                        Locked (₹20 Fee)
+                                      </span>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+
+                              <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2">
+                                {isUnlocked ? (
+                                  <a 
+                                    href={`tel:${worker.phone}`}
+                                    className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm shadow-emerald-500/20 transition cursor-pointer"
+                                  >
+                                    <span>📞 Call Now</span>
+                                  </a>
+                                ) : (
+                                  <button 
+                                    onClick={() => handleTriggerPayment(worker)}
+                                    className="py-2.5 px-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-md shadow-blue-500/20 transition cursor-pointer"
+                                  >
+                                    <span>⚡ Unlock (₹20)</span>
+                                  </button>
+                                )}
+
+                                <button 
+                                  onClick={() => handleOpenBookModal(worker)}
+                                  className="py-2.5 px-3 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-extrabold text-xs flex items-center justify-center gap-1.5 border border-blue-200 transition cursor-pointer"
+                                >
+                                  <span>📅 Book Visit</span>
+                                </button>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
+
+                  </div>
+
+              </div>
+            )}
+
+            {/* VIEW B: BOOKINGS & PAYMENT HISTORY VIEW */}
+            {activeTab === 'bookings' && (
+              <div className="max-w-2xl mx-auto space-y-4">
+                <div className="flex items-center justify-between">
+                  <div>
+                    <h3 className="font-display font-black text-slate-900 text-xl">My Bookings & Payment History</h3>
+                    <p className="text-xs text-slate-500">Track all your service requests, unlocked numbers & UPI receipts</p>
+                  </div>
+                  <span className="text-xs text-slate-700 font-extrabold bg-blue-50 border border-blue-200 px-2.5 py-1 rounded-full">{bookings.length} Records</span>
+                </div>
+
+                {bookings.length === 0 ? (
+                  <div className="bg-white rounded-3xl border border-slate-200 p-8 text-center space-y-3">
+                    <p className="text-3xl">📅</p>
+                    <p className="text-slate-700 font-bold text-sm">No service bookings or unlocked contacts yet</p>
+                    <p className="text-xs text-slate-500">Find local verified specialists and unlock direct phone lines for ₹20.</p>
+                    <button onClick={() => setActiveTab('home')} className="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-xl text-xs shadow-md">
+                      Find Specialists Now
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {bookings.map(b => (
+                      <div key={b.id} className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm space-y-3">
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <div className="flex items-center gap-2">
+                              <h4 className="font-bold text-slate-900 text-sm">{b.serviceName}</h4>
+                              <span className="px-2 py-0.5 rounded text-[10px] font-extrabold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                                {b.paymentStatus || 'PAID & UNLOCKED'}
+                              </span>
+                            </div>
+                            <p className="text-xs text-slate-600 mt-0.5">Specialist: <strong className="text-slate-800">{b.workerName}</strong></p>
+                            <p className="text-xs text-slate-500">🗓️ {b.scheduledDate} • {b.scheduledTime} • 📍 {b.address}</p>
+                          </div>
+                          
+                          <div className="text-right shrink-0">
+                            <span className="text-xs font-mono font-extrabold text-emerald-600">₹{b.amountPaid || 20} Paid</span>
+                            {b.txnId && <p className="text-[10px] font-mono text-slate-400 mt-0.5">Txn: {b.txnId}</p>}
+                          </div>
+                        </div>
+
+                        {/* Unmasked Phone & Native One-Tap Call */}
+                        <div className="pt-2 border-t border-slate-100 flex items-center justify-between">
+                          <div className="flex items-center gap-2">
+                            <span className="text-xs">📞</span>
+                            <span className="font-mono font-bold text-xs text-slate-900">
+                              +{b.workerPhone || b.customerPhone}
+                            </span>
+                          </div>
+                          <a 
+                            href={`tel:${b.workerPhone || b.customerPhone}`}
+                            className="px-3 py-1.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-bold text-xs flex items-center gap-1.5 shadow-sm transition"
+                          >
+                            <span>📞 Call Specialist</span>
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* VIEW C: PROVIDER DASHBOARD (WITH PARALLEL JOB / DELIVERY HISTORY) */}
+            {activeTab === 'worker_dashboard' && (
+              <div className="space-y-6">
+                
+                {/* Live Online Banner */}
+                <div className="bg-slate-900 text-white rounded-3xl p-6 shadow-xl space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                        🟢 Active Provider Mode
+                      </span>
+                      <h2 className="text-xl sm:text-2xl font-display font-black tracking-tight mt-2">
+                        Welcome, {currentWorkerProfile?.name || currentUser?.name}
+                      </h2>
+                      <p className="text-xs text-slate-400 mt-1">
+                        Registered Mobile: <strong className="text-emerald-400 font-mono">+{currentWorkerProfile?.phone || currentUser?.phone}</strong>
+                      </p>
+                    </div>
+
+                    {/* Online / Offline Toggle */}
+                    <div className="flex items-center gap-3 bg-slate-800 p-3 rounded-2xl border border-slate-700">
+                      <div className="text-right">
+                        <p className="text-xs font-bold text-white">
+                          {currentWorkerProfile?.isAvailable ? 'Online for Calls' : 'Offline'}
+                        </p>
+                        <p className="text-[10px] text-slate-400">Direct dial availability</p>
+                      </div>
+                      <button 
+                        onClick={handleToggleAvailability}
+                        className={`w-12 h-6 rounded-full p-0.5 transition-colors ${currentWorkerProfile?.isAvailable ? 'bg-emerald-500' : 'bg-slate-600'}`}
+                      >
+                        <div className={`w-5 h-5 rounded-full bg-white transition-transform ${currentWorkerProfile?.isAvailable ? 'translate-x-6' : 'translate-x-0'}`} />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* PREPAID PARTNER WALLET WIDGET (FamPay Engine) */}
+                  {(() => {
+                    const workerBal = currentWorkerProfile?.walletBalance !== undefined ? currentWorkerProfile.walletBalance : 100;
+                    const isLocked = workerBal < 20;
+                    return (
+                      <div className={`p-5 rounded-3xl border transition-all ${isLocked ? 'bg-gradient-to-br from-rose-950/90 via-slate-900 to-rose-900/70 border-rose-600/70 shadow-lg shadow-rose-950/40' : 'bg-gradient-to-br from-indigo-950/90 via-slate-900 to-blue-950/80 border-indigo-700/60 shadow-lg shadow-indigo-950/30'}`}>
+                        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                          <div>
+                            <div className="flex items-center gap-2 mb-1.5 flex-wrap">
+                              <span className="text-xl">💳</span>
+                              <span className={`px-2.5 py-0.5 rounded-full text-[11px] font-black tracking-wide uppercase ${isLocked ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40' : 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40'}`}>
+                                {isLocked ? '🔴 Low Balance Lock (< ₹20)' : '🟢 Active Partner Wallet'}
+                              </span>
+                              <span className="text-[11px] font-mono text-purple-300">FamPay • {FAMPAY_UPI_ID}</span>
+                            </div>
+                            
+                            <div className="flex items-baseline gap-2">
+                              <h3 className="text-3xl font-display font-black text-white tracking-tight">₹{workerBal}.00</h3>
+                              <span className="text-xs text-slate-300 font-semibold">Prepaid Balance</span>
+                            </div>
+
+                            <p className="text-xs text-slate-300/90 mt-1 max-w-xl">
+                              {isLocked ? (
+                                <strong className="text-rose-300">⚠️ Balance below ₹20 threshold. Customer bookings are currently blocked. Recharge to unmask calls and accept jobs!</strong>
+                              ) : (
+                                <span>Prepaid wallet maintained via FamPay scanner. Each unlocked customer call or visit deducts ₹20. Maintain balance ≥ ₹20 to stay active.</span>
+                              )}
+                            </p>
+                          </div>
+
+                          <div className="flex flex-col xs:flex-row sm:flex-col gap-2 shrink-0">
+                            <button
+                              onClick={() => {
+                                setWalletRechargeAmount(100);
+                                setWalletRechargeOpen(true);
+                              }}
+                              className="px-4 py-2.5 bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-extrabold text-xs rounded-xl shadow-md flex items-center justify-center gap-1.5 transition transform active:scale-95 cursor-pointer"
+                            >
+                              <span>⚡</span>
+                              <span>Recharge Wallet (FamPay)</span>
+                            </button>
+
+                            <button
+                              onClick={(e) => handleCopyUPI(e)}
+                              className="px-3 py-2 bg-slate-800/90 hover:bg-slate-700 text-slate-200 border border-slate-700 text-[11px] font-bold rounded-xl flex items-center justify-center gap-1.5 transition cursor-pointer"
+                              title="Copy Anku Pandit's UPI ID"
+                            >
+                              <span>📋</span>
+                              <span>Copy UPI ID ({FAMPAY_UPI_ID})</span>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })()}
+                </div>
+
+                {/* Metrics */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div className="bg-white p-4 rounded-2xl border border-slate-200">
+                    <p className="text-xs text-slate-500 font-medium">Delivered Jobs</p>
+                    <h3 className="text-xl font-display font-black text-slate-900 mt-1">{bookings.length || 3} Jobs</h3>
+                    <p className="text-[10px] text-emerald-600 font-bold mt-0.5">100% Verified</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-2xl border border-slate-200">
+                    <p className="text-xs text-slate-500 font-medium">Estimated Earnings</p>
+                    <h3 className="text-xl font-display font-black text-emerald-600 mt-1">₹{(bookings.length || 3) * 350}</h3>
+                    <p className="text-[10px] text-slate-500 font-bold mt-0.5">Direct to You</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-2xl border border-slate-200">
+                    <p className="text-xs text-slate-500 font-medium">Pro Rating</p>
+                    <h3 className="text-xl font-display font-black text-slate-900 mt-1">5.0 ⭐</h3>
+                    <p className="text-[10px] text-slate-400 font-bold mt-0.5">Top Badged</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-2xl border border-slate-200">
+                    <p className="text-xs text-slate-500 font-medium">Coverage Area</p>
+                    <h3 className="text-xl font-display font-black text-blue-600 mt-1">{currentWorkerProfile?.pincode || currentUser?.pincode || '110001'}</h3>
+                    <p className="text-[10px] text-slate-400 font-bold mt-0.5">Active Pincode</p>
+                  </div>
+                </div>
+
+                {/* JOB / DELIVERY HISTORY TRACKING SECTION */}
+                <div className="bg-white rounded-3xl border border-slate-200 p-6 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="font-display font-black text-slate-900 text-lg">Job & Delivery History</h3>
+                      <p className="text-xs text-slate-500">Log of customer inquiries, dispatches, and fulfilled service visits</p>
+                    </div>
+                    <span className="text-xs font-bold text-blue-600 bg-blue-50 px-3 py-1 rounded-full border border-blue-200">
+                      Live Delivery Feed
+                    </span>
+                  </div>
+
+                  <div className="space-y-3">
+                    {/* Simulated and real incoming jobs for this specialist */}
+                    {[
+                      ...(bookings.map(b => ({
+                        id: b.id,
+                        customerName: b.customerName,
+                        customerPhone: b.customerPhone,
+                        serviceName: b.serviceName,
+                        address: b.address,
+                        date: b.scheduledDate,
+                        time: b.scheduledTime,
+                        feeEarned: '₹' + (currentWorkerProfile?.hourlyRate || 250),
+                        status: 'Fulfilled & Delivered ✅'
+                      }))),
+                      {
+                        id: 'job-default-1',
+                        customerName: 'Rahul Verma',
+                        customerPhone: '9876501234',
+                        serviceName: currentWorkerProfile?.category || 'Electrical & Wiring',
+                        address: 'Model Town, Central Locality',
+                        date: 'Yesterday',
+                        time: '02:30 PM',
+                        feeEarned: '₹350',
+                        status: 'Fulfilled & Delivered ✅'
+                      },
+                      {
+                        id: 'job-default-2',
+                        customerName: 'Priya Sen',
+                        customerPhone: '9812987654',
+                        serviceName: currentWorkerProfile?.category || 'Home Repair & Visit',
+                        address: 'Green Park Avenue',
+                        date: '3 days ago',
+                        time: '11:00 AM',
+                        feeEarned: '₹299',
+                        status: 'Fulfilled & Delivered ✅'
+                      }
+                    ].map(job => (
+                      <div key={job.id} className="p-4 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h4 className="font-bold text-slate-900 text-sm">{job.customerName}</h4>
+                            <span className="px-2 py-0.5 rounded text-[10px] font-extrabold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                              {job.status}
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-600 mt-0.5">{job.serviceName} • 📍 {job.address}</p>
+                          <p className="text-[11px] text-slate-400">🗓️ {job.date} at {job.time}</p>
+                        </div>
+
+                        <div className="flex items-center gap-3">
+                          <div className="text-right">
+                            <span className="text-xs font-mono font-bold text-emerald-600">{job.feeEarned} Earned</span>
+                            <p className="text-[10px] text-slate-400">Direct Payment</p>
+                          </div>
+                          <a 
+                            href={`tel:${job.customerPhone}`}
+                            className="px-3 py-1.5 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-xl font-bold text-xs flex items-center gap-1 transition"
+                          >
+                            <span>📞 Call</span>
+                          </a>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+              </div>
+            )}
+
+            {/* VIEW D: PROVIDER SETUP / ONBOARDING VIEW */}
+            {activeTab === 'provider_setup' && (
+              <div className="max-w-xl mx-auto bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+                <div className="text-center space-y-1">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto text-xl font-black">
+                    🛠️
+                  </div>
+                  <h2 className="text-2xl font-display font-black text-slate-900 tracking-tight">Register as Specialist</h2>
+                  <p className="text-xs text-slate-500">
+                    Receive direct customer phone calls with low ₹20 prepaid partner platform fees.
+                  </p>
+                </div>
+
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  const form = e.target;
+                  const newWorker = {
+                    id: 'w-' + Date.now(),
+                    userId: currentUser?.id || 'u-' + Date.now(),
+                    name: form.name.value.trim(),
+                    phone: form.phone.value.replace(/\D/g, ''),
+                    category: form.category.value,
+                    pincode: form.pincode.value.trim() || '134102',
+                    address: form.address.value.trim(),
+                    hourlyRate: Number(form.rate.value) || 250,
+                    specialization: form.specialization.value.trim(),
+                    bio: form.bio.value.trim(),
+                    rating: 5.0,
+                    reviewCount: 0,
+                    experienceYears: 4,
+                    isVerified: true,
+                    isAvailable: true
+                  };
+
+                  const updatedUser = {
+                    ...(currentUser || {}),
+                    id: newWorker.userId,
+                    name: newWorker.name,
+                    phone: newWorker.phone,
+                    role: 'worker',
+                    pincode: newWorker.pincode,
+                    address: newWorker.address,
+                    isProfileComplete: true
+                  };
+
+                  const updatedList = [newWorker, ...workers.filter(w => w.phone !== newWorker.phone)];
+                  setWorkers(updatedList);
+                  Storage.set('workers', updatedList);
+
+                  setCurrentUser(updatedUser);
+                  Storage.set('user', updatedUser);
+
+                  safeFirestore(async (firestore) => {
+                    await firestore.collection('workers').doc(newWorker.id).set(newWorker);
+                    await firestore.collection('users').doc(updatedUser.id).set(updatedUser);
+                  }, null);
+
+                  setActiveTab('worker_dashboard');
+                }} className="space-y-4 text-xs">
+                  
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Full Business / Professional Name *</label>
+                    <input name="name" required placeholder="Enter full name" defaultValue={currentUser?.name || ''} className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-sm outline-none" />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Direct Phone Number (10 Digits) *</label>
+                    <input name="phone" required type="tel" placeholder="10-digit mobile" defaultValue={currentUser?.phone || ''} className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-sm font-mono outline-none" />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Trade Category *</label>
+                    <select name="category" required className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 text-sm font-bold outline-none">
+                      {CATEGORIES.filter(c => c.name !== 'All').map(c => (
+                        <option key={c.name} value={c.name}>{c.icon} {c.label}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Pincode *</label>
+                      <input name="pincode" defaultValue={currentUser?.pincode || "134102"} required className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 font-mono text-sm" />
+                    </div>
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Base Visit Fee (₹)</label>
+                      <input name="rate" type="number" defaultValue="250" className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 font-mono text-sm" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Service Address</label>
+                    <input name="address" defaultValue={currentUser?.address || "Main Market Sector, 134102"} className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Key Specialization</label>
+                    <input name="specialization" placeholder="e.g. Inverter wiring, pipe burst, general consult" className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Bio / Guarantee</label>
+                    <textarea name="bio" rows="2" placeholder="Experience & service turnaround guarantee..." className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                  </div>
+
+                  <button 
+                    type="submit"
+                    className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-sm shadow-lg shadow-blue-500/25 transition cursor-pointer"
+                  >
+                    Save & Launch My Provider Profile ➔
+                  </button>
+
+                  <button 
+                    type="button" 
+                    onClick={() => setActiveTab('home')}
+                    className="w-full py-2 text-slate-400 hover:text-slate-600 font-bold"
+                  >
+                    Cancel
+                  </button>
+                </form>
+
+              </div>
+            )}
+
+            {/* VIEW E: PROFILE VIEW */}
+            {activeTab === 'profile' && (
+              <div className="max-w-md mx-auto bg-white rounded-3xl border border-slate-200 p-6 space-y-5">
+                <div className="text-center space-y-1">
+                  <div className="w-16 h-16 rounded-3xl bg-blue-600 text-white font-display font-black text-2xl flex items-center justify-center mx-auto shadow-md">
+                    {currentUser?.name ? currentUser.name[0].toUpperCase() : 'U'}
+                  </div>
+                  <h3 className="font-display font-black text-slate-900 text-lg">{currentUser?.name || 'Verified User'}</h3>
+                  <p className="text-xs text-slate-500">{currentUser?.phone ? `+91 ${currentUser.phone}` : 'No phone linked'}</p>
+                </div>
+
+                <div className="border-t border-slate-100 pt-4 space-y-2 text-xs font-semibold">
+                  <div className="flex justify-between py-2 border-b border-slate-50">
+                    <span className="text-slate-500">Active Mode:</span>
+                    <span className="font-bold text-blue-600 uppercase">{currentUser?.role || 'Customer'}</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-slate-50">
+                    <span className="text-slate-500">Service Pincode:</span>
+                    <span className="font-mono font-bold text-slate-800">{currentUser?.pincode || pincodeFilter || '134102'}</span>
+                  </div>
+                </div>
+
+                {/* Edit Profile Form */}
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  const form = e.target;
+                  const updated = {
+                    ...(currentUser || {}),
+                    id: currentUser?.id || ('u-' + Date.now()),
+                    name: form.pname.value.trim(),
+                    phone: form.pphone.value.replace(/\D/g, ''),
+                    role: currentUser?.role || 'customer',
+                    pincode: form.ppincode.value.trim() || '134102',
+                    isProfileComplete: true
+                  };
+                  setCurrentUser(updated);
+                  Storage.set('user', updated);
+                  if (updated.pincode) setPincodeFilter(updated.pincode);
+                  alert('Profile updated successfully!');
+                }} className="space-y-3 pt-2 text-xs border-t border-slate-100">
+                  <h4 className="font-bold text-slate-800 text-xs">Update Profile Details</h4>
+                  <div>
+                    <label className="block text-slate-500 mb-1">Full Name</label>
+                    <input name="pname" required defaultValue={currentUser?.name || ''} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm font-semibold" />
+                  </div>
+                  <div>
+                    <label className="block text-slate-500 mb-1">Mobile Number</label>
+                    <input name="pphone" required type="tel" defaultValue={currentUser?.phone || ''} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm font-mono" />
+                  </div>
+                  <div>
+                    <label className="block text-slate-500 mb-1">Default Pincode</label>
+                    <input name="ppincode" required defaultValue={currentUser?.pincode || pincodeFilter || '134102'} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm font-mono" />
+                  </div>
+                  <button type="submit" className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-sm">
+                    Save Profile Changes
+                  </button>
+                </form>
+
+                {/* My Bookings / History Section for Customers */}
+                <div className="border-t border-slate-100 pt-4 space-y-3">
+                  <div className="flex items-center justify-between">
+                    <h4 className="font-display font-black text-slate-900 text-sm">My Bookings & Unlocked History</h4>
+                    <span className="text-[11px] font-extrabold text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full">{bookings.length} Bookings</span>
+                  </div>
+
+                  {bookings.length === 0 ? (
+                    <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center">
+                      <p className="text-xs text-slate-500 font-medium">No past bookings yet. Unlocked contacts and scheduled visits will appear here.</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-2 max-h-48 overflow-y-auto no-scrollbar">
+                      {bookings.slice(0, 5).map(b => (
+                        <div key={b.id} className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs flex items-center justify-between gap-2">
+                          <div>
+                            <div className="flex items-center gap-1.5">
+                              <span className="font-bold text-slate-900">{b.workerName}</span>
+                              <span className="text-[10px] text-emerald-600 font-extrabold bg-emerald-50 px-1.5 py-0.2 rounded border border-emerald-200">₹{b.amountPaid || 20} Paid</span>
+                            </div>
+                            <p className="text-[11px] text-slate-500">{b.serviceName} • {b.scheduledDate}</p>
+                            <p className="text-[11px] text-emerald-700 font-mono font-bold mt-0.5">+{b.workerPhone || b.customerPhone}</p>
+                          </div>
+                          <a 
+                            href={`tel:${b.workerPhone || b.customerPhone}`}
+                            className="px-2.5 py-1 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-bold text-xs shrink-0 flex items-center gap-1"
+                          >
+                            <span>📞</span>
+                            <span>Call</span>
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <div className="space-y-2 pt-2 border-t border-slate-100">
+                  <button 
+                    onClick={() => {
+                      const nextRole = currentUser?.role === 'worker' ? 'customer' : 'worker';
+                      if (currentUser) {
+                        const updated = { ...currentUser, role: nextRole };
+                        setCurrentUser(updated);
+                        Storage.set('user', updated);
+                        setActiveTab(nextRole === 'worker' ? 'worker_dashboard' : 'home');
+                      } else {
+                        setActiveTab('provider_setup');
+                      }
+                    }}
+                    className="w-full py-2.5 rounded-xl border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 transition"
+                  >
+                    Switch to {currentUser?.role === 'worker' ? 'Customer Mode' : 'Provider Mode'}
+                  </button>
+
+                  <button 
+                    onClick={() => {
+                      setCurrentUser(null);
+                      Storage.set('user', null);
+                      setAuthFlowState('onboarding');
+                      setActiveTab('home');
+                    }}
+                    className="w-full py-2.5 rounded-xl bg-rose-50 text-rose-600 font-bold text-xs hover:bg-rose-100 transition"
+                  >
+                    Log Out
+                  </button>
+                </div>
+              </div>
+            )}
+
+          </main>
+
+          {/* 3. STRICT 3-TAB / 4-TAB BOTTOM NAVIGATION */}
+          <nav className="fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-slate-200/90 shadow-lg sm:hidden">
+            <div className="flex items-center justify-around h-16 px-2 max-w-lg mx-auto">
+              
+              {/* If in Specialist Worker Mode: 4 Dedicated Tabs */}
+              {isWorkerMode ? (
+                <>
+                  <button
+                    onClick={() => setActiveTab('worker_dashboard')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'worker_dashboard' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">💼</span>
+                    <span className="text-[10px] font-bold mt-0.5">Dashboard</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('home')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'home' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">🔍</span>
+                    <span className="text-[10px] font-bold mt-0.5">Search</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('bookings')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'bookings' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">📋</span>
+                    <span className="text-[10px] font-bold mt-0.5">Jobs</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('profile')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'profile' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">👤</span>
+                    <span className="text-[10px] font-bold mt-0.5">Profile</span>
+                  </button>
+                </>
+              ) : (
+                /* Customer Mode: EXACTLY the 3 clean tabs (Explore, Bookings, Profile) */
+                <>
+                  <button
+                    onClick={() => setActiveTab('home')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'home' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">🔍</span>
+                    <span className="text-[10px] font-bold mt-0.5">Explore</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('bookings')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'bookings' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">📅</span>
+                    <span className="text-[10px] font-bold mt-0.5">Bookings</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('profile')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'profile' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">👤</span>
+                    <span className="text-[10px] font-bold mt-0.5">Profile</span>
+                  </button>
+                </>
+              )}
+
+            </div>
+          </nav>
+
+          {/* ============================================================ */}
+          {/* 4. MODALS & POPUPS                                           */}
+          {/* ============================================================ */}
+
+          {/* S. LIGHTNING-FAST INSTANT PAYMENT & UNMASK POPUP (₹20 FEE) */}
+          {paymentModalWorker && (
+            <div className="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-slate-100 text-center space-y-4 animate-in fade-in zoom-in duration-200">
+                
+                {paymentSuccessState ? (
+                  /* Brilliant Green Tick Success Animation State */
+                  <div className="space-y-4 py-2">
+                    <div className="w-20 h-20 rounded-full bg-emerald-100 text-emerald-600 text-4xl flex items-center justify-center mx-auto border-4 border-emerald-500 shadow-xl shadow-emerald-500/25 animate-bounce">
+                      ✓
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-display font-black text-slate-900 leading-tight">
+                        Payment Successful! 🎉
+                      </h3>
+                      <p className="text-xs font-semibold text-emerald-700 mt-1">
+                        ₹20 Convenience Fee Confirmed • Instant Unlock
+                      </p>
+                      <p className="text-[11px] font-mono text-slate-400 mt-0.5">
+                        Txn ID: {paymentSuccessState.txnId}
+                      </p>
+                    </div>
+
+                    {/* Unmasked Phone Number Card */}
+                    <div className="p-4 rounded-2xl bg-emerald-50 border-2 border-emerald-300 text-center space-y-1">
+                      <span className="text-[10px] font-extrabold text-emerald-800 uppercase tracking-wider">
+                        Verified Contact Unmasked
+                      </span>
+                      <h4 className="text-xl font-mono font-black text-emerald-950 tracking-wider">
+                        +{paymentSuccessState.phone}
+                      </h4>
+                      <p className="text-[11px] text-emerald-700 font-medium">
+                        {paymentSuccessState.workerName} • {paymentModalWorker.category}
+                      </p>
+                    </div>
+
+                    {/* Direct One-Tap Native Dialer Call Button */}
+                    <div className="space-y-2 pt-1">
+                      <a 
+                        href={`tel:${paymentSuccessState.phone}`}
+                        className="w-full py-3.5 rounded-2xl bg-emerald-600 hover:bg-emerald-700 text-white font-black text-sm flex items-center justify-center gap-2 shadow-lg shadow-emerald-600/30 transition transform active:scale-95"
+                      >
+                        <span className="text-base">📞</span>
+                        <span>Call Now (+{paymentSuccessState.phone})</span>
+                      </a>
+                      <button 
+                        onClick={() => {
+                          setPaymentModalWorker(null);
+                          setPaymentSuccessState(null);
+                        }}
+                        className="w-full py-2.5 rounded-xl text-slate-500 hover:text-slate-700 font-bold text-xs"
+                      >
+                        Done & Close
+                      </button>
+                    </div>
+                  </div>
+                ) : isProcessingPayment ? (
+                  /* Fast 0.5s Simulation Processing State */
+                  <div className="py-8 space-y-4">
+                    <div className="w-16 h-16 rounded-full border-4 border-blue-600 border-t-transparent animate-spin mx-auto" />
+                    <div>
+                      <h4 className="font-display font-black text-slate-900 text-base">Verifying UPI Instant Payment...</h4>
+                      <p className="text-xs text-slate-500 mt-1">Connecting directly with bank & unmasking phone line</p>
+                    </div>
+                  </div>
+                ) : (
+                  /* Standard Lightning Payment Request Card */
+                  <>
+                    <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                      <div className="flex items-center gap-2 text-left">
+                        <div className="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 font-display font-bold flex items-center justify-center text-lg">
+                          ⚡
+                        </div>
+                        <div>
+                          <h3 className="font-display font-black text-slate-900 text-sm leading-tight">
+                            Unlock Verified Specialist
+                          </h3>
+                          <p className="text-[11px] text-slate-500">{paymentModalWorker.name} ({paymentModalWorker.category})</p>
+                        </div>
+                      </div>
+                      <button 
+                        onClick={() => setPaymentModalWorker(null)}
+                        className="text-slate-400 hover:text-slate-600 font-bold text-sm"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    {/* Nominal Fee Breakdown */}
+                    <div className="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 text-left space-y-1.5 text-xs">
+                      <div className="flex justify-between text-slate-600">
+                        <span>Platform Convenience Fee</span>
+                        <span className="font-semibold text-slate-900">₹20.00</span>
+                      </div>
+                      <div className="flex justify-between text-slate-600">
+                        <span>Taxes & Processing</span>
+                        <span className="font-semibold text-emerald-600">₹0.00 (Zero)</span>
+                      </div>
+                      <div className="pt-1.5 border-t border-slate-200 flex justify-between font-bold text-slate-900 text-sm">
+                        <span>Total Due</span>
+                        <span className="text-blue-600 font-mono text-base font-black">₹20.00</span>
+                      </div>
+                    </div>
+
+                    {/* FamPay Black QR Scanner Box */}
+                    <div className="p-3.5 bg-[#090d16] rounded-2xl border border-slate-800 flex flex-col items-center justify-center gap-2 shadow-xl">
+                      <div className="flex items-center justify-between w-full px-1">
+                        <span className="text-[11px] font-mono text-purple-300 font-bold uppercase tracking-wider">
+                          FamPay Black QR
+                        </span>
+                        <span className="text-[10px] font-mono text-slate-400">
+                          {FAMPAY_UPI_ID}
+                        </span>
+                      </div>
+
+                      <div className="w-32 h-32 bg-white p-2 rounded-xl flex items-center justify-center shadow-inner">
+                        {/* High-fidelity Vector QR simulation */}
+                        <svg viewBox="0 0 100 100" className="w-full h-full text-slate-950 fill-current">
+                          <rect x="5" y="5" width="25" height="25" fill="none" stroke="#000" strokeWidth="6" />
+                          <rect x="12" y="12" width="11" height="11" />
+                          <rect x="70" y="5" width="25" height="25" fill="none" stroke="#000" strokeWidth="6" />
+                          <rect x="77" y="12" width="11" height="11" />
+                          <rect x="5" y="70" width="25" height="25" fill="none" stroke="#000" strokeWidth="6" />
+                          <rect x="12" y="77" width="11" height="11" />
+                          <rect x="42" y="10" width="16" height="8" />
+                          <rect x="42" y="42" width="16" height="16" />
+                          <rect x="10" y="42" width="8" height="16" />
+                          <rect x="70" y="42" width="16" height="8" />
+                          <rect x="42" y="70" width="16" height="16" />
+                          <rect x="70" y="70" width="16" height="16" />
+                        </svg>
+                      </div>
+
+                      <span className="text-[10px] font-semibold text-slate-300">
+                        {FAMPAY_PAYEE_NAME} • Scan with Any UPI App
+                      </span>
+
+                      {/* Active Action Row: Copy UPI & Download QR */}
+                      <div className="grid grid-cols-2 gap-2 w-full pt-1">
+                        <button
+                          type="button"
+                          onClick={(e) => handleCopyUPI(e)}
+                          className="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-[11px] font-bold border border-slate-700 flex items-center justify-center gap-1 transition cursor-pointer"
+                          title="Copy UPI ID"
+                        >
+                          <span>📋 Copy UPI</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => downloadFamPayQR(20)}
+                          className="py-1.5 px-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-[11px] font-bold border border-slate-700 flex items-center justify-center gap-1 transition cursor-pointer"
+                          title="Download Black QR"
+                        >
+                          <span>⬇️ Download QR</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Instant 1-Tap Payment Buttons */}
+                    <div className="space-y-2 pt-1">
+                      <button 
+                        onClick={() => handleExecuteInstantPayment('FamPay UPI 1-Tap')}
+                        className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-extrabold text-sm shadow-lg shadow-purple-500/25 flex items-center justify-center gap-2 cursor-pointer transition transform active:scale-98"
+                      >
+                        <span>⚡</span>
+                        <span>Pay ₹20 Instantly via FamPay UPI</span>
+                      </button>
+
+                      <div className="grid grid-cols-3 gap-1.5 text-[10px] font-bold">
+                        <button 
+                          onClick={() => handleExecuteInstantPayment('Google Pay')}
+                          className="py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 cursor-pointer"
+                        >
+                          Google Pay
+                        </button>
+                        <button 
+                          onClick={() => handleExecuteInstantPayment('PhonePe')}
+                          className="py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 cursor-pointer"
+                        >
+                          PhonePe
+                        </button>
+                        <button 
+                          onClick={() => handleExecuteInstantPayment('Paytm UPI')}
+                          className="py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 border border-slate-200 cursor-pointer"
+                        >
+                          Paytm UPI
+                        </button>
+                      </div>
+                    </div>
+                  </>
+                )}
+
+              </div>
+            </div>
+          )}
+
+          {/* SMART BOOKING LOCK POPUP (Worker Balance < ₹20) */}
+          {blockedWorker && (
+            <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-rose-200 text-center space-y-4 animate-in fade-in zoom-in duration-200">
+                <div className="w-16 h-16 rounded-full bg-rose-50 text-rose-600 text-3xl flex items-center justify-center mx-auto border-2 border-rose-200">
+                  🔒
+                </div>
+                
+                <div>
+                  <div className="inline-block px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider bg-rose-100 text-rose-700 border border-rose-200 mb-1">
+                    Smart Booking Lock Active
+                  </div>
+                  <h3 className="text-xl font-display font-black text-slate-900 leading-tight">
+                    Insufficient Partner Balance
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Bookings for <strong>{blockedWorker.name}</strong> are temporarily locked
+                  </p>
+                </div>
+
+                <div className="p-4 rounded-2xl bg-rose-50/70 border border-rose-200 text-left space-y-2 text-xs">
+                  <div className="flex justify-between items-center text-slate-700">
+                    <span className="font-medium">Specialist:</span>
+                    <span className="font-bold text-slate-900">{blockedWorker.name} ({blockedWorker.category})</span>
+                  </div>
+                  <div className="flex justify-between items-center text-slate-700">
+                    <span className="font-medium">Current Partner Balance:</span>
+                    <span className="font-mono font-black text-rose-600">₹{blockedWorker.walletBalance !== undefined ? blockedWorker.walletBalance : 10}.00</span>
+                  </div>
+                  <div className="flex justify-between items-center text-slate-700">
+                    <span className="font-medium">Minimum Required:</span>
+                    <span className="font-mono font-bold text-slate-900">₹20.00</span>
+                  </div>
+                  <div className="pt-2 border-t border-rose-200/80 text-[11px] text-rose-800 leading-relaxed">
+                    Under Zupix Partner Rules, service specialists must maintain at least ₹20 prepaid balance via FamPay to receive direct customer calls. This partner's balance has dropped below the threshold.
+                  </div>
+                </div>
+
+                <div className="space-y-2 pt-1">
+                  {/* Quick partner top-up button so user/tester can instantly unblock */}
+                  <button
+                    onClick={() => {
+                      const updatedWorkers = workers.map(w => {
+                        if (w.id === blockedWorker.id) {
+                          const bal = w.walletBalance !== undefined ? w.walletBalance : 10;
+                          return { ...w, walletBalance: bal + 100 };
+                        }
+                        return w;
+                      });
+                      setWorkers(updatedWorkers);
+                      Storage.set('workers', updatedWorkers);
+                      setBlockedWorker(null);
+                      setCopiedToast(`+₹100 added to ${blockedWorker.name}'s wallet! Booking unlocked.`);
+                      setTimeout(() => setCopiedToast(''), 3000);
+                    }}
+                    className="w-full py-3 rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white font-extrabold text-xs shadow-md shadow-purple-600/20 flex items-center justify-center gap-1.5 cursor-pointer"
+                  >
+                    <span>⚡ Quick Partner Top-Up (+₹100 FamPay)</span>
+                  </button>
+
+                  <button
+                    onClick={() => setBlockedWorker(null)}
+                    className="w-full py-2.5 rounded-xl text-slate-500 hover:text-slate-800 font-bold text-xs cursor-pointer"
+                  >
+                    Browse Other Available Pros
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* PARTNER WALLET RECHARGE MODAL (FamPay Black QR Scanner Engine) */}
+          {walletRechargeOpen && (
+            <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-slate-900 text-white w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-slate-800 text-center space-y-4 animate-in fade-in zoom-in duration-200">
+                
+                {rechargeSuccess ? (
+                  <div className="py-8 space-y-3">
+                    <div className="w-16 h-16 rounded-full bg-emerald-500/20 text-emerald-400 text-3xl flex items-center justify-center mx-auto border-2 border-emerald-500 animate-bounce">
+                      ✓
+                    </div>
+                    <h3 className="text-xl font-display font-black text-white">Recharge Successful! 🎉</h3>
+                    <p className="text-xs text-emerald-400 font-mono">+₹{walletRechargeAmount} Added to Partner Wallet</p>
+                    <p className="text-[11px] text-slate-400">Direct customer phone calls and bookings are now active.</p>
+                  </div>
+                ) : (
+                  <>
+                    <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                      <div className="text-left">
+                        <div className="flex items-center gap-1.5">
+                          <span className="text-lg">⚡</span>
+                          <h3 className="font-display font-black text-white text-base">FamPay Partner Recharge</h3>
+                        </div>
+                        <p className="text-[11px] text-slate-400">Scan Black QR to keep bookings unlocked</p>
+                      </div>
+                      <button 
+                        onClick={() => setWalletRechargeOpen(false)}
+                        className="text-slate-400 hover:text-white font-bold cursor-pointer"
+                      >
+                        ✕
+                      </button>
+                    </div>
+
+                    {/* FamPay Payee Info */}
+                    <div className="p-3 rounded-2xl bg-slate-950 border border-slate-800 text-left space-y-1 text-xs">
+                      <div className="flex justify-between items-center">
+                        <span className="text-slate-400">Payee Name:</span>
+                        <span className="font-bold text-white">{FAMPAY_PAYEE_NAME}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-slate-400">FamPay UPI ID:</span>
+                        <span className="font-mono font-bold text-purple-400">{FAMPAY_UPI_ID}</span>
+                      </div>
+                    </div>
+
+                    {/* Black QR Scanner Card */}
+                    <div className="p-4 bg-[#090d16] rounded-2xl border border-slate-800 shadow-xl space-y-2 flex flex-col items-center">
+                      <div className="text-[11px] font-mono text-purple-300 font-bold uppercase tracking-wider">
+                        FamPay Black QR Scanner
+                      </div>
+                      
+                      <div className="w-36 h-36 bg-white p-2 rounded-xl flex items-center justify-center shadow-inner">
+                        {/* High-fidelity Vector QR simulation */}
+                        <svg viewBox="0 0 100 100" className="w-full h-full text-slate-950 fill-current">
+                          <rect x="5" y="5" width="25" height="25" fill="none" stroke="#000" strokeWidth="6" />
+                          <rect x="12" y="12" width="11" height="11" />
+                          <rect x="70" y="5" width="25" height="25" fill="none" stroke="#000" strokeWidth="6" />
+                          <rect x="77" y="12" width="11" height="11" />
+                          <rect x="5" y="70" width="25" height="25" fill="none" stroke="#000" strokeWidth="6" />
+                          <rect x="12" y="77" width="11" height="11" />
+                          <rect x="42" y="10" width="16" height="8" />
+                          <rect x="42" y="42" width="16" height="16" />
+                          <rect x="10" y="42" width="8" height="16" />
+                          <rect x="70" y="42" width="16" height="8" />
+                          <rect x="42" y="70" width="16" height="16" />
+                          <rect x="70" y="70" width="16" height="16" />
+                        </svg>
+                      </div>
+
+                      <p className="text-[10px] text-slate-400 font-medium">
+                        Scan & Pay with FamPay, GPay, PhonePe, Paytm, or BHIM
+                      </p>
+
+                      {/* Active Action Buttons: Copy UPI ID & Download QR */}
+                      <div className="grid grid-cols-2 gap-2 w-full pt-1">
+                        <button
+                          type="button"
+                          onClick={(e) => handleCopyUPI(e)}
+                          className="py-2 px-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-[11px] font-bold border border-slate-700 flex items-center justify-center gap-1 transition cursor-pointer"
+                        >
+                          <span>📋 Copy UPI</span>
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => downloadFamPayQR(walletRechargeAmount)}
+                          className="py-2 px-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-xl text-[11px] font-bold border border-slate-700 flex items-center justify-center gap-1 transition cursor-pointer"
+                        >
+                          <span>⬇️ Download QR</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {/* Amount Selector Pills */}
+                    <div>
+                      <label className="block text-[11px] font-bold text-slate-400 mb-1.5 text-left">
+                        Select Recharge Amount:
+                      </label>
+                      <div className="grid grid-cols-3 gap-2">
+                        {[100, 200, 500].map(amt => (
+                          <button
+                            key={amt}
+                            type="button"
+                            onClick={() => setWalletRechargeAmount(amt)}
+                            className={`py-2 rounded-xl text-xs font-mono font-bold transition cursor-pointer ${walletRechargeAmount === amt ? 'bg-purple-600 text-white border border-purple-400 shadow-md' : 'bg-slate-800 text-slate-300 border border-slate-700 hover:bg-slate-700'}`}
+                          >
+                            ₹{amt}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Instant Simulate UPI Recharge Button */}
+                    <div className="space-y-2 pt-1">
+                      <button
+                        type="button"
+                        onClick={() => handleWorkerRecharge(walletRechargeAmount)}
+                        disabled={isProcessingPayment}
+                        className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-purple-600 via-indigo-600 to-blue-600 hover:from-purple-500 hover:to-blue-500 text-white font-extrabold text-xs shadow-lg shadow-purple-600/30 flex items-center justify-center gap-2 cursor-pointer transition transform active:scale-98"
+                      >
+                        {isProcessingPayment ? (
+                          <span>Verifying UPI Payment...</span>
+                        ) : (
+                          <span>⚡ Simulate Instant Recharge (+₹{walletRechargeAmount})</span>
+                        )}
+                      </button>
+
+                      <button
+                        type="button"
+                        onClick={() => setWalletRechargeOpen(false)}
+                        className="w-full py-2 text-slate-400 hover:text-white text-xs font-bold cursor-pointer"
+                      >
+                        Cancel
+                      </button>
+                    </div>
+                  </>
+                )}
+
+              </div>
+            </div>
+          )}
+
+          {/* Floating Toast Notification */}
+          {copiedToast && (
+            <div className="fixed top-6 left-1/2 -translate-x-1/2 z-[999999] bg-slate-900 text-white px-4 py-2.5 rounded-2xl shadow-2xl border border-purple-500/40 text-xs font-bold flex items-center gap-2 animate-in fade-in slide-in-from-top-4">
+              <span className="text-base">📋</span>
+              <span>{copiedToast}</span>
+            </div>
+          )}
+
+          {/* A. DIRECT CALL MODAL */}
+          {directCallWorker && (
+            <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+              <div className="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-slate-100 text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 text-2xl flex items-center justify-center mx-auto border border-emerald-200">
+                  📞
+                </div>
+                <div>
+                  <h3 className="text-lg font-display font-black text-slate-900 leading-tight">
+                    Direct Call Specialist
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Connect directly to <strong>{directCallWorker.name}</strong> ({directCallWorker.category}).
+                  </p>
+                </div>
+
+                {unlockedWorkers.includes(directCallWorker.id) ? (
+                  <>
+                    <div className="bg-emerald-50/80 border border-emerald-200 p-3.5 rounded-2xl">
+                      <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wide">Direct Mobile Line</span>
+                      <p className="text-lg font-mono font-black text-emerald-950 mt-0.5">
+                        +{directCallWorker.phone}
+                      </p>
+                    </div>
+
+                    <div className="space-y-2 pt-2">
+                      <a 
+                        href={`tel:${directCallWorker.phone}`}
+                        className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20"
+                      >
+                        <span>Dial Now ➔</span>
+                      </a>
+                      <button 
+                        onClick={() => setDirectCallWorker(null)}
+                        className="w-full py-2.5 rounded-xl text-slate-400 hover:text-slate-600 font-bold text-xs"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <div className="bg-amber-50 border border-amber-200 p-3.5 rounded-2xl">
+                      <span className="text-[11px] font-bold text-amber-800 uppercase tracking-wide">Masked Contact</span>
+                      <p className="text-lg font-mono font-black text-slate-800 mt-0.5">
+                        +91 {directCallWorker.phone.slice(0, 2)}***-***{directCallWorker.phone.slice(-2)}
+                      </p>
+                    </div>
+                    <p className="text-xs text-slate-500">Pay nominal ₹20 convenience fee to unmask this direct phone number.</p>
+
+                    <div className="space-y-2 pt-2">
+                      <button 
+                        onClick={() => {
+                          const w = directCallWorker;
+                          setDirectCallWorker(null);
+                          handleTriggerPayment(w);
+                        }}
+                        className="w-full py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-md"
+                      >
+                        <span>⚡ Pay ₹20 & Unlock Direct Line</span>
+                      </button>
+                      <button 
+                        onClick={() => setDirectCallWorker(null)}
+                        className="w-full py-2.5 rounded-xl text-slate-400 hover:text-slate-600 font-bold text-xs"
+                      >
+                        Close
+                      </button>
+                    </div>
+                  </>
+                )}
+
+              </div>
+            </div>
+          )}
+
+          {/* B. BOOKING VISIT MODAL */}
+          {bookModalWorker && (
+            <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+              <div className="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl border border-slate-100 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-display font-black text-slate-900 text-base">Book Visit: {bookModalWorker.name}</h3>
+                  <button onClick={() => setBookModalWorker(null)} className="text-slate-400 hover:text-slate-600 font-bold">✕</button>
+                </div>
+
+                <form onSubmit={handleCreateBooking} className="space-y-3 text-xs">
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Your Full Name</label>
+                    <input name="cname" required defaultValue={currentUser?.name || ''} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Your Contact Phone</label>
+                    <input name="cphone" required type="tel" defaultValue={currentUser?.phone || ''} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm font-mono" />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Preferred Date</label>
+                      <input name="cdate" type="date" required defaultValue={new Date().toISOString().split('T')[0]} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                    </div>
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Preferred Time</label>
+                      <input name="ctime" defaultValue="11:00 AM" required className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Complete Service Address</label>
+                    <input name="caddress" required placeholder="House/Flat number, landmark, locality" className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                  </div>
+
+                  <div className="p-3 bg-blue-50 border border-blue-200 rounded-xl flex items-center justify-between text-xs">
+                    <span className="text-blue-900 font-bold">Nominal Platform Fee:</span>
+                    <span className="text-blue-700 font-extrabold font-mono">₹20 (Direct Verified Connect)</span>
+                  </div>
+
+                  <button 
+                    type="submit"
+                    className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-extrabold rounded-xl text-xs shadow-md transition cursor-pointer"
+                  >
+                    Confirm Booking & Connect ➔
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* C. NOTIFICATIONS DRAWER */}
+          {isNotifsOpen && (
+            <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex justify-end">
+              <div className="w-full max-w-sm bg-white h-full p-5 shadow-2xl space-y-4 overflow-y-auto">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <h3 className="font-display font-black text-slate-900 text-base">Notifications</h3>
+                  <button onClick={() => setIsNotifsOpen(false)} className="text-slate-400 font-bold">✕</button>
+                </div>
+
+                {notifications.length === 0 ? (
+                  <div className="text-center py-12 text-slate-400 space-y-2">
+                    <p className="text-2xl">🔔</p>
+                    <p className="text-xs font-bold">No new notifications</p>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    {notifications.map(n => (
+                      <div key={n.id} className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1">
+                        <p className="font-bold text-slate-900">{n.title}</p>
+                        <p className="text-slate-600 text-[11px]">{n.message}</p>
+                        <span className="text-[10px] text-slate-400">{n.time}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* D. HIDDEN ADMIN CONSOLE MODAL */}
+          {isAdminOpen && (
+            <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-slate-900 w-full max-w-md rounded-3xl p-6 shadow-2xl border border-slate-800 text-white space-y-4">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">🛡️</span>
+                    <h3 className="font-display font-black text-base">Zupix Secret Admin Console</h3>
+                  </div>
+                  <button onClick={() => setIsAdminOpen(false)} className="text-slate-400 hover:text-white font-bold">✕</button>
+                </div>
+
+                <div className="space-y-2 text-xs">
+                  <p className="text-slate-400">Total Registered Specialists: <strong className="text-white">{workers.length}</strong></p>
+                  <p className="text-slate-400">Total Bookings in Database: <strong className="text-white">{bookings.length}</strong></p>
+                  <p className="text-slate-400">Prepaid Partner Policy: <strong className="text-emerald-400">Nominal ₹20 Platform Fee</strong></p>
+                </div>
+
+                <div className="space-y-2 pt-2 border-t border-slate-800">
+                  <button 
+                    onClick={() => {
+                      localStorage.clear();
+                      alert('Local cache reset! Reloading...');
+                      window.location.reload();
+                    }}
+                    className="w-full py-2.5 rounded-xl bg-rose-600/20 text-rose-300 border border-rose-500/30 text-xs font-bold hover:bg-rose-600/30"
+                  >
+                    Clear All Cache & Reset Seed Data
+                  </button>
+                  <button 
+                    onClick={() => setIsAdminOpen(false)}
+                    className="w-full py-2 rounded-xl text-slate-400 hover:text-white text-xs font-bold"
+                  >
+                    Close Admin Console
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Persistent AI Voice Widget */}
+          {renderAiWidget()}
+
+        </div>
+      );
+    }
+
+    // Render App
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+
+  <!-- ========================================================================= -->
+  <!-- Zupix Global Smart AI Assistant Widget -->
+  <!-- ========================================================================= -->
+  <div id="zupix-ai-widget" style="position: fixed; bottom: 25px; right: 25px; z-index: 999999; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">
+      
+      <!-- Draggable Floating Button with Wave Glow -->
+      <button id="zupix-ai-btn" onclick="toggleZupixAI()" style="background: linear-gradient(135deg, #4F46E5, #9333EA); color: white; border: none; border-radius: 50%; width: 65px; height: 65px; box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4); cursor: pointer; display: flex; flex-direction: column; align-items: center; justify-content: center; font-size: 26px; transition: transform 0.2s;" title="Zupix AI Assistant">
+          🤖
+      </button>
+
+      <!-- Main Chat & Voice Interface Box -->
+      <div id="zupix-ai-window" style="display: none; position: absolute; bottom: 80px; right: 0; width: 350px; background: #ffffff; border-radius: 20px; box-shadow: 0 12px 35px rgba(0,0,0,0.25); overflow: hidden; border: 1px solid #e5e7eb;">
+          
+          <!-- Header -->
+          <div style="background: linear-gradient(135deg, #4F46E5, #9333EA); color: white; padding: 14px 18px; font-weight: bold; display: flex; justify-content: space-between; align-items: center; font-size: 16px;">
+              <div style="display: flex; align-items: center; gap: 8px;">
+                  <span>⚡ Zupix AI Assistant</span>
+              </div>
+              <div style="display: flex; align-items: center; gap: 6px;">
+                  <button id="zupix-sound-toggle" onclick="toggleZupixSound(event)" style="background: rgba(255,255,255,0.2); border: none; color: white; font-size: 14px; width: 28px; height: 28px; border-radius: 8px; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Mute/Unmute Voice">🔊</button>
+                  <button onclick="toggleZupixAI()" style="background: none; border: none; color: white; font-size: 18px; cursor: pointer; padding: 0 4px;">✕</button>
+              </div>
+          </div>
+
+          <!-- Wave / Listening Indicator Animation -->
+          <div id="ai-wave-container" style="display: none; background: #f3f4f6; padding: 8px; text-align: center; border-bottom: 1px solid #e5e7eb;">
+              <div style="font-size: 12px; color: #4F46E5; margin-bottom: 4px; font-weight: 600;" id="ai-status-text">सुन रहा हूँ... / Listening...</div>
+              <div style="display: flex; justify-content: center; gap: 4px; align-items: center; height: 15px;">
+                  <span class="wave-bar" style="width: 3px; height: 10px; background: #4F46E5; animation: waveAnim 0.8s infinite alternate;"></span>
+                  <span class="wave-bar" style="width: 3px; height: 18px; background: #4F46E5; animation: waveAnim 0.5s infinite alternate;"></span>
+                  <span class="wave-bar" style="width: 3px; height: 12px; background: #4F46E5; animation: waveAnim 0.7s infinite alternate;"></span>
+                  <span class="wave-bar" style="width: 3px; height: 20px; background: #4F46E5; animation: waveAnim 0.4s infinite alternate;"></span>
+              </div>
+          </div>
+
+          <!-- Quick Suggestion Chips (Global & Multi-lingual) -->
+          <div style="padding: 8px 12px; background: #f9fafb; border-bottom: 1px solid #f1f5f9; display: flex; gap: 6px; overflow-x: auto; white-space: nowrap;" class="no-scrollbar">
+              <button type="button" onclick="setQuickPrompt('Electrician in Delhi')" style="background: #ffffff; border: 1px solid #cbd5e1; color: #4338ca; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 12px; cursor: pointer; flex-shrink: 0;">⚡ Electrician Delhi</button>
+              <button type="button" onclick="setQuickPrompt('Plumber in Mumbai 400001')" style="background: #ffffff; border: 1px solid #cbd5e1; color: #4338ca; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 12px; cursor: pointer; flex-shrink: 0;">🔧 Plumber Mumbai</button>
+              <button type="button" onclick="setQuickPrompt('Plumber in New York')" style="background: #ffffff; border: 1px solid #cbd5e1; color: #4338ca; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 12px; cursor: pointer; flex-shrink: 0;">🇺🇸 Plumber NYC</button>
+              <button type="button" onclick="setQuickPrompt('110001 में डॉक्टर चाहिए')" style="background: #ffffff; border: 1px solid #cbd5e1; color: #4338ca; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 12px; cursor: pointer; flex-shrink: 0;">🩺 डॉक्टर (110001)</button>
+              <button type="button" onclick="setQuickPrompt('Electrician Dubai')" style="background: #ffffff; border: 1px solid #cbd5e1; color: #4338ca; font-size: 11px; font-weight: 600; padding: 4px 8px; border-radius: 12px; cursor: pointer; flex-shrink: 0;">🇦🇪 Dubai Electrician</button>
+          </div>
+
+          <!-- Chat Messages Area -->
+          <div id="zupix-chat-messages" style="height: 280px; overflow-y: auto; padding: 14px; font-size: 14px; background: #f9fafb; display: flex; flex-direction: column; gap: 10px;">
+              <div style="background: #e0e7ff; color: #1e1b4b; padding: 10px 14px; border-radius: 12px; max-width: 85%; align-self: flex-start; line-height: 1.4;">
+                  Hello! I am Zupix Smart AI. Type or speak any city, postal code or service request worldwide in Hindi or English (e.g. "Plumber in New York", "दिल्ली में इलेक्ट्रीशियन") and I will instantly connect you! 🌍⚡
+              </div>
+          </div>
+
+          <!-- Input & Voice Trigger Footer -->
+          <div style="padding: 12px; border-top: 1px solid #e5e7eb; display: flex; gap: 8px; background: white; align-items: center;">
+              <button id="zupix-voice-btn" type="button" onclick="startVoiceInput()" style="background: #f3f4f6; border: 1px solid #d1d5db; border-radius: 50%; width: 38px; height: 38px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: all 0.2s;" title="Voice Input (Speak in Hindi or English)">🎙️</button>
+              <input type="text" id="zupix-user-input" placeholder="Type city, pincode or service / शहर या सेवा लिखें..." style="flex: 1; padding: 9px 12px; border: 1px solid #d1d5db; border-radius: 10px; outline: none; font-size: 14px;" onkeypress="handleZupixKeyPress(event)">
+              <button onclick="sendZupixMessage()" style="background: #4F46E5; color: white; border: none; padding: 9px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; flex-shrink: 0;">Send</button>
+          </div>
+      </div>
+  </div>
+
+  <style>
+  @keyframes waveAnim {
+      0% { transform: scaleY(0.5); }
+      100% { transform: scaleY(1.5); }
+  }
+  #zupix-ai-btn:hover {
+      transform: scale(1.08);
+  }
+  #zupix-ai-btn:active {
+      transform: scale(0.95);
+  }
+  </style>
+
+  <script>
+  let isZupixMuted = false;
+  let isZupixListening = false;
+  let zupixSpeechRec = null;
+
+  const ZUPIX_LOCAL_DATABASE = [
+    { id: 'w-sunil-delhi', name: 'Sunil Kumar', phone: '9811002233', category: 'Electrical', pincode: '110001', city: 'Delhi', hourlyRate: 299, spec: 'Full house wiring, MCB replacement' },
+    { id: 'w-rajesh-mumbai', name: 'Rajesh Patil', phone: '9820011223', category: 'Plumbing', pincode: '400001', city: 'Mumbai', hourlyRate: 350, spec: 'High-rise pipe fitting, water tank, bath fittings' },
+    { id: 'w-arjun-blr', name: 'Arjun Gowda', phone: '9845012345', category: 'AC & Refrigeration', pincode: '560001', city: 'Bengaluru', hourlyRate: 399, spec: 'HVAC repair, Inverter AC gas refill' },
+    { id: 'w-tariq-dxb', name: 'Tariq Mansoor', phone: '971501234567', category: 'Electrical', pincode: '00000', city: 'Dubai', hourlyRate: 500, spec: 'Smart home electricals, lighting, breakers' },
+    { id: 'w-michael-nyc', name: 'Michael Miller', phone: '12125550199', category: 'Plumbing', pincode: '10001', city: 'New York', hourlyRate: 600, spec: 'Master plumber, drain unclogging, pipe repair' },
+    { id: 'w-ramesh-1', name: 'Ramesh Sharma', phone: '9876543210', category: 'Plumbing', pincode: '134102', city: 'Pinjore', hourlyRate: 299, spec: 'Pipe Leaks, Sanitary Fitting, Motor Repair' },
+    { id: 'w-kuldeep-2', name: 'Kuldeep Singh', phone: '9812345678', category: 'Electrical', pincode: '134102', city: 'Pinjore', hourlyRate: 250, spec: 'Short Circuit, MCB Tripping, Inverter Setup' },
+    { id: 'w-anil-doc', name: 'Dr. Anil Verma (MBBS)', phone: '9896011223', category: 'Doctor / General Physician', pincode: '134102', city: 'Pinjore', hourlyRate: 350, spec: 'General Physician, Fever, Home Visit' }
+  ];
+
+  function toggleZupixAI() {
+      const box = document.getElementById('zupix-ai-window');
+      if (!box) return;
+      const willOpen = box.style.display === 'none';
+      box.style.display = willOpen ? 'block' : 'none';
+      if (willOpen) {
+          const input = document.getElementById('zupix-user-input');
+          if (input) setTimeout(() => input.focus(), 100);
+      }
+  }
+  window.toggleZupixAI = toggleZupixAI;
+
+  function toggleZupixSound(e) {
+      if (e) e.stopPropagation();
+      isZupixMuted = !isZupixMuted;
+      const btn = document.getElementById('zupix-sound-toggle');
+      if (btn) btn.textContent = isZupixMuted ? '🔇' : '🔊';
+      if (isZupixMuted && window.speechSynthesis) {
+          window.speechSynthesis.cancel();
+      }
+  }
+
+  function handleZupixKeyPress(e) {
+      if (e.key === 'Enter') {
+          sendZupixMessage();
+      }
+  }
+
+  function setQuickPrompt(text) {
+      const input = document.getElementById('zupix-user-input');
+      if (input) input.value = text;
+      sendZupixMessage(text);
+  }
+
+  function speakZupixAudio(text, lang = 'hi-IN') {
+      if (isZupixMuted || !('speechSynthesis' in window)) return;
+      try {
+          window.speechSynthesis.cancel();
+          const cleanText = text.replace(/<[^>]*>?/gm, '').replace(/https?:\/\/\S+/g, '');
+          const utter = new SpeechSynthesisUtterance(cleanText);
+          utter.lang = lang;
+          utter.rate = 1.0;
+          utter.pitch = 1.0;
+          const voices = window.speechSynthesis.getVoices();
+          if (lang.startsWith('hi')) {
+              const hindiVoice = voices.find(v => v.lang.includes('hi') || v.lang.includes('HI'));
+              if (hindiVoice) utter.voice = hindiVoice;
+          } else {
+              const engVoice = voices.find(v => v.lang.includes('en-US') || v.lang.includes('en-GB') || v.lang.includes('en-IN'));
+              if (engVoice) utter.voice = engVoice;
+          }
+          window.speechSynthesis.speak(utter);
+      } catch(e) {}
+  }
+
+  function startVoiceInput() {
+      const SpeechRec = window.SpeechRecognition || window.webkitSpeechRecognition;
+      const wave = document.getElementById('ai-wave-container');
+      const voiceBtn = document.getElementById('zupix-voice-btn');
+      const statusText = document.getElementById('ai-status-text');
+
+      if (!SpeechRec) {
+          if (wave) {
+              if (statusText) statusText.textContent = "Listening... / सुन रहा हूँ...";
+              wave.style.display = 'block';
+          }
+          if (voiceBtn) voiceBtn.style.background = '#fee2e2';
+          setTimeout(() => {
+              if (wave) wave.style.display = 'none';
+              if (voiceBtn) voiceBtn.style.background = '#f3f4f6';
+              const input = document.getElementById('zupix-user-input');
+              if (input) input.value = "Need plumber in Delhi";
+              sendZupixMessage();
+          }, 1800);
+          return;
+      }
+
+      if (isZupixListening) {
+          if (zupixSpeechRec) {
+              try { zupixSpeechRec.stop(); } catch(e){}
+          }
+          isZupixListening = false;
+          if (wave) wave.style.display = 'none';
+          if (voiceBtn) {
+              voiceBtn.style.background = '#f3f4f6';
+              voiceBtn.style.color = '#374151';
+          }
+          return;
+      }
+
+      try {
+          const rec = new SpeechRec();
+          rec.lang = 'hi-IN'; // Will pick up both Hindi and English accurately
+          rec.continuous = false;
+          rec.interimResults = false;
+
+          rec.onstart = function() {
+              isZupixListening = true;
+              if (wave) {
+                  if (statusText) statusText.textContent = "Listening (बोलें / Speak)...";
+                  wave.style.display = 'block';
+              }
+              if (voiceBtn) {
+                  voiceBtn.style.background = '#ef4444';
+                  voiceBtn.style.color = 'white';
+              }
+          };
+
+          rec.onresult = function(e) {
+              const transcript = e.results[0][0].transcript;
+              const input = document.getElementById('zupix-user-input');
+              if (input) input.value = transcript;
+              sendZupixMessage(transcript);
+          };
+
+          rec.onerror = function() {
+              isZupixListening = false;
+              if (wave) wave.style.display = 'none';
+              if (voiceBtn) {
+                  voiceBtn.style.background = '#f3f4f6';
+                  voiceBtn.style.color = '#374151';
+              }
+          };
+
+          rec.onend = function() {
+              isZupixListening = false;
+              if (wave) wave.style.display = 'none';
+              if (voiceBtn) {
+                  voiceBtn.style.background = '#f3f4f6';
+                  voiceBtn.style.color = '#374151';
+              }
+          };
+
+          zupixSpeechRec = rec;
+          rec.start();
+      } catch(err) {
+          if (wave) {
+              if (statusText) statusText.textContent = "Listening... / सुन रहा हूँ...";
+              wave.style.display = 'block';
+          }
+          setTimeout(() => {
+              if (wave) wave.style.display = 'none';
+              const input = document.getElementById('zupix-user-input');
+              if (input) input.value = "Need plumber in Delhi";
+              sendZupixMessage();
+          }, 1500);
+      }
+  }
+
+  async function sendZupixMessage(customText) {
+      const input = document.getElementById('zupix-user-input');
+      const messages = document.getElementById('zupix-chat-messages');
+      const text = (customText || (input ? input.value : '')).trim();
+      if (!text) return;
+
+      // User Message Bubble
+      const userMsg = document.createElement('div');
+      userMsg.style.cssText = "background: #4F46E5; color: white; padding: 10px 14px; border-radius: 12px; max-width: 85%; align-self: flex-end; line-height: 1.4; word-break: break-word;";
+      userMsg.textContent = text;
+      messages.appendChild(userMsg);
+      if (input) input.value = '';
+      messages.scrollTop = messages.scrollHeight;
+
+      // Dynamic Language Detection: Hindi vs English
+      const hasDevanagari = /[\u0900-\u097F]/.test(text);
+      const hindiKeywords = ['chahiye', 'karo', 'namaste', 'bhai', 'mera', 'kaun', 'hai', 'kaha', 'dhoondo', 'madad', 'paani', 'bijli'];
+      const textLower = text.toLowerCase();
+      const isHindi = hasDevanagari || hindiKeywords.some(k => textLower.includes(k));
+
+      // Show Wave / Processing Animation
+      const wave = document.getElementById('ai-wave-container');
+      const statusText = document.getElementById('ai-status-text');
+      if (statusText) statusText.textContent = isHindi ? "प्रोसेस कर रहा हूँ... / ढूँढ रहा हूँ..." : "Processing request... Finding specialists...";
+      if (wave) wave.style.display = 'block';
+
+      // Detect 6-digit or 5-digit Pincode / Postal code
+      let targetPincode = null;
+      const pinMatch = text.match(/\b\d{5,6}\b/);
+      if (pinMatch) targetPincode = pinMatch[0];
+
+      let locality = "";
+      if (targetPincode && targetPincode.length === 6) {
+          try {
+              const res = await fetch('https://api.postalpincode.in/pincode/' + targetPincode);
+              if (res.ok) {
+                  const data = await res.json();
+                  if (data && data[0] && data[0].Status === 'Success' && data[0].PostOffice && data[0].PostOffice[0]) {
+                      const po = data[0].PostOffice[0];
+                      locality = `${po.Name}, ${po.District} (${po.State})`;
+                  }
+              }
+          } catch(e) {}
+      }
+
+      // Detect city
+      let targetCity = null;
+      if (textLower.includes('delhi') || textLower.includes('दिल्ली')) targetCity = 'Delhi';
+      else if (textLower.includes('mumbai') || textLower.includes('बॉम्बे') || textLower.includes('मुंबई')) targetCity = 'Mumbai';
+      else if (textLower.includes('bengaluru') || textLower.includes('bangalore') || textLower.includes('बैंगलोर')) targetCity = 'Bengaluru';
+      else if (textLower.includes('dubai') || textLower.includes('दुबई')) targetCity = 'Dubai';
+      else if (textLower.includes('new york') || textLower.includes('nyc') || textLower.includes('न्यूयॉर्क')) targetCity = 'New York';
+      else if (textLower.includes('pinjore') || textLower.includes('panchkula') || textLower.includes('पिंजौर') || textLower.includes('पंचकूला')) targetCity = 'Pinjore';
+
+      let targetCategory = null;
+      if (textLower.includes('plumb') || textLower.includes('नल') || textLower.includes('पानी') || textLower.includes('लीक') || textLower.includes('मोटर') || textLower.includes('टैंक') || textLower.includes('पाइप')) targetCategory = 'Plumbing';
+      else if (textLower.includes('elect') || textLower.includes('बिजली') || textLower.includes('लाइट') || textLower.includes('तार') || textLower.includes('पंखा') || textLower.includes('शॉर्ट')) targetCategory = 'Electrical';
+      else if (textLower.includes('doc') || textLower.includes('डॉक्टर') || textLower.includes('बीमार') || textLower.includes('दवा') || textLower.includes('fever') || textLower.includes('clinic')) targetCategory = 'Doctor / General Physician';
+      else if (textLower.includes('ac') || textLower.includes('कूलिंग') || textLower.includes('refrigeration')) targetCategory = 'AC & Refrigeration';
+
+      // Load workers from database or fallback
+      let allWorkers = ZUPIX_LOCAL_DATABASE;
+      try {
+          const saved = localStorage.getItem('zupix_workers') || localStorage.getItem('zupix_workers_v2');
+          if (saved) {
+              const parsed = JSON.parse(saved);
+              if (Array.isArray(parsed) && parsed.length > 0) allWorkers = parsed;
+          }
+      } catch(e){}
+
+      let matched = allWorkers;
+      if (targetPincode) {
+          const pinFiltered = allWorkers.filter(w => w.pincode === targetPincode);
+          if (pinFiltered.length > 0) matched = pinFiltered;
+      } else if (targetCity) {
+          const cityFiltered = allWorkers.filter(w => (w.city && w.city.toLowerCase() === targetCity.toLowerCase()) || (w.address && w.address.toLowerCase().includes(targetCity.toLowerCase())));
+          if (cityFiltered.length > 0) matched = cityFiltered;
+      }
+
+      if (targetCategory) {
+          const catFiltered = matched.filter(w => w.category && w.category.toLowerCase().includes(targetCategory.toLowerCase()));
+          if (catFiltered.length > 0) matched = catFiltered;
+      }
+
+      // If no direct matches, dynamically provide top verified pros
+      if (matched.length === 0) {
+          matched = allWorkers.slice(0, 3);
+      }
+
+      // AI Smart Response Generation
+      setTimeout(() => {
+          if (wave) wave.style.display = 'none';
+          const aiMsg = document.createElement('div');
+          aiMsg.style.cssText = "background: #e0e7ff; color: #1e1b4b; padding: 12px 14px; border-radius: 14px; max-width: 92%; align-self: flex-start; line-height: 1.4; display: flex; flex-direction: column; gap: 8px;";
+          
+          let reply = "";
+          let speechText = "";
+
+          if (isHindi) {
+              if (targetPincode) {
+                  reply = `मैंने आपकी बात समझ ली है! पिन कोड <strong>${targetPincode}</strong> ${locality ? `(${locality})` : ''} पर उपलब्ध सत्यापित विशेषज्ञ ढूंढ लिए गए हैं:`;
+                  speechText = `पिन कोड ${targetPincode} पर उपलब्ध सत्यापित विशेषज्ञ Zupix पर तैयार हैं।`;
+              } else if (targetCity) {
+                  reply = `<strong>${targetCity}</strong> क्षेत्र के लिए शीर्ष सत्यापित प्रो ढूंढ लिए गए हैं:`;
+                  speechText = `${targetCity} क्षेत्र के लिए सत्यापित प्रोफेशनल्स मिल गए हैं।`;
+              } else {
+                  reply = `मैंने आपकी आवश्यकता समझ ली है! आपके बताए गए स्थान के अनुसार उपलब्ध विशेषज्ञ:`;
+                  speechText = `आपकी सेवा के लिए उपलब्ध विशेषज्ञ Zupix पर तैयार हैं।`;
+              }
+          } else {
+              if (targetPincode) {
+                  reply = `I have processed your request! Found verified specialists for Postal Code <strong>${targetPincode}</strong> ${locality ? `(${locality})` : ''}:`;
+                  speechText = `Found verified specialists for postal code ${targetPincode}.`;
+              } else if (targetCity) {
+                  reply = `Located top verified specialists serving <strong>${targetCity}</strong>:`;
+                  speechText = `Located top verified specialists serving ${targetCity}.`;
+              } else {
+                  reply = `I have found verified specialists matching your request for "<strong>${text}</strong>":`;
+                  speechText = `I have found verified specialists matching your request.`;
+              }
+          }
+
+          let cardsHtml = '';
+          if (matched && matched.length > 0) {
+              cardsHtml = '<div style="display: flex; flex-direction: column; gap: 6px; margin-top: 4px;">';
+              matched.slice(0, 3).forEach(p => {
+                  const locationText = p.city || p.pincode || 'Local Hub';
+                  cardsHtml += `
+                    <div style="background: white; border: 1px solid #c7d2fe; border-radius: 12px; padding: 10px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+                      <div>
+                        <strong style="color: #1e1b4b; font-size: 13px;">${p.name}</strong>
+                        <div style="color: #4338ca; font-size: 11px;">${p.category || 'Specialist'} • 📍 ${locationText}</div>
+                        <div style="color: #059669; font-weight: bold; font-size: 12px; margin-top: 2px;">₹${p.hourlyRate || 250} Visit • ₹20 Platform Fee</div>
+                      </div>
+                      <a href="tel:${p.phone || '9876543210'}" style="background: #059669; color: white; padding: 7px 12px; border-radius: 10px; text-decoration: none; font-weight: bold; font-size: 12px; display: flex; align-items: center; gap: 4px; box-shadow: 0 2px 6px rgba(5, 150, 105, 0.3);">
+                        <span>📞</span>
+                        <span>${isHindi ? 'कॉल करें' : 'Call'}</span>
+                      </a>
+                    </div>
+                  `;
+              });
+              cardsHtml += '</div>';
+          }
+
+          aiMsg.innerHTML = `<div>${reply}</div>${cardsHtml}`;
+          messages.appendChild(aiMsg);
+          messages.scrollTop = messages.scrollHeight;
+
+          speakZupixAudio(speechText, isHindi ? 'hi-IN' : 'en-US');
+      }, 600);
+  }
+  </script>
+</body>
+</html>

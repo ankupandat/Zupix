@@ -1,0 +1,164 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "App user profile information",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "avatar": { "type": "string" },
+        "role": { "type": "string", "enum": ["customer", "worker", "admin"] },
+        "address": { "type": "string" },
+        "pincode": { "type": "string" },
+        "deviceId": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "isProfileComplete": { "type": "boolean" }
+      },
+      "required": ["id", "name", "phone", "role"]
+    },
+    "BannedIdentifier": {
+      "title": "BannedIdentifier",
+      "description": "Permanently suspended and banned mobile numbers or device IDs",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["phone", "device", "both"] },
+        "identifier": { "type": "string" },
+        "reason": { "type": "string" },
+        "bannedAt": { "type": "string" },
+        "bannedBy": { "type": "string" },
+        "isPermanent": { "type": "boolean" }
+      },
+      "required": ["id", "type", "identifier", "reason", "bannedAt"]
+    },
+    "WorkerProfile": {
+      "title": "WorkerProfile",
+      "description": "Verified local service specialist profile",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "name": { "type": "string" },
+        "phone": { "type": "string" },
+        "category": { "type": "string" },
+        "experienceYears": { "type": "number" },
+        "hourlyRate": { "type": "number" },
+        "fixedPrice": { "type": "number" },
+        "pincode": { "type": "string" },
+        "address": { "type": "string" },
+        "serviceAreaRange": { "type": "string", "enum": ["local", "citywide"] },
+        "bio": { "type": "string" },
+        "isAvailable": { "type": "boolean" },
+        "isEmergencyReady": { "type": "boolean" },
+        "isBlocked": { "type": "boolean" },
+        "warningMessage": { "type": "string" },
+        "rating": { "type": "number" },
+        "reviewCount": { "type": "number" },
+        "completedJobs": { "type": "number" },
+        "registeredAt": { "type": "string" },
+        "avatar": { "type": "string" }
+      },
+      "required": ["id", "userId", "name", "phone", "category", "pincode"]
+    },
+    "Booking": {
+      "title": "Booking",
+      "description": "Service appointment and job booking details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "customerAddress": { "type": "string" },
+        "customerPincode": { "type": "string" },
+        "workerId": { "type": "string" },
+        "workerName": { "type": "string" },
+        "workerPhone": { "type": "string" },
+        "category": { "type": "string" },
+        "serviceItem": { "type": "string" },
+        "issueDescription": { "type": "string" },
+        "scheduledDate": { "type": "string" },
+        "scheduledTime": { "type": "string" },
+        "estimatedCost": { "type": "number" },
+        "customerTokenFee": { "type": "number" },
+        "customerTokenPaid": { "type": "boolean" },
+        "customerUtr": { "type": "string" },
+        "workerCommissionFee": { "type": "number" },
+        "workerCommissionPaid": { "type": "boolean" },
+        "workerUtr": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending_worker", "confirmed", "in_progress", "completed", "cancelled"] },
+        "rating": { "type": "number" },
+        "reviewText": { "type": "string" },
+        "isEmergency": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "completedAt": { "type": "string" }
+      },
+      "required": ["id", "customerId", "workerId", "category", "status"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "User and specialist alerts and notifications",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "recipientId": { "type": "string" },
+        "title": { "type": "string" },
+        "message": { "type": "string" },
+        "type": { "type": "string" },
+        "isRead": { "type": "boolean" },
+        "targetBookingId": { "type": "string" },
+        "targetView": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "recipientId", "title", "message"]
+    },
+    "EmergencyRequest": {
+      "title": "EmergencyRequest",
+      "description": "24x7 emergency SOS service request",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "customerId": { "type": "string" },
+        "customerName": { "type": "string" },
+        "customerPhone": { "type": "string" },
+        "customerAddress": { "type": "string" },
+        "customerPincode": { "type": "string" },
+        "category": { "type": "string" },
+        "issueDescription": { "type": "string" },
+        "status": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "customerId", "customerName", "customerPhone", "category"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profile information"
+    },
+    "/banned_identifiers/{banId}": {
+      "schema": "BannedIdentifier",
+      "description": "Suspended/banned mobile numbers and device identifiers"
+    },
+    "/workers/{workerId}": {
+      "schema": "WorkerProfile",
+      "description": "Registered local specialists"
+    },
+    "/bookings/{bookingId}": {
+      "schema": "Booking",
+      "description": "Service bookings and token money records"
+    },
+    "/notifications/{notificationId}": {
+      "schema": "Notification",
+      "description": "Notifications for users and providers"
+    },
+    "/emergencyRequests/{requestId}": {
+      "schema": "EmergencyRequest",
+      "description": "Emergency SOS requests"
+    }
+  }
+}

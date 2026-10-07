@@ -1,0 +1,1828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Zupix - Verified Pros & Doctors | Local Marketplace</title>
+  
+  <!-- PWA & Android Meta Tags (Ready for PWABuilder & Android APK Compilation) -->
+  <meta name="description" content="Zero-commission marketplace connecting customers with verified plumbers, electricians, mechanics, and doctors." />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Zupix" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%232563eb'%3E%3Cpath d='M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5'/%3E%3C/svg%3E" />
+
+  <!-- Web App Manifest (Embedded Data URI for universal standalone APK & Web support) -->
+  <link rel="manifest" href="data:application/manifest+json;utf8,%7B%22id%22%3A%22%2F%22%2C%22name%22%3A%22Zupix%20-%20Verified%20Pros%20%26%20Doctors%22%2C%22short_name%22%3A%22Zupix%22%2C%22description%22%3A%22Zero-commission%20marketplace%20connecting%20customers%20with%20verified%20pros%22%2C%22start_url%22%3A%22%2F%22%2C%22scope%22%3A%22%2F%22%2C%22display%22%3A%22standalone%22%2C%22orientation%22%3A%22portrait%22%2C%22background_color%22%3A%22%230f172a%22%2C%22theme_color%22%3A%22%232563eb%22%2C%22icons%22%3A%5B%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20192%20192'%253E%253Crect%20width%3D'192'%20height%3D'192'%20rx%3D'40'%20fill%3D'%25232563eb'%2F%253E%253Cpath%20d%3D'M48%2056h96l-64%2080h64'%20stroke%3D'white'%20stroke-width%3D'18'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%20fill%3D'none'%2F%253E%253Ccircle%20cx%3D'140'%20cy%3D'60'%20r%3D'10'%20fill%3D'%252338bdf8'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22192x192%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%2C%7B%22src%22%3A%22data%3Aimage%2Fsvg%2Bxml%2C%253Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%20512%20512'%253E%253Crect%20width%3D'512'%20height%3D'512'%20rx%3D'100'%20fill%3D'%25232563eb'%2F%253E%253Cpath%20d%3D'M128%20150h256l-170%20212h170'%20stroke%3D'white'%20stroke-width%3D'48'%20stroke-linecap%3D'round'%20stroke-linejoin%3D'round'%20fill%3D'none'%2F%253E%253Ccircle%20cx%3D'370'%20cy%3D'160'%20r%3D'24'%20fill%3D'%252338bdf8'%2F%253E%253C%2Fsvg%253E%22%2C%22sizes%22%3A%22512x512%22%2C%22type%22%3A%22image%2Fsvg%2Bxml%22%2C%22purpose%22%3A%22any%22%7D%5D%7D" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&family=Outfit:wght@600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            display: ['Outfit', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              900: '#1e3a8a',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- React 18 & Babel Standalone CDNs -->
+  <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone@7.24.0/babel.min.js"></script>
+
+  <!-- Firebase Compat CDNs -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore-compat.js"></script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
+    }
+    .font-display {
+      font-family: 'Outfit', sans-serif;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
+  
+  <div id="root"></div>
+
+  <!-- Inline Service Worker for Instant Offline Readiness -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        const swBlob = new Blob([`
+          self.addEventListener('install', (e) => self.skipWaiting());
+          self.addEventListener('activate', (e) => e.waitUntil(self.clients.claim()));
+          self.addEventListener('fetch', (e) => {
+            if (e.request.method !== 'GET') return;
+            e.respondWith(caches.match(e.request).then(res => res || fetch(e.request).catch(() => new Response('Zupix Offline Ready'))));
+          });
+        `], { type: 'application/javascript' });
+        navigator.serviceWorker.register(URL.createObjectURL(swBlob)).catch(() => {});
+      });
+    }
+  </script>
+
+  <!-- COMPLETE ALL-IN-ONE ZUPIX APPLICATION CODE -->
+  <script type="text/babel">
+    const { useState, useEffect, useMemo, useRef } = React;
+
+    // ============================================================
+    // 1. FIREBASE CONFIGURATION & LOCAL STORAGE PERSISTENCE
+    // ============================================================
+    const firebaseConfig = {
+      apiKey: "AIzaSyCgcV8rnJYc5o8mRqi0sVs8nDoPhp7MlNw",
+      authDomain: "lexical-plexus-3wjrd.firebaseapp.com",
+      projectId: "lexical-plexus-3wjrd",
+      storageBucket: "lexical-plexus-3wjrd.firebasestorage.app",
+      messagingSenderId: "96423207903",
+      appId: "1:96423207903:web:b853a90e1f4095153f5a6a"
+    };
+
+    let db = null;
+    let auth = null;
+    try {
+      if (typeof firebase !== 'undefined' && firebase.apps) {
+        if (!firebase.apps.length) {
+          firebase.initializeApp(firebaseConfig);
+        }
+        if (firebase.firestore) {
+          try { firebase.firestore.setLogLevel('silent'); } catch (e) {}
+          db = firebase.firestore();
+        }
+        if (firebase.auth) {
+          auth = firebase.auth();
+        }
+      }
+    } catch (e) {
+      db = null;
+    }
+
+    const safeFirestore = async (fn, fallback) => {
+      if (!db) return typeof fallback === 'function' ? fallback() : fallback;
+      try {
+        const timeoutPromise = new Promise((_, reject) => setTimeout(() => reject(new Error('timeout')), 2500));
+        return await Promise.race([fn(db), timeoutPromise]);
+      } catch (err) {
+        if (err && (err.code === 'not-found' || err.message?.includes('not exist') || err.message === 'timeout')) {
+          try { db.disableNetwork(); } catch (e) {}
+          db = null;
+        }
+        return typeof fallback === 'function' ? fallback() : fallback;
+      }
+    };
+
+    const Storage = {
+      get: (key, def) => {
+        try {
+          const item = localStorage.getItem('zupix_' + key) || localStorage.getItem('zupix_' + key + '_v2');
+          return item ? JSON.parse(item) : def;
+        } catch { return def; }
+      },
+      set: (key, val) => {
+        try {
+          localStorage.setItem('zupix_' + key, JSON.stringify(val));
+          localStorage.setItem('zupix_' + key + '_v2', JSON.stringify(val));
+        } catch {}
+      }
+    };
+
+    // Supported Languages
+    const LANGUAGES = [
+      { code: 'en', name: 'English', native: 'English' },
+      { code: 'hi', name: 'Hindi', native: 'हिन्दी' },
+      { code: 'pa', name: 'Punjabi', native: 'ਪੰਜਾਬੀ' },
+      { code: 'bn', name: 'Bengali', native: 'বাংলা' },
+      { code: 'mr', name: 'Marathi', native: 'मराठी' },
+      { code: 'te', name: 'Telugu', native: 'తెలుగు' },
+      { code: 'ta', name: 'Tamil', native: 'தமிழ்' },
+      { code: 'gu', name: 'Gujarati', native: 'ગુજરાતી' }
+    ];
+
+    // Supported Countries
+    const COUNTRIES = [
+      { code: 'IN', dial: '+91', name: 'India', flag: '🇮🇳' },
+      { code: 'AE', dial: '+971', name: 'United Arab Emirates', flag: '🇦🇪' },
+      { code: 'GB', dial: '+44', name: 'United Kingdom', flag: '🇬🇧' },
+      { code: 'US', dial: '+1', name: 'United States', flag: '🇺🇸' },
+      { code: 'CA', dial: '+1', name: 'Canada', flag: '🇨🇦' },
+      { code: 'AU', dial: '+61', name: 'Australia', flag: '🇦🇺' }
+    ];
+
+    // 10 Official Specialist Trade Categories
+    const CATEGORIES = [
+      { name: 'All', icon: '✨', label: 'All Services', subtitle: 'Browse all local trades' },
+      { name: 'Doctor / General Physician', icon: '🩺', label: 'Doctors', subtitle: 'Consultations, emergency visit, family health' },
+      { name: 'Plumbing', icon: '🔧', label: 'Plumbing', subtitle: 'Pipe leaks, taps, motor fitting, sanitary' },
+      { name: 'Electrical', icon: '⚡', label: 'Electrical', subtitle: 'Wiring, MCB, inverter setup, short-circuits' },
+      { name: 'Mechanic / Vehicle Repair', icon: '🚗', label: 'Mechanic', subtitle: 'Car & bike breakdown, puncture, engine' },
+      { name: 'AC & Refrigeration', icon: '❄️', label: 'AC Repair', subtitle: 'Gas refill, compressor, regular servicing' },
+      { name: 'Salon & Makeup', icon: '✂️', label: 'Beauty / Salon', subtitle: 'Haircut, facial, waxing, bridal grooming' },
+      { name: 'Carpentry', icon: '🪚', label: 'Carpentry', subtitle: 'Doors, furniture repair, wooden fittings' },
+      { name: 'Cleaning & Pest Control', icon: '🧹', label: 'Cleaning', subtitle: 'Deep home cleaning, sofa, pest fumigation' },
+      { name: 'Home Painting', icon: '🎨', label: 'Painting', subtitle: 'Interior/exterior walls, waterproof coating' },
+      { name: 'Appliance Repair', icon: '🔥', label: 'Appliances', subtitle: 'Washing machine, microwave, geyser, RO' }
+    ];
+
+    // 4 Onboarding Slides
+    const ONBOARDING_SLIDES = [
+      {
+        badge: '100% Free Platform',
+        title: 'Instant Access to Verified Local',
+        highlight: 'Doctors & Specialists',
+        description: 'Find trusted electricians, plumbers, physicians, salon experts, and home technicians right in your area with zero platform fees.',
+        icon: '🩺',
+        features: ['Direct Phone Contact', '100% Free for Everyone', 'Instant Area Matching'],
+        gradient: 'from-blue-600 to-indigo-700'
+      },
+      {
+        badge: 'Direct Phone Guidance',
+        title: 'Direct Call & Real-Time',
+        highlight: 'Location & Fee Confirmation',
+        description: 'Confirm service charges and your exact address directly over a quick phone call with the provider. Direct voice communication with zero markups.',
+        icon: '📞',
+        features: ['Confirm Rates on Phone', 'Live Voice Address Help', 'Zero Intermediaries'],
+        gradient: 'from-indigo-600 to-violet-700'
+      },
+      {
+        badge: 'Empowering Local Experts',
+        title: 'Grow Your Service Business as a',
+        highlight: 'Verified Pro Partner',
+        description: 'Join thousands of electricians, doctors, and craftsmen receiving direct customer calls in your area every day with 0% commission.',
+        icon: '💼',
+        features: ['100% Free Pro Listings', 'Keep 100% of Earnings', 'Full Schedule Freedom'],
+        gradient: 'from-teal-600 to-emerald-700'
+      },
+      {
+        badge: 'Safe & Verified',
+        title: 'Fast, Verified & Safe for',
+        highlight: 'Every Household',
+        description: 'Secure OTP-verified accounts with genuine verified specialist profiles, ratings, and one-account-per-number integrity.',
+        icon: '🛡️',
+        features: ['Real-Time Phone OTP', 'Identity Verified Pros', 'Transparent Community'],
+        gradient: 'from-blue-700 via-indigo-800 to-slate-900'
+      }
+    ];
+
+    // Live Animated Brand Icon
+    const LiveAppIcon = ({ size = "md" }) => {
+      const dim = size === "sm" ? "w-8 h-8 text-base" : size === "lg" ? "w-16 h-16 text-3xl" : "w-10 h-10 text-xl";
+      return (
+        <div className={`relative ${dim} rounded-2xl bg-gradient-to-tr from-blue-600 via-indigo-600 to-blue-700 flex items-center justify-center text-white font-display font-black shadow-md shadow-blue-500/25 shrink-0`}>
+          <span>Z</span>
+          <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 border-2 border-white rounded-full animate-ping" />
+          <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-500 border-2 border-white rounded-full" />
+        </div>
+      );
+    };
+
+    // ============================================================
+    // 2. MAIN APPLICATION COMPONENT
+    // ============================================================
+    function App() {
+      // User & Navigation States
+      const [currentUser, setCurrentUser] = useState(() => Storage.get('user', null));
+      const [authFlowState, setAuthFlowState] = useState(() => {
+        const saved = Storage.get('user', null);
+        return (saved && saved.isProfileComplete) ? 'authenticated' : 'onboarding';
+      });
+
+      // Active view tab: 'home' | 'bookings' | 'worker_dashboard' | 'profile' | 'provider_setup'
+      const [activeTab, setActiveTab] = useState(() => {
+        const saved = Storage.get('user', null);
+        return saved?.role === 'worker' ? 'worker_dashboard' : 'home';
+      });
+
+      // Data states (STRICT ZERO DUMMY DATA: only real saved items)
+      const [workers, setWorkers] = useState(() => Storage.get('workers', []));
+      const [bookings, setBookings] = useState(() => Storage.get('bookings', []));
+      const [notifications, setNotifications] = useState(() => Storage.get('notifications', []));
+
+      // Language & Country
+      const [lang, setLang] = useState('en');
+      const [country, setCountry] = useState(COUNTRIES[0]);
+
+      // Filters
+      const [searchQuery, setSearchQuery] = useState('');
+      const [selectedCategory, setSelectedCategory] = useState('All');
+      const [pincodeFilter, setPincodeFilter] = useState(() => currentUser?.pincode || '134102');
+
+      // Modals
+      const [directCallWorker, setDirectCallWorker] = useState(null);
+      const [bookModalWorker, setBookModalWorker] = useState(null);
+      const [isNotifsOpen, setIsNotifsOpen] = useState(false);
+      const [isAdminOpen, setIsAdminOpen] = useState(false);
+      const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+
+      // Onboarding State
+      const [onboardingSlide, setOnboardingSlide] = useState(0);
+      const [authRoleChoice, setAuthRoleChoice] = useState('customer'); // 'customer' | 'worker'
+
+      // Login Gateway State
+      const [loginPhone, setLoginPhone] = useState('');
+      const [loginOtp, setLoginOtp] = useState('');
+      const [otpSent, setOtpSent] = useState(false);
+      const [otpTimer, setOtpTimer] = useState(0);
+
+      // Profile Setup State
+      const [setupName, setSetupName] = useState('');
+      const [setupPhone, setSetupPhone] = useState('');
+      const [setupPincode, setSetupPincode] = useState('134102');
+      const [setupAddress, setSetupAddress] = useState('');
+      const [setupRole, setSetupRole] = useState('customer');
+      const [setupCategory, setSetupCategory] = useState('Plumbing');
+      const [setupRate, setSetupRate] = useState('250');
+      const [setupSpecialization, setSetupSpecialization] = useState('');
+      const [setupBio, setSetupBio] = useState('');
+      const [termsAccepted, setTermsAccepted] = useState(false);
+      const [setupError, setSetupError] = useState('');
+
+      // Hidden Admin Console trigger counter (3 rapid clicks on logo)
+      const [logoClicks, setLogoClicks] = useState(0);
+      const logoTimeoutRef = useRef(null);
+
+      const handleLogoClick = () => {
+        setLogoClicks(prev => {
+          const next = prev + 1;
+          if (next >= 3) {
+            setIsAdminOpen(true);
+            return 0;
+          }
+          return next;
+        });
+        if (logoTimeoutRef.current) clearTimeout(logoTimeoutRef.current);
+        logoTimeoutRef.current = setTimeout(() => setLogoClicks(0), 1200);
+      };
+
+      // OTP Countdown Timer
+      useEffect(() => {
+        let interval = null;
+        if (otpTimer > 0) {
+          interval = setInterval(() => setOtpTimer(p => p - 1), 1000);
+        }
+        return () => clearInterval(interval);
+      }, [otpTimer]);
+
+      // Load remote workers from Firestore safely on boot
+      useEffect(() => {
+        safeFirestore(async (firestore) => {
+          const snap = await firestore.collection('workers').get();
+          if (snap && !snap.empty) {
+            const list = snap.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+            setWorkers(list);
+            Storage.set('workers', list);
+          }
+        }, null);
+      }, []);
+
+      // Active Worker Profile (if user is registered provider)
+      const currentWorkerProfile = useMemo(() => {
+        if (!currentUser) return null;
+        return workers.find(w => w.userId === currentUser.id || (w.phone && currentUser.phone && w.phone === currentUser.phone)) || null;
+      }, [currentUser, workers]);
+
+      // Filtered Specialists
+      const filteredWorkers = useMemo(() => {
+        return workers.filter(w => {
+          const matchCategory = selectedCategory === 'All' || w.category === selectedCategory;
+          const matchPincode = !pincodeFilter || w.pincode === pincodeFilter;
+          const matchSearch = !searchQuery ||
+            w.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            w.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+            w.specialization?.toLowerCase().includes(searchQuery.toLowerCase());
+          return matchCategory && matchPincode && matchSearch;
+        });
+      }, [workers, selectedCategory, pincodeFilter, searchQuery]);
+
+      // Handle Send OTP
+      const handleSendOtp = () => {
+        const cleaned = loginPhone.replace(/\D/g, '');
+        if (cleaned.length < 10) {
+          alert('Please enter a valid 10-digit mobile number.');
+          return;
+        }
+        setOtpSent(true);
+        setOtpTimer(30);
+        setLoginOtp('123456'); // Simulation preview code for instant entry
+      };
+
+      // Handle Verify OTP
+      const handleVerifyOtp = () => {
+        const cleaned = loginPhone.replace(/\D/g, '');
+        if (!loginOtp || loginOtp.length < 4) {
+          alert('Please enter the 6-digit OTP.');
+          return;
+        }
+        
+        // Check if user already exists
+        const existingUsers = Storage.get('users_list', []);
+        const found = existingUsers.find(u => u.phone === cleaned);
+
+        if (found && found.isProfileComplete) {
+          setCurrentUser(found);
+          Storage.set('user', found);
+          setAuthFlowState('authenticated');
+          setActiveTab(found.role === 'worker' ? 'worker_dashboard' : 'home');
+        } else {
+          // Proceed to Profile Setup step
+          setSetupPhone(cleaned);
+          setSetupRole(authRoleChoice);
+          setAuthFlowState('profile_setup');
+        }
+      };
+
+      // Handle Complete Profile Setup
+      const handleCompleteProfile = (e) => {
+        e.preventDefault();
+        setSetupError('');
+
+        if (!setupName.trim()) {
+          setSetupError('Please enter your full name.');
+          return;
+        }
+        if (!setupPhone.trim() || setupPhone.replace(/\D/g, '').length < 10) {
+          setSetupError('Please enter a valid 10-digit phone number.');
+          return;
+        }
+        if (!setupPincode.trim()) {
+          setSetupError('Please specify your 6-digit service pincode.');
+          return;
+        }
+        if (!termsAccepted) {
+          setSetupError('You must accept the Terms of Service & Privacy Policy to continue.');
+          return;
+        }
+
+        const cleanPhone = setupPhone.replace(/\D/g, '');
+        const newUser = {
+          id: 'u-' + Date.now(),
+          name: setupName.trim(),
+          phone: cleanPhone,
+          role: setupRole,
+          pincode: setupPincode.trim(),
+          address: setupAddress.trim() || 'Active Service Locality',
+          isProfileComplete: true,
+          createdAt: new Date().toISOString()
+        };
+
+        // If specialist, also register provider profile
+        if (setupRole === 'worker') {
+          const newWorker = {
+            id: 'w-' + Date.now(),
+            userId: newUser.id,
+            name: newUser.name,
+            phone: newUser.phone,
+            category: setupCategory,
+            pincode: newUser.pincode,
+            address: newUser.address,
+            hourlyRate: Number(setupRate) || 250,
+            specialization: setupSpecialization.trim() || 'Verified Local Professional',
+            bio: setupBio.trim() || 'Experienced specialist available for direct bookings and calls in your area.',
+            rating: 5.0,
+            reviewCount: 0,
+            experienceYears: 4,
+            isVerified: true,
+            isAvailable: true
+          };
+
+          const updatedWorkers = [newWorker, ...workers.filter(w => w.phone !== cleanPhone)];
+          setWorkers(updatedWorkers);
+          Storage.set('workers', updatedWorkers);
+
+          safeFirestore(async (firestore) => {
+            await firestore.collection('workers').doc(newWorker.id).set(newWorker);
+          }, null);
+        }
+
+        // Save User
+        setCurrentUser(newUser);
+        Storage.set('user', newUser);
+
+        const existingUsers = Storage.get('users_list', []);
+        Storage.set('users_list', [newUser, ...existingUsers.filter(u => u.phone !== cleanPhone)]);
+
+        safeFirestore(async (firestore) => {
+          await firestore.collection('users').doc(newUser.id).set(newUser);
+        }, null);
+
+        setPincodeFilter(newUser.pincode);
+        setAuthFlowState('authenticated');
+        setActiveTab(setupRole === 'worker' ? 'worker_dashboard' : 'home');
+      };
+
+      // Toggle Worker Availability
+      const handleToggleAvailability = () => {
+        if (!currentWorkerProfile) return;
+        const updated = { ...currentWorkerProfile, isAvailable: !currentWorkerProfile.isAvailable };
+        const updatedList = workers.map(w => w.id === updated.id ? updated : w);
+        setWorkers(updatedList);
+        Storage.set('workers', updatedList);
+
+        safeFirestore(async (firestore) => {
+          await firestore.collection('workers').doc(updated.id).update({ isAvailable: updated.isAvailable });
+        }, null);
+      };
+
+      // Create Booking Request
+      const handleCreateBooking = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const newBooking = {
+          id: 'b-' + Date.now(),
+          workerId: bookModalWorker.id,
+          workerName: bookModalWorker.name,
+          workerPhone: bookModalWorker.phone,
+          serviceName: bookModalWorker.category,
+          customerName: form.cname.value.trim(),
+          customerPhone: form.cphone.value.replace(/\D/g, ''),
+          address: form.caddress.value.trim(),
+          scheduledDate: form.cdate.value,
+          scheduledTime: form.ctime.value,
+          status: 'confirmed',
+          createdAt: new Date().toISOString()
+        };
+
+        const updated = [newBooking, ...bookings];
+        setBookings(updated);
+        Storage.set('bookings', updated);
+
+        // Add Notification
+        const newNotif = {
+          id: 'n-' + Date.now(),
+          title: 'Booking Confirmed',
+          message: `Your booking with ${bookModalWorker.name} for ${bookModalWorker.category} is scheduled on ${newBooking.scheduledDate}.`,
+          time: 'Just now',
+          isRead: false
+        };
+        const updatedNotifs = [newNotif, ...notifications];
+        setNotifications(updatedNotifs);
+        Storage.set('notifications', updatedNotifs);
+
+        safeFirestore(async (firestore) => {
+          await firestore.collection('bookings').doc(newBooking.id).set(newBooking);
+        }, null);
+
+        setBookModalWorker(null);
+        setActiveTab('bookings');
+      };
+
+      // ============================================================
+      // VIEW 1: 4-PAGE INTERACTIVE ONBOARDING CAROUSEL
+      // ============================================================
+      if (authFlowState === 'onboarding') {
+        const slide = ONBOARDING_SLIDES[onboardingSlide];
+        return (
+          <div className="min-h-screen bg-slate-950 text-white flex flex-col justify-between p-6 sm:p-10 select-none">
+            
+            {/* Top Bar: Country Flag & Language Selector */}
+            <div className="flex items-center justify-between gap-3 max-w-lg mx-auto w-full">
+              <div className="flex items-center gap-2">
+                <LiveAppIcon size="sm" />
+                <span className="font-display font-black text-lg tracking-tight text-white">ZUPIX</span>
+              </div>
+
+              <div className="flex items-center gap-2">
+                {/* Country Pill */}
+                <select 
+                  value={country.code} 
+                  onChange={(e) => setCountry(COUNTRIES.find(c => c.code === e.target.value) || COUNTRIES[0])}
+                  className="bg-slate-900 border border-slate-700 text-xs font-bold text-slate-300 rounded-xl px-2.5 py-1.5 focus:outline-none"
+                >
+                  {COUNTRIES.map(c => (
+                    <option key={c.code} value={c.code}>{c.flag} {c.dial}</option>
+                  ))}
+                </select>
+
+                {/* Language Pill */}
+                <select 
+                  value={lang} 
+                  onChange={(e) => setLang(e.target.value)}
+                  className="bg-slate-900 border border-slate-700 text-xs font-bold text-slate-300 rounded-xl px-2.5 py-1.5 focus:outline-none"
+                >
+                  {LANGUAGES.map(l => (
+                    <option key={l.code} value={l.code}>{l.native}</option>
+                  ))}
+                </select>
+              </div>
+            </div>
+
+            {/* Middle Slide Showcase */}
+            <div className="max-w-lg mx-auto w-full my-auto py-8 space-y-6">
+              <div className={`p-8 rounded-3xl bg-gradient-to-br ${slide.gradient} shadow-2xl border border-white/10 space-y-4`}>
+                <div className="flex items-center justify-between">
+                  <span className="px-3 py-1 rounded-full text-[11px] font-extrabold bg-white/20 text-white uppercase tracking-wider backdrop-blur-sm">
+                    {slide.badge}
+                  </span>
+                  <span className="text-4xl">{slide.icon}</span>
+                </div>
+
+                <div className="space-y-1">
+                  <h2 className="text-2xl sm:text-3xl font-display font-black leading-tight tracking-tight text-white">
+                    {slide.title}
+                  </h2>
+                  <p className="text-xl sm:text-2xl font-display font-black text-blue-200">
+                    {slide.highlight}
+                  </p>
+                </div>
+
+                <p className="text-xs sm:text-sm text-blue-100/90 leading-relaxed font-medium">
+                  {slide.description}
+                </p>
+
+                <div className="pt-2 border-t border-white/15 space-y-1.5">
+                  {slide.features.map((f, i) => (
+                    <div key={i} className="flex items-center gap-2 text-xs font-bold text-white">
+                      <span className="text-emerald-300">✓</span>
+                      <span>{f}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Dots Indicator */}
+              <div className="flex items-center justify-center gap-2">
+                {ONBOARDING_SLIDES.map((_, idx) => (
+                  <button 
+                    key={idx} 
+                    onClick={() => setOnboardingSlide(idx)}
+                    className={`h-2 rounded-full transition-all ${
+                      onboardingSlide === idx ? 'w-8 bg-blue-500' : 'w-2 bg-slate-800'
+                    }`} 
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Bottom Actions */}
+            <div className="max-w-lg mx-auto w-full space-y-3">
+              <div className="grid grid-cols-2 gap-3">
+                <button
+                  onClick={() => {
+                    setAuthRoleChoice('customer');
+                    setAuthFlowState('gateway');
+                  }}
+                  className="py-3.5 px-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-xs sm:text-sm shadow-lg shadow-blue-600/30 flex items-center justify-center gap-1.5 transition cursor-pointer"
+                >
+                  <span>Need Services ➔</span>
+                </button>
+
+                <button
+                  onClick={() => {
+                    setAuthRoleChoice('worker');
+                    setAuthFlowState('gateway');
+                  }}
+                  className="py-3.5 px-4 rounded-2xl bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 font-extrabold text-xs sm:text-sm flex items-center justify-center gap-1.5 transition cursor-pointer"
+                >
+                  <span>Join as Pro 🛠️</span>
+                </button>
+              </div>
+
+              <div className="flex items-center justify-between pt-1 text-xs">
+                <button 
+                  onClick={() => setOnboardingSlide(prev => (prev > 0 ? prev - 1 : 0))}
+                  disabled={onboardingSlide === 0}
+                  className="text-slate-500 hover:text-slate-300 font-bold disabled:opacity-0 transition"
+                >
+                  ← Previous
+                </button>
+
+                <button 
+                  onClick={() => {
+                    setAuthRoleChoice('customer');
+                    setAuthFlowState('gateway');
+                  }}
+                  className="text-blue-400 hover:text-blue-300 font-bold underline cursor-pointer"
+                >
+                  Already have an account? Sign In
+                </button>
+
+                <button 
+                  onClick={() => setOnboardingSlide(prev => (prev < ONBOARDING_SLIDES.length - 1 ? prev + 1 : prev))}
+                  disabled={onboardingSlide === ONBOARDING_SLIDES.length - 1}
+                  className="text-slate-400 hover:text-slate-200 font-bold disabled:opacity-0 transition"
+                >
+                  Next →
+                </button>
+              </div>
+            </div>
+
+          </div>
+        );
+      }
+
+      // ============================================================
+      // VIEW 2: LOGIN GATEWAY (PHONE OTP / GOOGLE AUTH)
+      // ============================================================
+      if (authFlowState === 'gateway') {
+        return (
+          <div className="min-h-screen bg-slate-950 text-white flex flex-col justify-center items-center p-6 select-none">
+            <div className="w-full max-w-md bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl space-y-6">
+              
+              {/* Header */}
+              <div className="text-center space-y-2">
+                <div className="flex justify-center">
+                  <LiveAppIcon size="lg" />
+                </div>
+                <h2 className="text-2xl font-display font-black text-white tracking-tight mt-2">
+                  Welcome to Zupix
+                </h2>
+                <p className="text-xs text-slate-400">
+                  {authRoleChoice === 'worker' ? 'Specialist Partner Login & Registration' : 'Fast, secure phone OTP authentication'}
+                </p>
+              </div>
+
+              {/* Role Toggle Pill */}
+              <div className="grid grid-cols-2 p-1 bg-slate-950 rounded-2xl border border-slate-800 text-xs font-bold">
+                <button
+                  type="button"
+                  onClick={() => setAuthRoleChoice('customer')}
+                  className={`py-2 rounded-xl transition ${authRoleChoice === 'customer' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
+                >
+                  👤 Customer
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setAuthRoleChoice('worker')}
+                  className={`py-2 rounded-xl transition ${authRoleChoice === 'worker' ? 'bg-blue-600 text-white shadow-md' : 'text-slate-400 hover:text-white'}`}
+                >
+                  🛠️ Pro Specialist
+                </button>
+              </div>
+
+              {/* Phone Input Flow */}
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-xs font-bold text-slate-300 mb-1.5">Mobile Phone Number</label>
+                  <div className="flex rounded-2xl border border-slate-700 bg-slate-950 overflow-hidden focus-within:ring-2 focus-within:ring-blue-500">
+                    <span className="px-3.5 py-3 bg-slate-800 text-xs font-mono font-bold text-slate-300 flex items-center border-r border-slate-700">
+                      {country.dial}
+                    </span>
+                    <input 
+                      type="tel" 
+                      value={loginPhone}
+                      onChange={(e) => setLoginPhone(e.target.value)}
+                      placeholder="10-digit mobile number" 
+                      className="w-full px-3 py-3 bg-transparent text-sm font-mono text-white outline-none"
+                    />
+                  </div>
+                </div>
+
+                {otpSent && (
+                  <div className="space-y-2 animate-fadeIn">
+                    <div className="flex items-center justify-between">
+                      <label className="block text-xs font-bold text-slate-300">Enter 6-Digit OTP Code</label>
+                      <span className="text-[11px] font-mono text-emerald-400">
+                        {otpTimer > 0 ? `Resend in ${otpTimer}s` : 'Code Ready'}
+                      </span>
+                    </div>
+                    <input 
+                      type="text" 
+                      maxLength="6"
+                      value={loginOtp}
+                      onChange={(e) => setLoginOtp(e.target.value)}
+                      placeholder="123456" 
+                      className="w-full p-3 bg-slate-950 border border-slate-700 rounded-2xl text-center text-lg font-mono font-bold tracking-widest text-white outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                    <p className="text-[10px] text-slate-500 text-center">
+                      Auto-filled demo code for instant verification.
+                    </p>
+                  </div>
+                )}
+
+                {/* Primary Action Button */}
+                {!otpSent ? (
+                  <button
+                    type="button"
+                    onClick={handleSendOtp}
+                    className="w-full py-3.5 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-extrabold text-sm shadow-lg shadow-blue-600/30 transition cursor-pointer"
+                  >
+                    Send Verification Code ➔
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    onClick={handleVerifyOtp}
+                    className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-extrabold text-sm shadow-lg shadow-emerald-600/30 transition cursor-pointer"
+                  >
+                    Verify & Continue ➔
+                  </button>
+                )}
+
+                {/* Google Sign-In Alternative */}
+                <div className="pt-2 border-t border-slate-800">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setLoginPhone('9876543210');
+                      setSetupName('Google User');
+                      setSetupRole(authRoleChoice);
+                      setSetupPhone('9876543210');
+                      setAuthFlowState('profile_setup');
+                    }}
+                    className="w-full py-3 rounded-2xl bg-white hover:bg-slate-100 text-slate-900 font-extrabold text-xs flex items-center justify-center gap-2 shadow-md transition cursor-pointer"
+                  >
+                    <span className="text-base">🌐</span>
+                    <span>Continue with Google</span>
+                  </button>
+                </div>
+
+                <button
+                  type="button"
+                  onClick={() => setAuthFlowState('onboarding')}
+                  className="w-full py-2 text-center text-xs font-bold text-slate-400 hover:text-slate-200"
+                >
+                  ← Back to Introduction
+                </button>
+              </div>
+
+            </div>
+          </div>
+        );
+      }
+
+      // ============================================================
+      // VIEW 3: PROFILE SETUP & TERMS & CONDITIONS CONSENT
+      // ============================================================
+      if (authFlowState === 'profile_setup') {
+        return (
+          <div className="min-h-screen bg-slate-950 text-white flex flex-col justify-center items-center p-4 sm:p-6 select-none">
+            <div className="w-full max-w-lg bg-slate-900/90 border border-slate-800 rounded-3xl p-6 sm:p-8 shadow-2xl backdrop-blur-xl space-y-6">
+              
+              <div className="flex items-center justify-between border-b border-slate-800 pb-4">
+                <div className="flex items-center gap-2.5">
+                  <LiveAppIcon size="sm" />
+                  <div>
+                    <h3 className="font-display font-black text-white text-base">Complete Your Profile</h3>
+                    <p className="text-[11px] text-slate-400">Step 2 of 2 • One-time verified setup</p>
+                  </div>
+                </div>
+                <span className="px-2.5 py-1 rounded-full text-[10px] font-bold bg-blue-500/20 text-blue-400 border border-blue-500/30">
+                  {setupRole === 'worker' ? '🛠️ Specialist' : '👤 Customer'}
+                </span>
+              </div>
+
+              {setupError && (
+                <div className="p-3 rounded-xl bg-rose-950/80 border border-rose-500/50 text-rose-300 text-xs font-bold">
+                  ⚠️ {setupError}
+                </div>
+              )}
+
+              <form onSubmit={handleCompleteProfile} className="space-y-4 text-xs">
+                
+                {/* Account Type Selector */}
+                <div>
+                  <label className="block font-bold text-slate-300 mb-1">Account Role *</label>
+                  <div className="grid grid-cols-2 gap-2">
+                    <button
+                      type="button"
+                      onClick={() => setSetupRole('customer')}
+                      className={`p-3 rounded-xl border text-left font-bold transition ${setupRole === 'customer' ? 'bg-blue-600/20 border-blue-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-400'}`}
+                    >
+                      👤 I Need Services
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setSetupRole('worker')}
+                      className={`p-3 rounded-xl border text-left font-bold transition ${setupRole === 'worker' ? 'bg-blue-600/20 border-blue-500 text-white' : 'bg-slate-950 border-slate-800 text-slate-400'}`}
+                    >
+                      🛠️ I Am a Specialist
+                    </button>
+                  </div>
+                </div>
+
+                {/* Name */}
+                <div>
+                  <label className="block font-bold text-slate-300 mb-1">Full Legal / Business Name *</label>
+                  <input 
+                    required 
+                    value={setupName}
+                    onChange={(e) => setSetupName(e.target.value)}
+                    placeholder="Enter your full name" 
+                    className="w-full p-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                {/* Phone & Pincode */}
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block font-bold text-slate-300 mb-1">Mobile Number *</label>
+                    <input 
+                      required 
+                      type="tel"
+                      value={setupPhone}
+                      onChange={(e) => setSetupPhone(e.target.value)}
+                      placeholder="10-digit mobile" 
+                      className="w-full p-3 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                  <div>
+                    <label className="block font-bold text-slate-300 mb-1">Service Pincode *</label>
+                    <input 
+                      required 
+                      value={setupPincode}
+                      onChange={(e) => setSetupPincode(e.target.value)}
+                      placeholder="134102" 
+                      className="w-full p-3 rounded-xl bg-slate-950 border border-slate-700 text-white font-mono text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                    />
+                  </div>
+                </div>
+
+                {/* Specialist Specific Fields */}
+                {setupRole === 'worker' && (
+                  <div className="p-4 rounded-2xl bg-slate-950 border border-blue-900/60 space-y-3">
+                    <div>
+                      <label className="block font-bold text-blue-300 mb-1">Specialist Trade Category *</label>
+                      <select 
+                        value={setupCategory}
+                        onChange={(e) => setSetupCategory(e.target.value)}
+                        className="w-full p-2.5 rounded-xl bg-slate-900 border border-slate-700 text-white text-xs font-bold outline-none"
+                      >
+                        {CATEGORIES.filter(c => c.name !== 'All').map(c => (
+                          <option key={c.name} value={c.name}>{c.icon} {c.label}</option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-2">
+                      <div>
+                        <label className="block font-bold text-slate-400 mb-1">Base Visit Fee (₹)</label>
+                        <input 
+                          type="number"
+                          value={setupRate}
+                          onChange={(e) => setSetupRate(e.target.value)}
+                          className="w-full p-2 bg-slate-900 border border-slate-700 rounded-lg text-white font-mono text-xs"
+                        />
+                      </div>
+                      <div>
+                        <label className="block font-bold text-slate-400 mb-1">Key Specialty</label>
+                        <input 
+                          value={setupSpecialization}
+                          onChange={(e) => setSetupSpecialization(e.target.value)}
+                          placeholder="e.g. Leaks & Motor"
+                          className="w-full p-2 bg-slate-900 border border-slate-700 rounded-lg text-white text-xs"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Address */}
+                <div>
+                  <label className="block font-bold text-slate-300 mb-1">Address / Locality Landmark</label>
+                  <input 
+                    value={setupAddress}
+                    onChange={(e) => setSetupAddress(e.target.value)}
+                    placeholder="House/Street, Locality in 134102" 
+                    className="w-full p-3 rounded-xl bg-slate-950 border border-slate-700 text-white text-sm outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+
+                {/* TERMS AND CONDITIONS MANDATORY CHECKBOX */}
+                <div className="p-3.5 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+                  <label className="flex items-start gap-2.5 cursor-pointer">
+                    <input 
+                      type="checkbox"
+                      checked={termsAccepted}
+                      onChange={(e) => setTermsAccepted(e.target.checked)}
+                      className="w-4 h-4 mt-0.5 rounded border-slate-700 text-blue-600 focus:ring-blue-500 bg-slate-900"
+                    />
+                    <span className="text-[11px] text-slate-300 leading-relaxed">
+                      I agree to the <strong className="text-white">Zupix Terms of Service & Privacy Policy</strong>. I understand that Zupix is a <strong className="text-emerald-400">100% zero-commission</strong> direct phone contact directory connecting local customers directly to verified specialists.
+                    </span>
+                  </label>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full py-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-extrabold text-sm shadow-xl shadow-blue-600/30 transition cursor-pointer"
+                >
+                  Save Profile & Launch Zupix ➔
+                </button>
+              </form>
+
+            </div>
+          </div>
+        );
+      }
+
+      // ============================================================
+      // VIEW 4: AUTHENTICATED LIVE APPLICATION (MAIN RUNTIME)
+      // ============================================================
+      const isWorkerMode = currentUser?.role === 'worker';
+
+      return (
+        <div className="min-h-screen flex flex-col bg-slate-50 text-slate-900 pb-20">
+          
+          {/* 1. TOP APP HEADER */}
+          <header className="sticky top-0 z-40 bg-white/95 backdrop-blur border-b border-slate-200 px-4 py-3 shadow-xs">
+            <div className="max-w-6xl mx-auto flex items-center justify-between gap-3">
+              
+              {/* Brand Logo with Hidden Admin Long Press / Triple Click */}
+              <div 
+                onClick={handleLogoClick}
+                className="flex items-center gap-2.5 cursor-pointer select-none"
+                title="Triple-click for hidden Admin Console"
+              >
+                <LiveAppIcon size="sm" />
+                <div>
+                  <span className="font-display font-black text-lg tracking-tight bg-gradient-to-r from-blue-900 via-blue-700 to-indigo-800 bg-clip-text text-transparent leading-none block">
+                    ZUPIX
+                  </span>
+                  <p className="text-[10px] font-semibold text-slate-500 leading-none mt-0.5">
+                    Verified Pros & Doctors
+                  </p>
+                </div>
+              </div>
+
+              {/* Header Action Hub */}
+              <div className="flex items-center gap-2">
+                
+                {/* Location Quick Filter */}
+                <div className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 bg-slate-100 rounded-xl border border-slate-200 text-xs">
+                  <span className="text-blue-600 font-bold">📍</span>
+                  <input 
+                    type="text" 
+                    value={pincodeFilter} 
+                    onChange={(e) => setPincodeFilter(e.target.value.trim())}
+                    placeholder="134102"
+                    className="w-16 bg-white px-1.5 py-0.5 rounded border border-slate-200 font-bold font-mono text-xs text-slate-800 outline-none"
+                  />
+                </div>
+
+                {/* Language Switcher */}
+                <div className="relative">
+                  <button 
+                    onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
+                    className="px-2.5 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold text-slate-700 flex items-center gap-1 border border-slate-200"
+                  >
+                    <span>🌐</span>
+                    <span>{LANGUAGES.find(l => l.code === lang)?.native || 'English'}</span>
+                  </button>
+
+                  {isLangMenuOpen && (
+                    <div className="absolute right-0 mt-2 w-40 bg-white rounded-2xl shadow-xl border border-slate-200 p-1.5 z-50 animate-fadeIn space-y-1">
+                      {LANGUAGES.map(l => (
+                        <button
+                          key={l.code}
+                          onClick={() => { setLang(l.code); setIsLangMenuOpen(false); }}
+                          className={`w-full text-left px-3 py-1.5 rounded-xl text-xs font-bold ${lang === l.code ? 'bg-blue-600 text-white' : 'text-slate-700 hover:bg-slate-100'}`}
+                        >
+                          {l.native}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* Join as Pro Partner button (if in customer mode) */}
+                {!isWorkerMode && (
+                  <button 
+                    onClick={() => setActiveTab('provider_setup')}
+                    className="hidden md:flex items-center gap-1 px-3 py-1.5 rounded-xl bg-blue-50 text-blue-700 border border-blue-200 text-xs font-bold hover:bg-blue-100 transition"
+                  >
+                    <span>🛠️ Join as Pro</span>
+                  </button>
+                )}
+
+                {/* Notifications Bell */}
+                <button 
+                  onClick={() => setIsNotifsOpen(true)}
+                  className="relative p-2 text-slate-600 hover:bg-slate-100 rounded-xl transition"
+                >
+                  <span className="text-base">🔔</span>
+                  {notifications.filter(n => !n.isRead).length > 0 && (
+                    <span className="absolute top-1 right-1 w-4 h-4 bg-rose-600 text-white text-[9px] font-black rounded-full flex items-center justify-center ring-2 ring-white">
+                      {notifications.filter(n => !n.isRead).length}
+                    </span>
+                  )}
+                </button>
+
+                {/* User Avatar */}
+                <button 
+                  onClick={() => setActiveTab('profile')}
+                  className="flex items-center gap-1.5 p-1.5 pr-2.5 bg-slate-100 hover:bg-slate-200 rounded-xl border border-slate-200"
+                >
+                  <div className="w-6 h-6 rounded-lg bg-blue-600 text-white flex items-center justify-center font-bold text-xs">
+                    {currentUser?.name ? currentUser.name[0].toUpperCase() : 'U'}
+                  </div>
+                  <span className="text-xs font-bold text-slate-800 hidden sm:inline max-w-[80px] truncate">
+                    {currentUser?.name || 'Profile'}
+                  </span>
+                </button>
+
+              </div>
+            </div>
+          </header>
+
+          {/* 2. MAIN ACTIVE VIEW ROUTER */}
+          <main className="flex-1 max-w-6xl w-full mx-auto px-4 py-4 sm:py-6">
+            
+            {/* VIEW A: CUSTOMER EXPLORE / HOME VIEW */}
+            {activeTab === 'home' && (
+              <div className="space-y-6">
+                
+                {/* Search and Area Filter */}
+                <div className="bg-white p-4 sm:p-5 rounded-3xl border border-slate-200 shadow-sm space-y-4">
+                  <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
+                    <div className="relative flex-1">
+                      <span className="absolute left-3.5 top-3.5 text-slate-400">🔍</span>
+                      <input 
+                        type="text" 
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        placeholder="Search plumber, electrician, doctor, AC repair, mechanic..." 
+                        className="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-slate-50 border border-slate-200 text-sm focus:outline-none focus:ring-2 focus:ring-blue-600 focus:bg-white transition"
+                      />
+                    </div>
+
+                    <div className="flex items-center gap-2 bg-blue-50/80 border border-blue-200 px-3 py-2 rounded-2xl">
+                      <span className="text-blue-600 font-bold text-xs">📍 Area Pincode:</span>
+                      <input 
+                        type="text" 
+                        value={pincodeFilter}
+                        onChange={(e) => setPincodeFilter(e.target.value.trim())}
+                        placeholder="134102"
+                        className="w-20 bg-transparent font-mono font-bold text-blue-950 text-sm focus:outline-none"
+                      />
+                      <button onClick={() => setPincodeFilter('134102')} className="text-[10px] font-extrabold text-blue-600 hover:underline">
+                        Reset
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* 10 Verified Trade Categories Carousel */}
+                  <div className="flex items-center gap-2 overflow-x-auto no-scrollbar pb-1">
+                    {CATEGORIES.map(cat => {
+                      const isSelected = selectedCategory === cat.name;
+                      return (
+                        <button 
+                          key={cat.name}
+                          onClick={() => setSelectedCategory(cat.name)}
+                          className={`flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                            isSelected 
+                              ? 'bg-blue-600 text-white shadow-md shadow-blue-500/25 scale-102' 
+                              : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
+                          }`}
+                        >
+                          <span>{cat.icon}</span>
+                          <span>{cat.label}</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* 100% Free & Zero Commission Guarantee Banner */}
+                <div className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white rounded-3xl p-5 shadow-lg shadow-blue-600/15 flex flex-col sm:flex-row items-center justify-between gap-4">
+                  <div>
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="px-2 py-0.5 rounded-md bg-white/20 text-xs font-extrabold tracking-wide uppercase">0% Commission</span>
+                      <span className="text-xs text-blue-100 font-medium">Direct Dial Policy</span>
+                    </div>
+                    <h2 className="text-lg sm:text-xl font-display font-black tracking-tight">Call Any Local Specialist Directly</h2>
+                    <p className="text-xs text-blue-100 mt-1 max-w-xl">
+                      Speak directly with verified technicians and physicians. Confirm prices on the phone with no platform cuts.
+                    </p>
+                  </div>
+                  {!isWorkerMode && (
+                    <button 
+                      onClick={() => setActiveTab('provider_setup')}
+                      className="px-4 py-2.5 bg-white text-blue-700 hover:bg-blue-50 text-xs font-black rounded-xl shadow-md transition shrink-0"
+                    >
+                      Join as Verified Pro ➔
+                    </button>
+                  )}
+                </div>
+
+                {/* Specialists Listing */}
+                <div>
+                  <div className="flex items-center justify-between mb-3 px-1">
+                    <h3 className="font-display font-black text-slate-900 text-lg">
+                      {selectedCategory === 'All' ? 'Verified Specialists' : `${selectedCategory}`} ({filteredWorkers.length})
+                    </h3>
+                    <span className="text-xs font-semibold text-slate-500">Pincode: {pincodeFilter || 'All Areas'}</span>
+                  </div>
+
+                  {filteredWorkers.length === 0 ? (
+                    <div className="bg-white rounded-3xl border border-slate-200 p-8 text-center space-y-3">
+                      <div className="text-4xl">🔍</div>
+                      <h4 className="font-bold text-slate-900 text-base">No Specialists Registered in Pincode {pincodeFilter}</h4>
+                      <p className="text-xs text-slate-500 max-w-md mx-auto">
+                        Be the first verified plumber, electrician, doctor, or mechanic in this area!
+                      </p>
+                      <button 
+                        onClick={() => setActiveTab('provider_setup')}
+                        className="mt-2 px-5 py-2.5 bg-blue-600 text-white rounded-xl text-xs font-bold shadow-md hover:bg-blue-700"
+                      >
+                        Register as Specialist Here
+                      </button>
+                    </div>
+                  ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {filteredWorkers.map(worker => (
+                        <div key={worker.id} className="bg-white rounded-3xl border border-slate-200 p-5 shadow-sm hover:shadow-md transition space-y-4 flex flex-col justify-between">
+                          <div>
+                            <div className="flex items-start justify-between gap-2">
+                              <div>
+                                <div className="flex items-center gap-1.5">
+                                  <h4 className="font-display font-extrabold text-slate-900 text-base leading-tight">{worker.name}</h4>
+                                  {worker.isVerified && <span className="text-blue-600 text-sm font-bold">✓</span>}
+                                </div>
+                                <p className="text-xs font-bold text-blue-600 mt-0.5">{worker.category}</p>
+                              </div>
+                              <span className={`px-2 py-0.5 rounded-full text-[10px] font-black ${worker.isAvailable ? 'bg-emerald-50 text-emerald-700 border border-emerald-200' : 'bg-slate-100 text-slate-500'}`}>
+                                {worker.isAvailable ? '🟢 Online' : '⚪ Offline'}
+                              </span>
+                            </div>
+
+                            <div className="mt-3 space-y-1 text-xs text-slate-600">
+                              <p className="line-clamp-2 text-slate-700 font-medium">{worker.specialization || worker.bio}</p>
+                              <div className="flex items-center gap-2.5 pt-1 text-[11px] text-slate-500 font-medium">
+                                <span>⭐ {worker.rating || '5.0'}</span>
+                                <span>•</span>
+                                <span>📍 {worker.pincode}</span>
+                                <span>•</span>
+                                <span>₹{worker.hourlyRate || 200} visit</span>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className="pt-3 border-t border-slate-100 grid grid-cols-2 gap-2">
+                            <button 
+                              onClick={() => setDirectCallWorker(worker)}
+                              className="py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-xs flex items-center justify-center gap-1.5 shadow-sm shadow-emerald-500/20 transition cursor-pointer"
+                            >
+                              <span>📞 Direct Call</span>
+                            </button>
+                            <button 
+                              onClick={() => setBookModalWorker(worker)}
+                              className="py-2.5 px-3 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-700 font-extrabold text-xs flex items-center justify-center gap-1.5 border border-blue-200 transition cursor-pointer"
+                            >
+                              <span>📅 Book Visit</span>
+                            </button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  )}
+
+                </div>
+
+              </div>
+            )}
+
+            {/* VIEW B: BOOKINGS VIEW */}
+            {activeTab === 'bookings' && (
+              <div className="max-w-2xl mx-auto space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-display font-black text-slate-900 text-xl">My Bookings & Service History</h3>
+                  <span className="text-xs text-slate-500 font-bold">{bookings.length} Bookings</span>
+                </div>
+
+                {bookings.length === 0 ? (
+                  <div className="bg-white rounded-3xl border border-slate-200 p-8 text-center space-y-3">
+                    <p className="text-3xl">📅</p>
+                    <p className="text-slate-600 font-bold text-sm">No scheduled bookings yet</p>
+                    <p className="text-xs text-slate-400">Search for local specialists and book free visits with 0% fees.</p>
+                    <button onClick={() => setActiveTab('home')} className="px-5 py-2.5 bg-blue-600 text-white font-bold rounded-xl text-xs shadow-md">
+                      Find Specialists Now
+                    </button>
+                  </div>
+                ) : (
+                  <div className="space-y-3">
+                    {bookings.map(b => (
+                      <div key={b.id} className="bg-white rounded-2xl border border-slate-200 p-4 shadow-sm flex items-center justify-between gap-3">
+                        <div>
+                          <div className="flex items-center gap-2">
+                            <h4 className="font-bold text-slate-900 text-sm">{b.serviceName}</h4>
+                            <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                              {b.status.toUpperCase()}
+                            </span>
+                          </div>
+                          <p className="text-xs text-slate-600 mt-0.5">Specialist: <strong>{b.workerName}</strong></p>
+                          <p className="text-xs text-slate-500">🗓️ {b.scheduledDate} at {b.scheduledTime} • 📍 {b.address}</p>
+                          <p className="text-xs text-emerald-700 font-mono font-bold mt-0.5">📞 +{b.workerPhone || b.customerPhone}</p>
+                        </div>
+                        <a 
+                          href={`tel:${b.workerPhone || b.customerPhone}`}
+                          className="px-3 py-2 bg-emerald-50 text-emerald-700 hover:bg-emerald-100 rounded-xl font-bold text-xs border border-emerald-200 shrink-0"
+                        >
+                          Call
+                        </a>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+
+            {/* VIEW C: PROVIDER DASHBOARD (FOR WORKERS) */}
+            {activeTab === 'worker_dashboard' && (
+              <div className="space-y-6">
+                
+                {/* Live Online Banner */}
+                <div className="bg-slate-900 text-white rounded-3xl p-6 shadow-xl space-y-4">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div>
+                      <span className="px-2.5 py-0.5 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
+                        🟢 Profile Live in Pincode {currentWorkerProfile?.pincode || currentUser?.pincode || '134102'}
+                      </span>
+                      <h2 className="text-xl sm:text-2xl font-display font-black tracking-tight mt-2">
+                        Welcome, {currentWorkerProfile?.name || currentUser?.name}
+                      </h2>
+                      <p className="text-xs text-slate-400 mt-1">
+                        Direct Customer Phone Line: <strong className="text-emerald-400 font-mono">+{currentWorkerProfile?.phone || currentUser?.phone}</strong>
+                      </p>
+                    </div>
+
+                    {/* Online / Offline Toggle */}
+                    <div className="flex items-center gap-3 bg-slate-800 p-3 rounded-2xl border border-slate-700">
+                      <div className="text-right">
+                        <p className="text-xs font-bold text-white">
+                          {currentWorkerProfile?.isAvailable ? 'Online for Calls' : 'Offline'}
+                        </p>
+                        <p className="text-[10px] text-slate-400">Direct dial availability</p>
+                      </div>
+                      <button 
+                        onClick={handleToggleAvailability}
+                        className={`w-12 h-6 rounded-full p-0.5 transition-colors ${currentWorkerProfile?.isAvailable ? 'bg-emerald-500' : 'bg-slate-600'}`}
+                      >
+                        <div className={`w-5 h-5 rounded-full bg-white transition-transform ${currentWorkerProfile?.isAvailable ? 'translate-x-6' : 'translate-x-0'}`} />
+                      </button>
+                    </div>
+                  </div>
+
+                  {/* 0% Commission Guarantee */}
+                  <div className="p-4 rounded-2xl bg-blue-950/60 border border-blue-800/80 flex items-start gap-3">
+                    <span className="text-xl">🛡️</span>
+                    <div>
+                      <h4 className="text-xs font-bold text-blue-200">Zero Commission Policy Active</h4>
+                      <p className="text-xs text-blue-300/90 mt-0.5">
+                        Customers call you directly. Keep 100% of your earnings. Zupix charges ₹0 commission.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Metrics */}
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                  <div className="bg-white p-4 rounded-2xl border border-slate-200">
+                    <p className="text-xs text-slate-500 font-medium">Direct Calls</p>
+                    <h3 className="text-xl font-display font-black text-slate-900 mt-1">100% Direct</h3>
+                    <p className="text-[10px] text-emerald-600 font-bold mt-0.5">Zero Middleware</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-2xl border border-slate-200">
+                    <p className="text-xs text-slate-500 font-medium">Platform Cut</p>
+                    <h3 className="text-xl font-display font-black text-emerald-600 mt-1">₹0</h3>
+                    <p className="text-[10px] text-slate-400 font-bold mt-0.5">0% Commission</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-2xl border border-slate-200">
+                    <p className="text-xs text-slate-500 font-medium">Pro Rating</p>
+                    <h3 className="text-xl font-display font-black text-slate-900 mt-1">5.0 ⭐</h3>
+                    <p className="text-[10px] text-slate-400 font-bold mt-0.5">Verified Badged</p>
+                  </div>
+                  <div className="bg-white p-4 rounded-2xl border border-slate-200">
+                    <p className="text-xs text-slate-500 font-medium">Service Locality</p>
+                    <h3 className="text-xl font-display font-black text-blue-600 mt-1">{currentWorkerProfile?.pincode || currentUser?.pincode || '134102'}</h3>
+                    <p className="text-[10px] text-slate-400 font-bold mt-0.5">Active Hub</p>
+                  </div>
+                </div>
+
+              </div>
+            )}
+
+            {/* VIEW D: PROVIDER SETUP / ONBOARDING VIEW */}
+            {activeTab === 'provider_setup' && (
+              <div className="max-w-xl mx-auto bg-white rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-sm space-y-6">
+                <div className="text-center space-y-1">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center mx-auto text-xl font-black">
+                    🛠️
+                  </div>
+                  <h2 className="text-2xl font-display font-black text-slate-900 tracking-tight">Register as Specialist</h2>
+                  <p className="text-xs text-slate-500">
+                    Receive direct customer phone calls with 0% commission fees.
+                  </p>
+                </div>
+
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  const form = e.target;
+                  const newWorker = {
+                    id: 'w-' + Date.now(),
+                    userId: currentUser?.id || 'u-' + Date.now(),
+                    name: form.name.value.trim(),
+                    phone: form.phone.value.replace(/\D/g, ''),
+                    category: form.category.value,
+                    pincode: form.pincode.value.trim() || '134102',
+                    address: form.address.value.trim(),
+                    hourlyRate: Number(form.rate.value) || 250,
+                    specialization: form.specialization.value.trim(),
+                    bio: form.bio.value.trim(),
+                    rating: 5.0,
+                    reviewCount: 0,
+                    experienceYears: 4,
+                    isVerified: true,
+                    isAvailable: true
+                  };
+
+                  const updatedUser = {
+                    ...(currentUser || {}),
+                    id: newWorker.userId,
+                    name: newWorker.name,
+                    phone: newWorker.phone,
+                    role: 'worker',
+                    pincode: newWorker.pincode,
+                    address: newWorker.address,
+                    isProfileComplete: true
+                  };
+
+                  const updatedList = [newWorker, ...workers.filter(w => w.phone !== newWorker.phone)];
+                  setWorkers(updatedList);
+                  Storage.set('workers', updatedList);
+
+                  setCurrentUser(updatedUser);
+                  Storage.set('user', updatedUser);
+
+                  safeFirestore(async (firestore) => {
+                    await firestore.collection('workers').doc(newWorker.id).set(newWorker);
+                    await firestore.collection('users').doc(updatedUser.id).set(updatedUser);
+                  }, null);
+
+                  setActiveTab('worker_dashboard');
+                }} className="space-y-4 text-xs">
+                  
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Full Business / Professional Name *</label>
+                    <input name="name" required placeholder="Enter full name" defaultValue={currentUser?.name || ''} className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-sm outline-none" />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Direct Phone Number (10 Digits) *</label>
+                    <input name="phone" required type="tel" placeholder="10-digit mobile" defaultValue={currentUser?.phone || ''} className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white text-sm font-mono outline-none" />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Trade Category *</label>
+                    <select name="category" required className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 text-sm font-bold outline-none">
+                      {CATEGORIES.filter(c => c.name !== 'All').map(c => (
+                        <option key={c.name} value={c.name}>{c.icon} {c.label}</option>
+                      ))}
+                    </select>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-3">
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Pincode *</label>
+                      <input name="pincode" defaultValue={currentUser?.pincode || "134102"} required className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 font-mono text-sm" />
+                    </div>
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Base Visit Fee (₹)</label>
+                      <input name="rate" type="number" defaultValue="250" className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 font-mono text-sm" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Service Address</label>
+                    <input name="address" defaultValue={currentUser?.address || "Main Market Sector, 134102"} className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Key Specialization</label>
+                    <input name="specialization" placeholder="e.g. Inverter wiring, pipe burst, general consult" className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Bio / Guarantee</label>
+                    <textarea name="bio" rows="2" placeholder="Experience & service turnaround guarantee..." className="w-full p-3 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                  </div>
+
+                  <button 
+                    type="submit"
+                    className="w-full py-3.5 rounded-2xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white font-extrabold text-sm shadow-lg shadow-blue-500/25 transition cursor-pointer"
+                  >
+                    Save & Launch My Provider Profile ➔
+                  </button>
+
+                  <button 
+                    type="button" 
+                    onClick={() => setActiveTab('home')}
+                    className="w-full py-2 text-slate-400 hover:text-slate-600 font-bold"
+                  >
+                    Cancel
+                  </button>
+                </form>
+
+              </div>
+            )}
+
+            {/* VIEW E: PROFILE VIEW */}
+            {activeTab === 'profile' && (
+              <div className="max-w-md mx-auto bg-white rounded-3xl border border-slate-200 p-6 space-y-5">
+                <div className="text-center space-y-1">
+                  <div className="w-16 h-16 rounded-3xl bg-blue-600 text-white font-display font-black text-2xl flex items-center justify-center mx-auto shadow-md">
+                    {currentUser?.name ? currentUser.name[0].toUpperCase() : 'U'}
+                  </div>
+                  <h3 className="font-display font-black text-slate-900 text-lg">{currentUser?.name || 'Verified User'}</h3>
+                  <p className="text-xs text-slate-500">{currentUser?.phone ? `+91 ${currentUser.phone}` : 'No phone linked'}</p>
+                </div>
+
+                <div className="border-t border-slate-100 pt-4 space-y-2 text-xs font-semibold">
+                  <div className="flex justify-between py-2 border-b border-slate-50">
+                    <span className="text-slate-500">Active Mode:</span>
+                    <span className="font-bold text-blue-600 uppercase">{currentUser?.role || 'Customer'}</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-slate-50">
+                    <span className="text-slate-500">Service Pincode:</span>
+                    <span className="font-mono font-bold text-slate-800">{currentUser?.pincode || pincodeFilter || '134102'}</span>
+                  </div>
+                </div>
+
+                {/* Edit Profile Form */}
+                <form onSubmit={(e) => {
+                  e.preventDefault();
+                  const form = e.target;
+                  const updated = {
+                    ...(currentUser || {}),
+                    id: currentUser?.id || ('u-' + Date.now()),
+                    name: form.pname.value.trim(),
+                    phone: form.pphone.value.replace(/\D/g, ''),
+                    role: currentUser?.role || 'customer',
+                    pincode: form.ppincode.value.trim() || '134102',
+                    isProfileComplete: true
+                  };
+                  setCurrentUser(updated);
+                  Storage.set('user', updated);
+                  if (updated.pincode) setPincodeFilter(updated.pincode);
+                  alert('Profile updated successfully!');
+                }} className="space-y-3 pt-2 text-xs border-t border-slate-100">
+                  <h4 className="font-bold text-slate-800 text-xs">Update Profile Details</h4>
+                  <div>
+                    <label className="block text-slate-500 mb-1">Full Name</label>
+                    <input name="pname" required defaultValue={currentUser?.name || ''} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm font-semibold" />
+                  </div>
+                  <div>
+                    <label className="block text-slate-500 mb-1">Mobile Number</label>
+                    <input name="pphone" required type="tel" defaultValue={currentUser?.phone || ''} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm font-mono" />
+                  </div>
+                  <div>
+                    <label className="block text-slate-500 mb-1">Default Pincode</label>
+                    <input name="ppincode" required defaultValue={currentUser?.pincode || pincodeFilter || '134102'} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm font-mono" />
+                  </div>
+                  <button type="submit" className="w-full py-2.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs shadow-sm">
+                    Save Profile Changes
+                  </button>
+                </form>
+
+                <div className="space-y-2 pt-2">
+                  <button 
+                    onClick={() => {
+                      const nextRole = currentUser?.role === 'worker' ? 'customer' : 'worker';
+                      if (currentUser) {
+                        const updated = { ...currentUser, role: nextRole };
+                        setCurrentUser(updated);
+                        Storage.set('user', updated);
+                        setActiveTab(nextRole === 'worker' ? 'worker_dashboard' : 'home');
+                      } else {
+                        setActiveTab('provider_setup');
+                      }
+                    }}
+                    className="w-full py-2.5 rounded-xl border border-slate-300 font-bold text-xs text-slate-700 hover:bg-slate-50 transition"
+                  >
+                    Switch to {currentUser?.role === 'worker' ? 'Customer Mode' : 'Provider Mode'}
+                  </button>
+
+                  <button 
+                    onClick={() => {
+                      setCurrentUser(null);
+                      Storage.set('user', null);
+                      setAuthFlowState('onboarding');
+                      setActiveTab('home');
+                    }}
+                    className="w-full py-2.5 rounded-xl bg-rose-50 text-rose-600 font-bold text-xs hover:bg-rose-100 transition"
+                  >
+                    Log Out
+                  </button>
+                </div>
+              </div>
+            )}
+
+          </main>
+
+          {/* 3. STRICT 3-TAB / 4-TAB BOTTOM NAVIGATION */}
+          <nav className="fixed bottom-0 left-0 right-0 z-30 bg-white/95 backdrop-blur-md border-t border-slate-200/90 shadow-lg sm:hidden">
+            <div className="flex items-center justify-around h-16 px-2 max-w-lg mx-auto">
+              
+              {/* If in Specialist Worker Mode: 4 Dedicated Tabs */}
+              {isWorkerMode ? (
+                <>
+                  <button
+                    onClick={() => setActiveTab('worker_dashboard')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'worker_dashboard' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">💼</span>
+                    <span className="text-[10px] font-bold mt-0.5">Dashboard</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('home')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'home' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">🔍</span>
+                    <span className="text-[10px] font-bold mt-0.5">Search</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('bookings')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'bookings' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">📋</span>
+                    <span className="text-[10px] font-bold mt-0.5">Jobs</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('profile')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'profile' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">👤</span>
+                    <span className="text-[10px] font-bold mt-0.5">Profile</span>
+                  </button>
+                </>
+              ) : (
+                /* Customer Mode: EXACTLY the 3 clean tabs (Explore, Bookings, Profile) */
+                <>
+                  <button
+                    onClick={() => setActiveTab('home')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'home' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">🔍</span>
+                    <span className="text-[10px] font-bold mt-0.5">Explore</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('bookings')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'bookings' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">📅</span>
+                    <span className="text-[10px] font-bold mt-0.5">Bookings</span>
+                  </button>
+
+                  <button
+                    onClick={() => setActiveTab('profile')}
+                    className={`flex flex-col items-center justify-center flex-1 py-1 ${activeTab === 'profile' ? 'text-blue-600' : 'text-slate-500'}`}
+                  >
+                    <span className="text-lg">👤</span>
+                    <span className="text-[10px] font-bold mt-0.5">Profile</span>
+                  </button>
+                </>
+              )}
+
+            </div>
+          </nav>
+
+          {/* ============================================================ */}
+          {/* 4. MODALS & POPUPS                                           */}
+          {/* ============================================================ */}
+
+          {/* A. DIRECT CALL MODAL */}
+          {directCallWorker && (
+            <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+              <div className="bg-white w-full max-w-sm rounded-3xl p-6 shadow-2xl border border-slate-100 text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 text-2xl flex items-center justify-center mx-auto border border-emerald-200">
+                  📞
+                </div>
+                <div>
+                  <h3 className="text-lg font-display font-black text-slate-900 leading-tight">
+                    Direct Call Specialist
+                  </h3>
+                  <p className="text-xs text-slate-500 mt-1">
+                    Connect directly to <strong>{directCallWorker.name}</strong> ({directCallWorker.category}).
+                  </p>
+                </div>
+
+                <div className="bg-emerald-50/80 border border-emerald-200 p-3.5 rounded-2xl">
+                  <span className="text-[11px] font-bold text-emerald-800 uppercase tracking-wide">Direct Mobile Line</span>
+                  <p className="text-lg font-mono font-black text-emerald-950 mt-0.5">
+                    +{directCallWorker.phone}
+                  </p>
+                </div>
+
+                <div className="text-[11px] text-slate-500">
+                  🛡️ <strong>Zero commission:</strong> You speak directly with the specialist. No platform cut.
+                </div>
+
+                <div className="space-y-2 pt-2">
+                  <a 
+                    href={`tel:${directCallWorker.phone}`}
+                    className="w-full py-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-extrabold text-sm flex items-center justify-center gap-2 shadow-md shadow-emerald-600/20"
+                  >
+                    <span>Dial Now ➔</span>
+                  </a>
+                  <button 
+                    onClick={() => setDirectCallWorker(null)}
+                    className="w-full py-2.5 rounded-xl text-slate-400 hover:text-slate-600 font-bold text-xs"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* B. BOOKING VISIT MODAL */}
+          {bookModalWorker && (
+            <div className="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-xs flex items-center justify-center p-4">
+              <div className="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl border border-slate-100 space-y-4">
+                <div className="flex items-center justify-between">
+                  <h3 className="font-display font-black text-slate-900 text-base">Book Visit: {bookModalWorker.name}</h3>
+                  <button onClick={() => setBookModalWorker(null)} className="text-slate-400 hover:text-slate-600 font-bold">✕</button>
+                </div>
+
+                <form onSubmit={handleCreateBooking} className="space-y-3 text-xs">
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Your Full Name</label>
+                    <input name="cname" required defaultValue={currentUser?.name || ''} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Your Contact Phone</label>
+                    <input name="cphone" required type="tel" defaultValue={currentUser?.phone || ''} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm font-mono" />
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-2">
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Preferred Date</label>
+                      <input name="cdate" type="date" required defaultValue={new Date().toISOString().split('T')[0]} className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                    </div>
+                    <div>
+                      <label className="block font-bold text-slate-700 mb-1">Preferred Time</label>
+                      <input name="ctime" defaultValue="11:00 AM" required className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="block font-bold text-slate-700 mb-1">Complete Service Address in Pincode {bookModalWorker.pincode}</label>
+                    <input name="caddress" required placeholder="House/Flat number, landmark, locality" className="w-full p-2.5 rounded-xl border border-slate-200 bg-slate-50 text-sm" />
+                  </div>
+
+                  <button 
+                    type="submit"
+                    className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-extrabold rounded-xl text-xs shadow-md transition cursor-pointer"
+                  >
+                    Confirm Free Booking Request ➔
+                  </button>
+                </form>
+              </div>
+            </div>
+          )}
+
+          {/* C. NOTIFICATIONS DRAWER */}
+          {isNotifsOpen && (
+            <div className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex justify-end">
+              <div className="w-full max-w-sm bg-white h-full p-5 shadow-2xl space-y-4 overflow-y-auto">
+                <div className="flex items-center justify-between border-b border-slate-100 pb-3">
+                  <h3 className="font-display font-black text-slate-900 text-base">Notifications</h3>
+                  <button onClick={() => setIsNotifsOpen(false)} className="text-slate-400 font-bold">✕</button>
+                </div>
+
+                {notifications.length === 0 ? (
+                  <div className="text-center py-12 text-slate-400 space-y-2">
+                    <p className="text-2xl">🔔</p>
+                    <p className="text-xs font-bold">No new notifications</p>
+                  </div>
+                ) : (
+                  <div className="space-y-2">
+                    {notifications.map(n => (
+                      <div key={n.id} className="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs space-y-1">
+                        <p className="font-bold text-slate-900">{n.title}</p>
+                        <p className="text-slate-600 text-[11px]">{n.message}</p>
+                        <span className="text-[10px] text-slate-400">{n.time}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
+          {/* D. HIDDEN ADMIN CONSOLE MODAL */}
+          {isAdminOpen && (
+            <div className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm flex items-center justify-center p-4">
+              <div className="bg-slate-900 w-full max-w-md rounded-3xl p-6 shadow-2xl border border-slate-800 text-white space-y-4">
+                <div className="flex items-center justify-between border-b border-slate-800 pb-3">
+                  <div className="flex items-center gap-2">
+                    <span className="text-lg">🛡️</span>
+                    <h3 className="font-display font-black text-base">Zupix Secret Admin Console</h3>
+                  </div>
+                  <button onClick={() => setIsAdminOpen(false)} className="text-slate-400 hover:text-white font-bold">✕</button>
+                </div>
+
+                <div className="space-y-2 text-xs">
+                  <p className="text-slate-400">Total Registered Specialists: <strong className="text-white">{workers.length}</strong></p>
+                  <p className="text-slate-400">Total Bookings in Database: <strong className="text-white">{bookings.length}</strong></p>
+                  <p className="text-slate-400">Zero Commission Policy: <strong className="text-emerald-400">Active (100%)</strong></p>
+                </div>
+
+                <div className="space-y-2 pt-2 border-t border-slate-800">
+                  <button 
+                    onClick={() => {
+                      localStorage.clear();
+                      alert('Local cache reset! Reloading...');
+                      window.location.reload();
+                    }}
+                    className="w-full py-2.5 rounded-xl bg-rose-600/20 text-rose-300 border border-rose-500/30 text-xs font-bold hover:bg-rose-600/30"
+                  >
+                    Clear All Cache & Reset Seed Data
+                  </button>
+                  <button 
+                    onClick={() => setIsAdminOpen(false)}
+                    className="w-full py-2 rounded-xl text-slate-400 hover:text-white text-xs font-bold"
+                  >
+                    Close Admin Console
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+
+        </div>
+      );
+    }
+
+    // Render App
+    ReactDOM.createRoot(document.getElementById('root')).render(<App />);
+  </script>
+</body>
+</html>

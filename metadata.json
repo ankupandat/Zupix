@@ -1,0 +1,6 @@
+{
+  "name": "Zupix",
+  "description": "Zupix - Next-gen local services & healthcare marketplace for instant booking of home repairs, appliances, doctors, and beauty specialists.",
+  "requestFramePermissions": ["geolocation"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
